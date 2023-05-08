@@ -5339,7 +5339,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
         t.pendown()
         t.left(-90)
         t.right(a1)
-        t.forward((l1 / 2) + 50)
+        t.forward((l1 / 2) + 20)
 
         # Massa2
         t.pencolor('black')
@@ -5667,7 +5667,8 @@ def programa_plano_inclinado_con_dos_cuerpos():
         t.pencolor('black')
         t.circle(-10)
 
-        # Cuadro de leyenda
+
+        # Cuadro de leyendass
         t.pensize(3)
         t.pencolor('black')
 
@@ -5676,7 +5677,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
         t.pendown()
 
         # Quadrado
-        t.left(90)
+        t.settiltangle(0)
         t.forward(50)
 
         # Primera linea divisoria
@@ -5808,6 +5809,24 @@ def programa_plano_inclinado_con_dos_cuerpos():
         t.pencolor('black')
         t.left(90)
         t.forward(30)
+        t.left(90)
+        t.forward(150)
+        t.left(90)
+        t.forward(100)
+        t.left(90)
+        t.forward(50)
+        t.left(90)
+        t.forward(50)
+
+        # Letra T
+        t.left(90)
+        t.forward(2)
+        t.pencolor('purple')
+        t.forward(35)
+        t.left(90)
+        t.forward(20)
+        t.left(180)
+        t.forward(40)
 
         # Esconder el lapiz
         t.penup()
