@@ -25,7 +25,8 @@ def programa_plano_inclinado():
 
         m = float(masa.get())
         g = float(Gravedad.get())
-        resultado = m * g
+        x = m * g
+        resultado = round(x, 3)
         label_resultado.config(text=f"El resultado es: {resultado}(N)")
         label_resultado1.config(text=f"El peso es de {resultado}(N)")
 
@@ -46,24 +47,20 @@ def programa_plano_inclinado():
     # Calculo para la Fricion
     def calcular_Friccion():
 
-        N = float(normal.get())
+        m = float(masa.get())
+        cos = float(coseno.get())
+        g = float(Gravedad.get())
         mu = float(coeficiente.get())
-        resultado2 = N * mu
+        x = (m * g * (math.cos(math.radians(cos)))) * mu
+        resultado2 = round(x, 3)
         label_resultado.config(text=f"El resultado es: {resultado2}(N)")
         label_resultado2.config(text=f"La friccion es de {resultado2}(N)")
 
-    # Crear las etiquetas y entradas de datos
-    etiqueta_normal = tk.Label(ventana, text="Normal (N):",bg="black", fg="white")
-    etiqueta_normal.grid(column=0, row=3, padx=10, pady=10)
-
-    normal = tk.Entry(ventana)
-    normal.grid(column=1, row=3, padx=10, pady=10)
-
     etiqueta_coeficiente = tk.Label(ventana, text="Coeficiente de friccion:",bg="black", fg="white")
-    etiqueta_coeficiente.grid(column=0, row=4, padx=10, pady=10)
+    etiqueta_coeficiente.grid(column=2, row=3, padx=10, pady=10)
 
     coeficiente = tk.Entry(ventana)
-    coeficiente.grid(column=1, row=4, padx=10, pady=10)
+    coeficiente.grid(column=3, row=3, padx=10, pady=10)
 
 
     # Calculo para la Fuerza
@@ -71,7 +68,8 @@ def programa_plano_inclinado():
 
         m = float(masa.get())
         a = float(aceleracion.get())
-        resultado3 = m * a
+        x = m * a
+        resultado3 = round(x, 3)
         label_resultado.config(text=f"El resultado es: {resultado3}(N)")
         label_resultado3.config(text=f"La fuerza es de {resultado3}(N)")
 
@@ -89,7 +87,8 @@ def programa_plano_inclinado():
         m = float(masa.get())
         g = float(Gravedad.get())
         cos = float(coseno.get())
-        resultado4 = m * g * math.cos(math.radians(cos))
+        x = m * g * math.cos(math.radians(cos))
+        resultado4 = round(x, 3)
         label_resultado.config(text=f"El resultado es: {resultado4}(N)")
         label_resultado4.config(text=f"El peso en Y es: {resultado4}(N)")
 
@@ -107,17 +106,23 @@ def programa_plano_inclinado():
         m = float(masa.get())
         g = float(Gravedad.get())
         sen = float(coseno.get())
-        resultado5 = m * g * math.sin(math.radians(sen))
+        x = m * g * math.sin(math.radians(sen))
+        resultado5 = round(x, 3)
         label_resultado.config(text=f"El resultado es: {resultado5}(N)")
         label_resultado5.config(text=f"El peso en X es: {resultado5}(N)")
 
     # Crear las etiquetas y entradas de datos
     etiqueta_Fuerza_ang = tk.Label(ventana, text="Angulo de \n la Fuerza:",bg="black", fg="white")
-    etiqueta_Fuerza_ang.grid(column=2, row=4, padx=10, pady=10)
+    etiqueta_Fuerza_ang.grid(column=0, row=4, padx=10, pady=10)
 
     Fuerza_ang = (tk.Entry(ventana))
-    Fuerza_ang.grid(column=3, row=4, padx=10, pady=10)
+    Fuerza_ang.grid(column=1, row=4, padx=10, pady=10)
 
+    etiqueta_Fuerza = tk.Label(ventana, text="La Fuerza:",bg="black", fg="white")
+    etiqueta_Fuerza.grid(column=0, row=3, padx=10, pady=10)
+
+    Fuerza = (tk.Entry(ventana))
+    Fuerza.grid(column=1, row=3, padx=10, pady=10)
 
 
     # Calculo para la aceleración
@@ -136,7 +141,8 @@ def programa_plano_inclinado():
             xp = m * g * math.sin(math.radians(cos))
             nf = m * g * math.cos(math.radians(cos)) * mu
             xff =  (f * Fa) + xp - nf
-            resultado7 = min(xff / m, 299792458)
+            x = min(xff / m, 299792458)
+            resultado7 = round(x, 3)
             label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
             label_resultado6.config(text=f"La aceleracion es de {resultado7}(m/s²)")
 
@@ -150,16 +156,19 @@ def programa_plano_inclinado():
             xp = m * g * math.sin(math.radians(cos))
             nf = m * g * math.cos(math.radians(cos)) * mu
             xff =  f + xp - nf
-            resultado7 = min(xff / m, 299792458)
+            x = min(xff / m, 299792458)
+            resultado7 = round(x, 3)
             label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
             label_resultado6.config(text=f"La aceleracion es de {resultado7}(m/s²)")
-
-    # Crear las etiquetas y entradas de datos
-    etiqueta_Fuerza = tk.Label(ventana, text="Fuerza (N):",bg="black", fg="white")
-    etiqueta_Fuerza.grid(column=2, row=3, padx=10, pady=10)
-
-    Fuerza = tk.Entry(ventana)
-    Fuerza.grid(column=3, row=3, padx=10, pady=10)
+    
+    # Borrar todos los datos laterales guardados
+    def limpiar_barra_lateral():
+        label_resultado1.config(text=f" ")
+        label_resultado2.config(text=f" ")
+        label_resultado3.config(text=f" ")
+        label_resultado4.config(text=f" ")
+        label_resultado5.config(text=f" ")
+        label_resultado6.config(text=f" ")
 
     # Crear el botón de calcular
     boton_calcular_P = tk.Button(ventana, text="Calcular P", command=calcular_Peso ,bg="darkblue", fg="white")
@@ -179,6 +188,9 @@ def programa_plano_inclinado():
 
     boton_calcular_V = tk.Button(ventana, text="Calcular a", command=calcular_Aceleracion ,bg="darkblue", fg="white")
     boton_calcular_V.grid(column=2, row=5, padx=10, pady=10)
+
+    boton_limpiar_datos = tk.Button(ventana, text="Borrar datos laterales", command=limpiar_barra_lateral ,bg="red", fg="gold")
+    boton_limpiar_datos.grid(column=3, row=4, padx=10, pady=10)
 
     # Crear la etiqueta para mostrar el resultado
     label_resultado = tk.Label(ventana, text="" ,bg="lightblue", fg="black")
@@ -202,8 +214,6 @@ def programa_plano_inclinado():
 
     label_resultado6 = tk.Label(ventana, text="" ,bg="black", fg="white")
     label_resultado6.grid(column=4, row=6, columnspan=2, padx=10, pady=10)
-
-
 
     etiqueta_masa = tk.Label(ventana, text="Cuadros de texto para la creacion del grafico",bg="black", fg="orange")
     etiqueta_masa.grid(column=1, row=7, columnspan=2, padx=10, pady=10)
@@ -5000,8 +5010,12 @@ def programa_plano_inclinado_con_dos_cuerpos():
     ventana2.configure(background='black')
 
     # Enunciado de la calculadora
-    etiqueta_masa = tk.Label(ventana2, text="Botones y cuadros de texto para la calculadora",bg="black", fg="orange")
-    etiqueta_masa.grid(column=2, row=0, columnspan=2, padx=10, pady=10)
+    etiqueta_cu = tk.Label(ventana2, text="Botones y cuadros de texto para la calculadora",bg="black", fg="orange")
+    etiqueta_cu.grid(column=2, row=0, columnspan=2, padx=10, pady=10)
+
+    # Enunciado de la calculadora
+    etiqueta_ca = tk.Label(ventana2, text="Botones y cuadros de texto para el grafico",bg="black", fg="orange")
+    etiqueta_ca.grid(column=2, row=8, columnspan=2, padx=10, pady=10)
 
     # Crear las etiquetas y entradas de datos
     etiqueta_tension = tk.Label(ventana2, text="Tension:",bg="black", fg="white")
@@ -5185,7 +5199,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
         resultado4 = round(x, 3)
         if resultado4 >= 0:
             label_resultado.config(text=f"La aceleración es: {resultado4}(m/s²)")
-            label_resultado9.config(text=f"La aceleración a favor \n de la masa2 es: {resultado4}(m/s²)")
+            label_resultado9.config(text=f"La aceleración a favor \n de la masa1 es: {resultado4}(m/s²)")
         else:
             label_resultado.config(text=f"Este caso es imposible")
             label_resultado9.config(text=f"Este caso es imposible")
@@ -5215,6 +5229,19 @@ def programa_plano_inclinado_con_dos_cuerpos():
             label_resultado.config(text=f"Este caso es imposible")
             label_resultado10.config(text=f"Este caso es imposible")
 
+    # Borrar todos los datos laterales guardados
+    def limpiar_barra_lateral():
+        label_resultado1.config(text=f" ")
+        label_resultado2.config(text=f" ")
+        label_resultado3.config(text=f" ")
+        label_resultado4.config(text=f" ")
+        label_resultado5.config(text=f" ")
+        label_resultado6.config(text=f" ")
+        label_resultado7.config(text=f" ")
+        label_resultado8.config(text=f" ")
+        label_resultado9.config(text=f" ")
+        label_resultado10.config(text=f" ")
+
     # Crear el botón de calcular
     boton_calcular_P1 = tk.Button(ventana2, text="Calcular P1", command=calcular_Peso1 ,bg="darkblue", fg="white")
     boton_calcular_P1.grid(column=0, row=5, padx=10, pady=10)
@@ -5236,6 +5263,8 @@ def programa_plano_inclinado_con_dos_cuerpos():
     boton_calcular_a.grid(column=4, row=5, padx=10, pady=10)
     boton_calcular_a = tk.Button(ventana2, text="Calcular 'a' \n a favor de m2", command=calcular_aceleraciónfm2 ,bg="darkblue", fg="white")
     boton_calcular_a.grid(column=4, row=6, padx=10, pady=10)
+    boton_borrar = tk.Button(ventana2, text="Borrar datos laterales", command=limpiar_barra_lateral ,bg="red", fg="gold")
+    boton_borrar.grid(column=5, row=6, padx=10, pady=10)
 
     # Crear la etiqueta para mostrar el resultado
     label_resultado = tk.Label(ventana2, text="" ,bg="lightblue", fg="black")
@@ -5276,12 +5305,12 @@ def programa_plano_inclinado_con_dos_cuerpos():
         ventana2.destroy()
 
     btn_cerrar = tk.Button(ventana2, text="                                Cerrar ventana                                ", font=("Helvetica", 10, "bold"), command=cerrar_ventana, bg="red", fg="black")
-    btn_cerrar.grid(column=1, row=9, columnspan=3, padx=10, pady=10)
+    btn_cerrar.grid(column=2, row=10, columnspan=3, padx=10, pady=10)
 
     etiqueta_Creargrafico = tk.Label(ventana2, text="Cual es la masa que cae: \n 1. A favor de la masa 1 \n 2. A favor de la masa 2",bg="black", fg="white")
-    etiqueta_Creargrafico.grid(column=0, row=8, padx=10, pady=10)
+    etiqueta_Creargrafico.grid(column=1, row=9, padx=10, pady=10)
     Creargrafico = (tk.Entry(ventana2))
-    Creargrafico.grid(column=1, row=8, padx=10, pady=10)
+    Creargrafico.grid(column=2, row=9, padx=10, pady=10)
 
     etiqueta_angulo_de_inclinacion1 = tk.Label(ventana2, text="Algulo de inclinación 1:",bg="black", fg="white")
     etiqueta_angulo_de_inclinacion1.grid(column=0, row=4, padx=10, pady=10)
@@ -5368,7 +5397,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     # Massa2
                     t.pencolor('black')
                     t.left(90)
-                    t.forward(25)
+                    t.forward(5)
                     t.backward(50)
                     t.left(90)
                     t.forward(50)
@@ -5407,7 +5436,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -5489,7 +5538,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -5597,6 +5668,9 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     # Cuerda
                     t.penup()
                     t.forward(25)
+                    t.left(90)
+                    t.forward(20)
+                    t.right(90)
                     t.forward((l1 / 2) + 20)
                     t.right(-a1)
                     t.left(180)
@@ -5656,7 +5730,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -5698,7 +5794,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -6035,16 +6151,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     a2 = float(angulo_de_inclinacion2.get())
                     a3 = 360 - (a1 + a2)
 
-                    l1 = 300
-                    l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
-                    l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
+                    l1 = 400
+                    l2 = (math.sin(math.radians(a1)) * 400) / math.sin(math.radians(a2))
+                    l3 = (math.sin(math.radians(a3)) * 400) / math.sin(math.radians(a2))
 
                     #Triangulo de dos massas
                     t.pensize(4)
                     t.pencolor('grey')
 
                     t.penup()
-                    t.setpos(200, -100)
+                    t.setpos(300, -170)
                     t.pendown()
 
                     t.left(-a1)
@@ -6127,7 +6243,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -6209,7 +6347,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -6337,7 +6495,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     # Massa1
                     t.pencolor('black')
                     t.left(90)
-                    t.forward(27)
+                    t.forward(45)
                     t.backward(50)
                     t.left(90)
                     t.forward(50)
@@ -6346,7 +6504,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.right(90)
                     t.forward(50)
                     t.right(90)
-                    t.forward(27)
+                    t.forward(25)
                     t.penup()
                     t.right(90)
                     t.forward(25)
@@ -6376,7 +6534,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -6418,7 +6596,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -6565,6 +6765,9 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     # Polea
                     t.right(180)
                     t.forward(25)
+                    t.right(90)
+                    t.forward(20)
+                    t.left(90)
                     t.forward((l2 / 2) + 20)
                     t.right(a2)
                     t.right(45)
@@ -6764,7 +6967,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.pencolor('grey')
 
                     t.penup()
-                    t.setpos(200, -100)
+                    t.setpos(300, -150)
                     t.pendown()
 
                     t.left(-a1)
@@ -6847,7 +7050,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -6929,7 +7154,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -7096,7 +7341,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -7138,7 +7405,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -7566,7 +7853,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -7648,7 +7957,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -7815,7 +8144,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -7857,7 +8208,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -8187,7 +8558,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                         t.clear()
 
                     boton_borrar = tk.Button(ventana2, text="Borrar", command=borrar, bg="gold", fg="black")
-                    boton_borrar.grid(column=0, row=9, columnspan=1, padx=10, pady=10)
+                    boton_borrar.grid(column=4, row=9, padx=10, pady=10)
             
             pop()
 
@@ -8263,7 +8634,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     # Massa2
                     t.pencolor('black')
                     t.left(90)
-                    t.forward(25)
+                    t.forward(5)
                     t.backward(50)
                     t.left(90)
                     t.forward(50)
@@ -8302,7 +8673,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -8384,7 +8775,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -8492,6 +8905,9 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     # Cuerda
                     t.penup()
                     t.backward(25)
+                    t.right(90)
+                    t.forward(20)
+                    t.left(90)
                     t.backward((l1 / 2) + 20)
                     t.right(-a1)
                     t.forward(10)
@@ -8550,7 +8966,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -8592,7 +9030,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -8930,9 +9388,9 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     a2 = float(angulo_de_inclinacion2.get())
                     a3 = 360 - (a1 + a2)
 
-                    l1 = 300
-                    l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
-                    l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
+                    l1 = 400
+                    l2 = (math.sin(math.radians(a1)) * 400) / math.sin(math.radians(a2))
+                    l3 = (math.sin(math.radians(a3)) * 400) / math.sin(math.radians(a2))
 
                     #Triangulo de dos massas
                     t.pensize(4)
@@ -9023,7 +9481,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -9105,7 +9585,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -9232,7 +9732,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     # Massa1
                     t.pencolor('black')
                     t.left(90)
-                    t.forward(27)
+                    t.forward(45)
                     t.backward(50)
                     t.left(90)
                     t.forward(50)
@@ -9241,7 +9741,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.right(90)
                     t.forward(50)
                     t.right(90)
-                    t.forward(27)
+                    t.forward(25)
                     t.penup()
                     t.right(90)
                     t.forward(25)
@@ -9271,7 +9771,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -9313,7 +9833,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -9460,6 +10002,9 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
                     # Polea
                     t.backward(25)
+                    t.left(90)
+                    t.forward(20)
+                    t.right(90)
                     t.backward((l2 / 2) + 20)
                     t.right(a2)
                     t.right(180)
@@ -9640,7 +10185,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(1)
                     t.hideturtle()
 
-                elif xz1 >= 50 and xy1 >= 50:
+                elif xz1 >= 51 and xy1 >= 51:
 
                     # Configura la tortuga
                     turtle.setup(width=800, height=500, startx=-130, starty=-90)
@@ -9660,7 +10205,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.pencolor('grey')
 
                     t.penup()
-                    t.setpos(250, -100)
+                    t.setpos(300, -100)
                     t.pendown()
 
                     t.left(-a1)
@@ -9744,7 +10289,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -9826,7 +10393,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -9992,7 +10579,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -10034,7 +10643,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                   
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M2
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -10464,7 +11093,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.left(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.right(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -10546,7 +11197,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -10712,7 +11383,29 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra X del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(10)
+                    t.left(90)
+                    t.forward(10)
                     t.left(180)
+                    t.forward(20)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(180)
+                    t.forward(20)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -10754,7 +11447,27 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.forward(5)
                     t.pendown()
                     t.forward(10)
+                    
+                    # Letra Y del eje
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()
+                    t.right(45)
+                    t.forward(20)
                     t.left(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.right(180)
+                    t.forward(10)
+                    t.right(90)
+                    t.forward(10)
+                    t.left(45)
+                    t.penup()
+                    t.forward(5)
+                    t.pendown()                    
+                    
+                    # Linea de ejes M1
                     t.forward(10)
                     t.penup()
                     t.forward(5)
@@ -11085,16 +11798,121 @@ def programa_plano_inclinado_con_dos_cuerpos():
                     t.clear()
 
                 boton_borrar = tk.Button(ventana2, text="Borrar", command=borrar, bg="gold", fg="black")
-                boton_borrar.grid(column=0, row=9, columnspan=1, padx=10, pady=10)
+                boton_borrar.grid(column=4, row=9, padx=10, pady=10)
             
             pop1()
 
     boton_grafico = tk.Button(ventana2, text="Crea el gráfico", command=grafico ,bg="green", fg="white")
-    boton_grafico.grid(column=2, row=8, padx=10, pady=10)
+    boton_grafico.grid(column=3, row=9, padx=10, pady=10)
 
     # Mantiene la ventana simpre abierta hasta que el usuario la cierra
     ventana2.mainloop()
 
+def mini_calculadora():
+
+    # Crear la ventana del menu de la calculadora
+    ventana3 = tk.Tk()
+    ventana3.title("Calculadora")
+    ventana3.geometry('260x280+400+200')
+    ventana3.configure(background='black')
+
+    def add_character(character):
+        entry_text = entry.get()
+        entry_text += character
+        entry.delete(0, tk.END)
+        entry.insert(0, entry_text)
+
+    def delete_all():
+        entry.delete(0, tk.END)
+
+    def delete_last():
+        entry_text = entry.get()
+        entry_text = entry_text[:-1]
+        entry.delete(0, tk.END)
+        entry.insert(0, entry_text)
+
+    def perform_operacion():
+        try:
+            expression = entry.get()
+            result = eval(expression)  # Evalúa la expresión ingresada
+            entry.delete(0, tk.END)
+            entry.insert(0, str(result))  # Muestra el resultado en el cuadro de texto
+        except:
+            entry.delete(0, tk.END)
+            entry.insert(0, "Error")  # Manejo de error si la expresión no es válida
+
+    entry = tk.Entry(ventana3, width=40)
+    entry.grid(column=0, row=0, columnspan=5, padx=10, pady=10)
+
+    btn_1 = tk.Button(ventana3, text=" 1 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("1"), bg="white", fg="black")
+    btn_1.grid(column=0, row=3, columnspan=1, padx=10, pady=10)
+
+    btn_2 = tk.Button(ventana3, text=" 2 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("2"), bg="white", fg="black")
+    btn_2.grid(column=1, row=3, columnspan=1, padx=10, pady=10)
+
+    btn_3 = tk.Button(ventana3, text=" 3 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("3"), bg="white", fg="black")
+    btn_3.grid(column=2, row=3, columnspan=1, padx=10, pady=10)
+
+    btn_4 = tk.Button(ventana3, text=" 4 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("4"), bg="white", fg="black")
+    btn_4.grid(column=0, row=2, columnspan=1, padx=10, pady=10)
+
+    btn_5 = tk.Button(ventana3, text=" 5 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("5"), bg="white", fg="black")
+    btn_5.grid(column=1, row=2, columnspan=1, padx=10, pady=10)
+
+    btn_6 = tk.Button(ventana3, text=" 6 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("6"), bg="white", fg="black")
+    btn_6.grid(column=2, row=2, columnspan=1, padx=10, pady=10)
+
+    btn_7 = tk.Button(ventana3, text=" 7 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("7"), bg="white", fg="black")
+    btn_7.grid(column=0, row=1, columnspan=1, padx=10, pady=10)
+
+    btn_8 = tk.Button(ventana3, text=" 8 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("8"), bg="white", fg="black")
+    btn_8.grid(column=1, row=1, columnspan=1, padx=10, pady=10)
+
+    btn_9 = tk.Button(ventana3, text=" 9 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("9"), bg="white", fg="black")
+    btn_9.grid(column=2, row=1, columnspan=1, padx=10, pady=10)
+
+    btn_0 = tk.Button(ventana3, text=" 0 ", font=("Helvetica", 10, "bold"), command=lambda: add_character("0"), bg="white", fg="black")
+    btn_0.grid(column=0, row=4, columnspan=1, padx=10, pady=10)
+
+    btn_10 = tk.Button(ventana3, text=" - ", font=("Helvetica", 10, "bold"), command=lambda: add_character("-"), bg="white", fg="black")
+    btn_10.grid(column=4, row=3, columnspan=1, padx=10, pady=10)
+
+    btn_11 = tk.Button(ventana3, text=" + ", font=("Helvetica", 10, "bold"), command=lambda: add_character("+"), bg="white", fg="black")
+    btn_11.grid(column=3, row=3, columnspan=1, padx=10, pady=10)
+
+    btn_12 = tk.Button(ventana3, text=" X ", font=("Helvetica", 10, "bold"), command=lambda: add_character("*"), bg="white", fg="black")
+    btn_12.grid(column=3, row=2, columnspan=1, padx=10, pady=10)
+
+    btn_13 = tk.Button(ventana3, text=" / ", font=("Helvetica", 10, "bold"), command=lambda: add_character("/"), bg="white", fg="black")
+    btn_13.grid(column=4, row=2, columnspan=1, padx=10, pady=10)
+
+    btn_14 = tk.Button(ventana3, text=" = ", font=("Helvetica", 10, "bold"), command=perform_operacion, bg="gold", fg="black")
+    btn_14.grid(column=4, row=4, columnspan=1, padx=10, pady=10)
+
+    btn_15 = tk.Button(ventana3, text=" · ", font=("Helvetica", 10, "bold"), command=lambda: add_character("."), bg="white", fg="black")
+    btn_15.grid(column=1, row=4, columnspan=1, padx=10, pady=10)
+
+    btn_16 = tk.Button(ventana3, text=" Ac ", font=("Helvetica", 10, "bold"), command=delete_all, bg="blue", fg="white")
+    btn_16.grid(column=4, row=1, columnspan=1, padx=10, pady=10)
+
+    btn_17 = tk.Button(ventana3, text=" Del ", font=("Helvetica", 10, "bold"), command=delete_last, bg="blue", fg="white")
+    btn_17.grid(column=3, row=1, columnspan=1, padx=10, pady=10)
+
+    btn_18 = tk.Button(ventana3, text=" ( ", font=("Helvetica", 10, "bold"), command=lambda: add_character("("), bg="white", fg="black")
+    btn_18.grid(column=2, row=4, columnspan=1, padx=10, pady=10)
+
+    btn_19 = tk.Button(ventana3, text=" ) ", font=("Helvetica", 10, "bold"), command=lambda: add_character(")"), bg="white", fg="black")
+    btn_19.grid(column=3, row=4, columnspan=1, padx=10, pady=10)
+
+    # Boton de cierre de ventana
+    def cerrar_ventana():
+        ventana3.destroy()
+
+    btn_cerrar = tk.Button(ventana3, text="    OFF    ", font=("Helvetica", 10, "bold"), command=cerrar_ventana, bg="red", fg="black")
+    btn_cerrar.grid(column=2, row=5,columnspan=2, padx=10, pady=10)
+
+    # Mantiene la ventana simpre abierta hasta que el usuario la cierra
+    ventana3.mainloop()    
     
     
 # Crear el botón de la calculadora de plano inclinado
@@ -11102,6 +11920,8 @@ boton_calculadora_plano_inclinado = tk.Button(ventana1, text="Calculadora de pla
 boton_calculadora_plano_inclinado.grid(column=2, row=2, padx=10, pady=10)
 boton_calculadora_plano_inclinado_con_dos_cuerpos = tk.Button(ventana1, text="Calculadora de plano inclinado \n con dos cuerpos unidos", command=programa_plano_inclinado_con_dos_cuerpos , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
 boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=4, row=2, padx=10, pady=10)
+boton_calculadora = tk.Button(ventana1, text="Calculadora", command=mini_calculadora , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
+boton_calculadora.grid(column=2, row=3, columnspan=2, padx=10, pady=10)
 
 # Crear la etiqueta para almacenar el resultado
 label_espacio = tk.Label(ventana1, text="" ,bg="black", fg="black")
@@ -11110,8 +11930,6 @@ label_espacio1 = tk.Label(ventana1, text="" ,bg="black", fg="black")
 label_espacio1.grid(column=0, row=1, columnspan=2, padx=10, pady=10)
 label_espacio2 = tk.Label(ventana1, text="" ,bg="black", fg="black")
 label_espacio2.grid(column=1, row=0, columnspan=2, padx=10, pady=10)
-label_espacio3 = tk.Label(ventana1, text="" ,bg="black", fg="black")
-label_espacio3.grid(column=2, row=3, columnspan=3, padx=10, pady=10)
 
 def cerrar_ventana():
     ventana1.destroy()
