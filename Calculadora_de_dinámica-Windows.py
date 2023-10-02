@@ -10,7 +10,7 @@ ventana1.geometry('710x300+400+200')
 ventana1.configure(background='black')
 
 # Establecer el ícono de la ventana (solo compatible con Windows)
-ventana1.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+ventana1.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
 
 def programa_plano_inclinado():
     
@@ -21,7 +21,7 @@ def programa_plano_inclinado():
     ventana.configure(background='black')
 
     # Establecer el ícono de la ventana (solo compatible con Windows)
-    ventana.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+    ventana.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
 
     lienzo = tk.Canvas(ventana, width=1300, height=650)
     lienzo.configure(bg='black')
@@ -5043,7 +5043,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
     ventana2.configure(background='black')
 
     # Establecer el ícono de la ventana
-    ventana2.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+    ventana2.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
 
     #Detalles gráficos
     lienzo = tk.Canvas(ventana2, width=1300, height=650)
@@ -15280,7 +15280,7 @@ def mini_calculadora():
     ventana3.configure(background='black')
 
     # Establecer el ícono de la ventana
-    ventana3.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+    ventana3.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
 
     def add_character(character):
         entry_text = entry.get()
@@ -15389,7 +15389,7 @@ def problemas_de_trabajo_energia():
     ventana4.configure(background='black')
 
     # Establecer el ícono de la ventana
-    ventana4.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+    ventana4.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
 
     # despliege de arcos
     def seleccionar_opcion(event):
@@ -15424,7 +15424,7 @@ def problemas_de_trabajo_energia():
         ventana5.configure(background='black')
 
         # Establecer el ícono de la ventana
-        ventana5.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+        ventana5.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
         
         # Etiquetas
         etiqueta_masa = tk.Label(ventana5, text='No se contempla la friccion con el aire', bg="black", fg="gold")
@@ -16062,7 +16062,7 @@ def problemas_de_trabajo_energia():
         ventana6.configure(background='black')
 
         # Establecer el ícono de la ventana
-        ventana6.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+        ventana6.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
     
     def Inclinado():
         ventana7 = tk.Tk()
@@ -16071,7 +16071,7 @@ def problemas_de_trabajo_energia():
         ventana7.configure(background='black')
 
         # Establecer el ícono de la ventana
-        ventana7.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+        ventana7.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
     
     def Circular():
         ventana8 = tk.Tk()
@@ -16080,7 +16080,7 @@ def problemas_de_trabajo_energia():
         ventana8.configure(background='black')
 
         # Establecer el ícono de la ventana
-        ventana8.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+        ventana8.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
     
     def Semi_cicular():
         ventana9 = tk.Tk()
@@ -16089,7 +16089,7 @@ def problemas_de_trabajo_energia():
         ventana9.configure(background='black')
 
         # Establecer el ícono de la ventana
-        ventana9.iconbitmap('C:/Users/alm0\Workspace/5010110.ico')
+        ventana9.iconbitmap("C:/Users/tonil/worckspace/Calculadora-de-problemas-de-dinamica/5010110.ico")
 
     def cerrar_ventana4():
         ventana4.destroy()
