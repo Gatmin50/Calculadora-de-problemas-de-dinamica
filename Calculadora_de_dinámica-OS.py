@@ -16784,7 +16784,7 @@ def problemas_de_trabajo_energia():
         
         def grafico_Circular():
             # Configura la tortuga
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            turtle.setup(width=450, height=450, startx=-130, starty=-90)
             t = turtle.Turtle()
             t.speed(100)
             t.pencolor('grey')
