@@ -15322,8 +15322,9 @@ def mini_calculadora():
 
 def problemas_de_trabajo_energia():
 
-    # Crear la ventana de la calculadora
+    # Crear la ventana de seleccion
     ventana4 = tk.Tk()
+    ventana4.geometry('390x150')
     ventana4.title("Problemas de trabajo y energia")
     ventana4.configure(background='black')
 
