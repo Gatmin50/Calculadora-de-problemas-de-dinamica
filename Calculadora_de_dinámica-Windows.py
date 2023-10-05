@@ -2,6 +2,36 @@ import tkinter as tk
 from tkinter import ttk
 import math
 import turtle
+import os
+import requests
+import shutil
+
+# URL del archivo de imagen en GitHub
+url = 'https://github.com/Gatmin50/Calculadora-de-problemas-de-dinamica/blob/e811ea1078b1cb4718d05b13a3c39742c92242cd/5010110.ico'
+
+# Directorio donde deseas guardar el archivo descargado
+directorio = 'C:/calculadora_de_dinamica/'
+ruta_local = os.path.join(directorio, '5010110.ico')
+
+# Verificar si el directorio existe y, si no, crearlo
+if not os.path.exists(directorio):
+    os.makedirs(directorio)
+
+# Verificar si el archivo ya existe antes de descargarlo
+if not os.path.exists(ruta_local):
+    try:
+        # Descargar la imagen desde GitHub
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+        
+        # Guardar la imagen en la ruta local
+        with open(ruta_local, 'wb') as file:
+            shutil.copyfileobj(response.raw, file)
+    except Exception as e:
+        print(f"Error al descargar el archivo: {e}")
+else:
+    print(f"El archivo ya existe en {ruta_local}")
+
 
 # Crear la ventana del menu de la calculadora
 ventana1 = tk.Tk()
@@ -10,7 +40,7 @@ ventana1.geometry('710x300+400+200')
 ventana1.configure(background='black')
 
 # Establecer el ícono de la ventana (solo compatible con Windows)
-ventana1.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+ventana1.iconbitmap(ruta_local)
 
 def programa_plano_inclinado():
     
@@ -21,7 +51,7 @@ def programa_plano_inclinado():
     ventana.configure(background='black')
 
     # Establecer el ícono de la ventana (solo compatible con Windows)
-    ventana.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+    ventana.iconbitmap(ruta_local)
 
     lienzo = tk.Canvas(ventana, width=1300, height=650)
     lienzo.configure(bg='black')
@@ -4991,7 +5021,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
     ventana2.configure(background='black')
 
     # Establecer el ícono de la ventana
-    ventana2.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+    ventana2.iconbitmap(ruta_local)
 
     #Detalles gráficos
     lienzo = tk.Canvas(ventana2, width=1300, height=650)
@@ -15228,7 +15258,7 @@ def mini_calculadora():
     ventana3.configure(background='black')
 
     # Establecer el ícono de la ventana
-    ventana3.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+    ventana3.iconbitmap(ruta_local)
 
     def add_character(character):
         entry_text = entry.get()
@@ -15335,7 +15365,7 @@ def problemas_de_trabajo_energia():
     ventana4.title("Problemas de trabajo y energia")
     ventana4.geometry('380x150+570+300')
     ventana4.configure(background='black')
-    ventana4.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+    ventana4.iconbitmap(ruta_local)
 
     # despliege de secciones
     def seleccionar_opcion(event):
@@ -15367,7 +15397,7 @@ def problemas_de_trabajo_energia():
         ventana5.title("Trabajo y energia vertical")
         ventana5.geometry('1300x650+100+100')
         ventana5.configure(background='black')
-        ventana5.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+        ventana5.iconbitmap(ruta_local)
         
         # Etiquetas
         etiqueta = tk.Label(ventana5, text='No se contempla la friccion con el aire', bg="black", fg="gold")
@@ -16118,7 +16148,7 @@ def problemas_de_trabajo_energia():
         ventana6.title("Trabajo y energia plano")
         ventana6.geometry('1300x650+100+100')
         ventana6.configure(background='black')
-        ventana6.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+        ventana6.iconbitmap(ruta_local)
 
         # Etiquetas
         etiqueta = tk.Label(ventana6, text='No se contempla la friccion', bg="black", fg="gold")
@@ -16321,7 +16351,7 @@ def problemas_de_trabajo_energia():
         ventana7.title("Trabajo y energia inclinado")
         ventana7.geometry('1300x650+100+100')
         ventana7.configure(background='black')
-        ventana7.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+        ventana7.iconbitmap(ruta_local)
 
         # Etiquetas
         etiqueta = tk.Label(ventana7, text='No se contempla la friccion con el aire', bg="black", fg="gold")
@@ -16565,7 +16595,7 @@ def problemas_de_trabajo_energia():
         ventana8.title("Trabajo y energia circular")
         ventana8.geometry('1300x650+100+100')
         ventana8.configure(background='black')
-        ventana8.iconbitmap("C:/Users/tonil/Downloads/5010110.ico")
+        ventana8.iconbitmap(ruta_local)
 
         # Etiquetas
         etiqueta = tk.Label(ventana8, text='No se contempla la friccion con el aire', bg="black", fg="gold")
