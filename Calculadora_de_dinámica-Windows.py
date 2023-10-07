@@ -7,7 +7,7 @@ import requests
 import shutil
 
 # URL del archivo de imagen en GitHub
-url = 'https://github.com/Gatmin50/Calculadora-de-problemas-de-dinamica/blob/e811ea1078b1cb4718d05b13a3c39742c92242cd/5010110.ico'
+url = 'https://github.com/Gatmin50/Calculadora-de-problemas-de-dinamica/blob/9ad52ad953322a2091b76c81832e85ef1ccdd9af/5010110.ico'
 
 # Directorio donde deseas guardar el archivo descargado
 directorio = 'C:/calculadora_de_dinamica/'
