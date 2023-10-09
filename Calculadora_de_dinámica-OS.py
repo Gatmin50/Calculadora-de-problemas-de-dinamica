@@ -14,10 +14,10 @@ def programa_plano_inclinado():
     # Crear la ventana de la calculadora
     ventana = tk.Tk()
     ventana.title("Calculadora de Dinámica")
-    ventana.geometry('1300x650+100+100')
+    ventana.geometry('1400x650+50+100')
     ventana.configure(background='black')
 
-    lienzo = tk.Canvas(ventana, width=1300, height=650)
+    lienzo = tk.Canvas(ventana, width=1400, height=650)
     lienzo.configure(bg='black')
     lienzo.pack()
 
@@ -285,15 +285,17 @@ def programa_plano_inclinado():
             fz = float(Fuerza_ang.get())
             a3 = float(a1.get())
 
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            lienzo_turtle = turtle.ScrolledCanvas(ventana)
+            lienzo_turtle.grid(column=6, row=1, columnspan=4, rowspan=8, padx=10, pady=10)
+            # Crear un objeto Turtle en el lienzo
+            t = turtle.RawTurtle(lienzo_turtle)
             # Pide los ángulos de los dos ángulos desconocidos
             a2 = - a3 - 90
 
             cc = math.cos(math.radians(a3)) * 300
             co = math.cos(math.radians(a2)) * 300
-
-            # Configura la tortuga
-            t = turtle.Turtle()
+            
+            # velocidad del lapiz
             t.speed(100)
 
             # Definir el tamaño de la línea y el color del trazo
@@ -301,7 +303,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(-50, -50)
+            t.setpos(-50, -150)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -730,7 +732,7 @@ def programa_plano_inclinado():
             t.pencolor('black')
     
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -30)
             t.pendown()
     
             # Quadrado
@@ -878,7 +880,11 @@ def programa_plano_inclinado():
 
             a3 = float(a1.get())
 
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            lienzo_turtle = turtle.ScrolledCanvas(ventana)
+            lienzo_turtle.grid(column=6, row=1, columnspan=4, rowspan=8, padx=10, pady=10)
+
+            # Crear un objeto Turtle en el lienzo
+            t = turtle.RawTurtle(lienzo_turtle)
             
             # Pide los ángulos de los dos ángulos desconocidos
             a2 = - a3 - 90
@@ -887,7 +893,6 @@ def programa_plano_inclinado():
             co = math.cos(math.radians(a2)) * 300
 
             # Configura la tortuga
-            t = turtle.Turtle()
             t.speed(100)
 
             # Definir el tamaño de la línea y el color del trazo
@@ -895,7 +900,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(-50, -50)
+            t.setpos(-50, -150)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -1308,7 +1313,7 @@ def programa_plano_inclinado():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -30)
             t.pendown()
 
             # Quadrado
@@ -1451,12 +1456,6 @@ def programa_plano_inclinado():
             t.pendown()
             t.forward(1)
             t.hideturtle()
-                
-        def borrar():
-            t.clear()
-            
-        boton_borrar = tk.Button(ventana, text="Borrar", command=borrar, bg="gold", fg="black")
-        boton_borrar.grid(column=3, row=8, columnspan=1, padx=10, pady=10)
 
     def plup2_1():
     
@@ -1465,7 +1464,11 @@ def programa_plano_inclinado():
             fz = float(Fuerza_ang.get())
             a4 = float(a1.get())
 
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            lienzo_turtle = turtle.ScrolledCanvas(ventana)
+            lienzo_turtle.grid(column=6, row=1, columnspan=4, rowspan=8, padx=10, pady=10)
+
+            # Crear un objeto Turtle en el lienzo
+            t = turtle.RawTurtle(lienzo_turtle)
 
             # Pide los ángulos de los dos ángulos desconocidos
             a2 = - a4 - 90
@@ -1474,7 +1477,6 @@ def programa_plano_inclinado():
             co = math.cos(math.radians(a2)) * 300
 
             # Configura la tortuga
-            t = turtle.Turtle()
             t.speed(100)
 
             #   Definir el tamaño de la línea y el color del trazo
@@ -1482,7 +1484,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(0, -50)
+            t.setpos(0, -150)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -1896,7 +1898,7 @@ def programa_plano_inclinado():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -30)
             t.pendown()
 
             # Quadrado
@@ -2044,7 +2046,11 @@ def programa_plano_inclinado():
 
             a4 = float(a1.get())
 
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            lienzo_turtle = turtle.ScrolledCanvas(ventana)
+            lienzo_turtle.grid(column=6, row=1, columnspan=4, rowspan=8, padx=10, pady=10)
+
+            # Crear un objeto Turtle en el lienzo
+            t = turtle.RawTurtle(lienzo_turtle)
             
             # Pide los ángulos de los dos ángulos desconocidos
             a2 = - a4 - 90
@@ -2053,7 +2059,6 @@ def programa_plano_inclinado():
             co = math.cos(math.radians(a2)) * 300
 
             # Configura la tortuga
-            t = turtle.Turtle()
             t.speed(100)
 
             # Definir el tamaño de la línea y el color del trazo
@@ -2061,7 +2066,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(0, -50)
+            t.setpos(0, -150)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -2474,7 +2479,7 @@ def programa_plano_inclinado():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -30)
             t.pendown()
 
             # Quadrado
@@ -2618,12 +2623,6 @@ def programa_plano_inclinado():
             t.forward(1)
             t.hideturtle()
 
-        def borrar():
-            t.clear()
-
-        boton_borrar = tk.Button(ventana, text="Borrar", command=borrar, bg="gold", fg="black")
-        boton_borrar.grid(column=3, row=8, columnspan=1, padx=10, pady=10)
-
     def plup2_2():
             
         if Fuerza_ang.get() != "":
@@ -2631,7 +2630,12 @@ def programa_plano_inclinado():
             fz = float(Fuerza_ang.get())
             a4 = float(a1.get())
 
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            lienzo_turtle = turtle.ScrolledCanvas(ventana)
+            lienzo_turtle.grid(column=6, row=1, columnspan=4, rowspan=8, padx=10, pady=10)
+
+            # Crear un objeto Turtle en el lienzo
+            t = turtle.RawTurtle(lienzo_turtle)
+
             # Pide los ángulos de los dos ángulos desconocidos
             a2 = - a4 - 90
 
@@ -2639,7 +2643,6 @@ def programa_plano_inclinado():
             co = math.cos(math.radians(a2)) * 300
 
             # Configura la tortuga
-            t = turtle.Turtle()
             t.speed(100)
 
             # Definir el tamaño de la línea y el color del trazo
@@ -2647,7 +2650,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(0, -50)
+            t.setpos(0, -150)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -3076,7 +3079,7 @@ def programa_plano_inclinado():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -30)
             t.pendown()
 
             # Quadrado
@@ -3224,7 +3227,11 @@ def programa_plano_inclinado():
                         
             a4 = float(a1.get())
 
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            lienzo_turtle = turtle.ScrolledCanvas(ventana)
+            lienzo_turtle.grid(column=6, row=1, columnspan=4, rowspan=8, padx=10, pady=10)
+
+            # Crear un objeto Turtle en el lienzo
+            t = turtle.RawTurtle(lienzo_turtle)
             
             # Pide los ángulos de los dos ángulos desconocidos
             a2 = - a4 - 90
@@ -3233,7 +3240,6 @@ def programa_plano_inclinado():
             co = math.cos(math.radians(a2)) * 300
 
             # Configura la tortuga
-            t = turtle.Turtle()
             t.speed(100)
 
             # Definir el tamaño de la línea y el color del trazo
@@ -3241,7 +3247,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(0, -50)
+            t.setpos(0, -150)
             t.pendown()
 
                 # Dibuja el triángulo rectángulo
@@ -3654,7 +3660,7 @@ def programa_plano_inclinado():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -30)
             t.pendown()
 
             # Quadrado
@@ -3798,12 +3804,6 @@ def programa_plano_inclinado():
             t.forward(1)
             t.hideturtle()
 
-        def borrar():
-            t.clear()
-
-        boton_borrar = tk.Button(ventana, text="Borrar", command=borrar, bg="gold", fg="black")
-        boton_borrar.grid(column=3, row=8, columnspan=1, padx=10, pady=10)
-
     def plup3():
 
         if Fuerza_ang.get() != "":
@@ -3811,7 +3811,11 @@ def programa_plano_inclinado():
             fz = float(Fuerza_ang.get())
             a5 = float(a1.get())
 
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            lienzo_turtle = turtle.ScrolledCanvas(ventana)
+            lienzo_turtle.grid(column=6, row=1, columnspan=4, rowspan=8, padx=10, pady=10)
+
+            # Crear un objeto Turtle en el lienzo
+            t = turtle.RawTurtle(lienzo_turtle)
             
             # Pide los ángulos de los dos ángulos desconocidos
             a2 = - a5 - 90
@@ -3820,7 +3824,6 @@ def programa_plano_inclinado():
             co = math.cos(math.radians(a2)) * 300
 
             # Configura la tortuga
-            t = turtle.Turtle()
             t.speed(100)
 
             # Definir el tamaño de la línea y el color del trazo
@@ -3828,7 +3831,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(0, -50)
+            t.setpos(0, -150)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -4242,7 +4245,7 @@ def programa_plano_inclinado():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -30)
             t.pendown()
 
             # Quadrado
@@ -4390,7 +4393,11 @@ def programa_plano_inclinado():
 
             a5 = float(a1.get())
 
-            turtle.setup(width=650, height=600, startx=-130, starty=-90)
+            lienzo_turtle = turtle.ScrolledCanvas(ventana)
+            lienzo_turtle.grid(column=6, row=1, columnspan=4, rowspan=8, padx=10, pady=10)
+
+            # Crear un objeto Turtle en el lienzo
+            t = turtle.RawTurtle(lienzo_turtle)
             
             # Pide los ángulos de los dos ángulos desconocidos
             a2 = - a5 - 90
@@ -4399,7 +4406,6 @@ def programa_plano_inclinado():
             co = math.cos(math.radians(a2)) * 300
 
             # Configura la tortuga
-            t = turtle.Turtle()
             t.speed(100)
 
             # Definir el tamaño de la línea y el color del trazo
@@ -4407,7 +4413,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(0, -50)
+            t.setpos(0, -150)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -4820,7 +4826,7 @@ def programa_plano_inclinado():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -30)
             t.pendown()
 
             # Quadrado
@@ -4964,14 +4970,7 @@ def programa_plano_inclinado():
             t.forward(1)
             t.hideturtle()
                 
-        def borrar():
-            t.clear()
-
-        boton_borrar = tk.Button(ventana, text="Borrar", command=borrar, bg="gold", fg="black")
-        boton_borrar.grid(column=3, row=8, columnspan=1, padx=10, pady=10)
     plup3()
-
-    
 
     # Mantiene la ventana simpre abierta hasta que el usuario la cierra
     ventana.mainloop()
@@ -15515,8 +15514,10 @@ def Vertical():
         texto5 = 'X'
         texto6 = 'Y'
 
-        turtle.setup(width=800, height=300, startx=-150, starty=-90)
-        t = turtle.Turtle()
+        lienzo_turtle = turtle.ScrolledCanvas(ventana5)
+        lienzo_turtle.grid(column=1, row=7, columnspan=4, padx=10, pady=10)
+        # Crear un objeto Turtle en el lienzo
+        t = turtle.RawTurtle(lienzo_turtle)
         t.speed(100)
 
         t.pensize(5)
@@ -15668,8 +15669,10 @@ def Vertical():
         texto5 = 'X'
         texto6 = 'Y'
 
-        turtle.setup(width=800, height=300, startx=-150, starty=-90)
-        t = turtle.Turtle()
+        lienzo_turtle = turtle.ScrolledCanvas(ventana5)
+        lienzo_turtle.grid(column=1, row=7, columnspan=4, padx=10, pady=10)
+        # Crear un objeto Turtle en el lienzo
+        t = turtle.RawTurtle(lienzo_turtle)
         t.speed(100)
 
         t.pensize(5)
@@ -15821,8 +15824,10 @@ def Vertical():
         texto5 = 'B'
         texto6 = 'v = ?'
 
-        turtle.setup(width=800, height=300, startx=-150, starty=-90)
-        t = turtle.Turtle()
+        lienzo_turtle = turtle.ScrolledCanvas(ventana5)
+        lienzo_turtle.grid(column=1, row=7, columnspan=4, padx=10, pady=10)
+        # Crear un objeto Turtle en el lienzo
+        t = turtle.RawTurtle(lienzo_turtle)
         t.speed(100)
 
         t.pensize(5)
@@ -16211,8 +16216,10 @@ def Plano():
         etiqueta_resultado5.config(text=f"La potencia es: {resultado}(W)")
         
     def grafico_orizontal():
-        turtle.setup(width=500, height=300, startx=-150, starty=-90)
-        t = turtle.Turtle()
+        lienzo_turtle = turtle.ScrolledCanvas(ventana6)
+        lienzo_turtle.grid(column=1, row=6, columnspan=4, padx=10, pady=10)
+        # Crear un objeto Turtle en el lienzo
+        t = turtle.RawTurtle(lienzo_turtle)
         t.speed(100)
 
         t.pensize(5)
@@ -16420,9 +16427,12 @@ def Inclinado():
         etiqueta_resultado5.config(text=f"La potencia es: {resultado}(W)")
 
     def grafico_triangulo():
-        a3 = float(inclinacion_del_plano.get())
+        lienzo_turtle = turtle.ScrolledCanvas(ventana7)
+        lienzo_turtle.grid(column=1, row=6, columnspan=4, padx=10, pady=10)
+        # Crear un objeto Turtle en el lienzo
+        t = turtle.RawTurtle(lienzo_turtle)
 
-        turtle.setup(width=650, height=600, startx=-130, starty=-90)
+        a3 = float(inclinacion_del_plano.get())
         # Pide los ángulos de los dos ángulos desconocidos
         a2 = - a3 - 90
 
@@ -16430,7 +16440,6 @@ def Inclinado():
         co = math.cos(math.radians(a2)) * 300
 
         # Configura la tortuga
-        t = turtle.Turtle()
         t.speed(100)
 
         # Definir el tamaño de la línea y el color
@@ -16438,7 +16447,7 @@ def Inclinado():
         t.pencolor('black')
 
         t.penup()
-        t.setpos(-50, -50)
+        t.setpos(-50, -100)
         t.pendown()
 
         # Dibuja el triángulo rectángulo
@@ -16722,11 +16731,14 @@ def Circular():
         resultado = round(Emt, 3)
         etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
         etiqueta_resultado6.config(text=f"La enegia mecanica total es: {resultado}(J)")
-        
+
     def grafico_Circular():
-        # Configura la tortuga
-        turtle.setup(width=450, height=450, startx=-130, starty=-90)
-        t = turtle.Turtle()
+        lienzo_turtle = turtle.ScrolledCanvas(ventana8)
+        lienzo_turtle.grid(column=1, row=6, columnspan=4, padx=10, pady=10)
+
+        # Crear un objeto Turtle en el lienzo
+        t = turtle.RawTurtle(lienzo_turtle)
+    
         t.speed(100)
         t.pencolor('grey')
         t.pensize(5)
@@ -16846,7 +16858,7 @@ def cerrar_ventana4():
     boton_calculadora_plano_inclinado.grid(column=2, row=2, padx=10, pady=10)
     boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=4, row=2, padx=10, pady=10)
     boton_calculadora.grid(column=2, row=3, columnspan=2, padx=10, pady=10)
-    boton_calculadora.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
+    boton_calculadora_te.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
     btn_cerrar.grid(column=2, row=4, columnspan=3, padx=10, pady=10)
     label_espacio.grid(column=0, row=0, columnspan=2, padx=10, pady=10)
     label_espacio1.grid(column=0, row=1, columnspan=2, padx=10, pady=10)
@@ -16860,14 +16872,11 @@ def traspaso1():
     boton_calculadora_plano_inclinado.grid_remove()
     boton_calculadora_plano_inclinado_con_dos_cuerpos.grid_remove()
     boton_calculadora.grid_remove()
-    boton_calculadora.grid_remove()
+    boton_calculadora_te.grid_remove()
     btn_cerrar.grid_remove()
     label_espacio.grid_remove()
     label_espacio1.grid_remove()
     label_espacio2.grid_remove()
-    combobox.grid_remove()
-    etiqueta_resultado.grid_remove()
-    etiqueta_seleccion.grid_remove()
     combobox.grid(row=0, column=1, padx=10, pady=10)
     etiqueta_resultado.grid(row=1, column=1, padx=10, pady=10)
     etiqueta_seleccion.grid(row=0, column=0, padx=10, pady=10)
@@ -16881,8 +16890,8 @@ boton_calculadora_plano_inclinado_con_dos_cuerpos = tk.Button(ventana1, text="Ca
 boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=4, row=2, padx=10, pady=10)
 boton_calculadora = tk.Button(ventana1, text="Calculadora", command=mini_calculadora , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
 boton_calculadora.grid(column=2, row=3, columnspan=2, padx=10, pady=10)
-boton_calculadora = tk.Button(ventana1, text="Problemas de trabajo y energia", command=traspaso1 , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
-boton_calculadora.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
+boton_calculadora_te = tk.Button(ventana1, text="Problemas de trabajo y energia", command=traspaso1 , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
+boton_calculadora_te.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
 
 # Crear la etiqueta para almacenar el resultado
 label_espacio = tk.Label(ventana1, text="" ,bg="black", fg="black")
