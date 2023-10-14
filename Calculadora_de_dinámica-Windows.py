@@ -7,7 +7,7 @@ import requests
 import shutil
 
 # URL del archivo de imagen en GitHub
-url = 'https://github.com/Gatmin50/Calculadora-de-problemas-de-dinamica/blob/9ad52ad953322a2091b76c81832e85ef1ccdd9af/5010110.ico'
+url = 'https://drive.google.com/file/d/1W7796a5ysIzM2KAjMkJ23UmDCuT3IXl9/view?usp=sharing'
 
 # Directorio donde deseas guardar el archivo descargado
 directorio = 'C:/calculadora_de_dinamica/'
@@ -201,7 +201,7 @@ def programa_plano_inclinado():
             x = min(xff / m, 299792458)
             resultado7 = round(x, 3)
             label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
-            label_resultado6.config(text=f"La aceleracion es de {resultado7}(m/s²)")
+            label_resultado6.config(text=f"La aceleración es de {resultado7}(m/s²)")
 
         else:
 
@@ -216,7 +216,7 @@ def programa_plano_inclinado():
             x = min(xff / m, 299792458)
             resultado7 = round(x, 3)
             label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
-            label_resultado6.config(text=f"La aceleracion es de {resultado7}(m/s²)")
+            label_resultado6.config(text=f"La aceleración es de {resultado7}(m/s²)")
     
     # Borrar todos los datos laterales guardados
     def limpiar_barra_lateral():
