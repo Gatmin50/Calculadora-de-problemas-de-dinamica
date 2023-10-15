@@ -23,8 +23,8 @@ def programa_plano_inclinado():
 
     rectangulo = lienzo.create_rectangle(120, 137, 140, 157, fill='lightgreen')
     rectangulo = lienzo.create_rectangle(125, 295, 145, 315, fill='red')
-    rectangulo = lienzo.create_rectangle(300, 245, 320, 265, fill='gold')
-    rectangulo = lienzo.create_rectangle(300, 295, 320, 315, fill='blue')
+    rectangulo = lienzo.create_rectangle(330, 245, 350, 265, fill='gold')
+    rectangulo = lienzo.create_rectangle(330, 295, 350, 315, fill='blue')
     lienzo.place(x=0, y=0)
 
     # Enunciado de la calculadora
@@ -5007,24 +5007,24 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
     # Crear las etiquetas y entradas de datos
     etiqueta_tension = tk.Label(ventana2, text="Tension:",bg="black", fg="white")
-    etiqueta_tension.grid(column=2, row=2, padx=10, pady=10)
+    etiqueta_tension.grid(column=2, row=2, padx=5, pady=5)
     tension = tk.Entry(ventana2)
-    tension.grid(column=3, row=2, padx=10, pady=10)
+    tension.grid(column=3, row=2, padx=5, pady=5)
     
     etiqueta_friccion1 = tk.Label(ventana2, text="Coeficiente de friccion 1:",bg="black", fg="white")
-    etiqueta_friccion1.grid(column=0, row=3, padx=10, pady=10)
+    etiqueta_friccion1.grid(column=0, row=3, padx=5, pady=5)
     friccion1 = tk.Entry(ventana2)
-    friccion1.grid(column=1, row=3, padx=10, pady=10)
+    friccion1.grid(column=1, row=3, padx=5, pady=5)
     
     etiqueta_friccion2 = tk.Label(ventana2, text="Coeficiente de friccion 2:",bg="black", fg="white")
-    etiqueta_friccion2.grid(column=2, row=3, padx=10, pady=10)
+    etiqueta_friccion2.grid(column=2, row=3, padx=5, pady=5)
     friccion2 = tk.Entry(ventana2)
-    friccion2.grid(column=3, row=3, padx=10, pady=10)
+    friccion2.grid(column=3, row=3, padx=5, pady=5)
 
     etiqueta_aceleracion = tk.Label(ventana2, text="Aceleracion:",bg="black", fg="white")
-    etiqueta_aceleracion.grid(column=4, row=1, padx=10, pady=10)
+    etiqueta_aceleracion.grid(column=4, row=1, padx=5, pady=5)
     aceleracion = tk.Entry(ventana2)
-    aceleracion.grid(column=5, row=1, padx=10, pady=10)
+    aceleracion.grid(column=5, row=1, padx=5, pady=5)
 
     # Calculo para el Peso1
     def calcular_Peso1():
@@ -5038,16 +5038,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
     # Crear las etiquetas y entradas de datos de la masa 1
     etiqueta_masa1 = tk.Label(ventana2, text="Masa 1 (Kg):",bg="black", fg="white")
-    etiqueta_masa1.grid(column=0, row=1, padx=10, pady=10)
+    etiqueta_masa1.grid(column=0, row=1, padx=5, pady=5)
 
     masa1 = tk.Entry(ventana2)
-    masa1.grid(column=1, row=1, padx=10, pady=10)
+    masa1.grid(column=1, row=1, padx=5, pady=5)
 
     etiqueta_gravedad = tk.Label(ventana2, text="Gravedad:",bg="black", fg="white")
-    etiqueta_gravedad.grid(column=0, row=2, padx=10, pady=10)
+    etiqueta_gravedad.grid(column=0, row=2, padx=5, pady=5)
 
     Gravedad = tk.Entry(ventana2)
-    Gravedad.grid(column=1, row=2, padx=10, pady=10)
+    Gravedad.grid(column=1, row=2, padx=5, pady=5)
 
     # Calculo para el Peso2
     def calcular_Peso2():
@@ -5061,10 +5061,10 @@ def programa_plano_inclinado_con_dos_cuerpos():
     
     # Crear las etiquetas y entradas de datos de la masa 2
     etiqueta_masa2 = tk.Label(ventana2, text="Masa 2 (Kg):",bg="black", fg="white")
-    etiqueta_masa2.grid(column=2, row=1, padx=10, pady=10)
+    etiqueta_masa2.grid(column=2, row=1, padx=5, pady=5)
 
     masa2 = tk.Entry(ventana2)
-    masa2.grid(column=3, row=1, padx=10, pady=10)
+    masa2.grid(column=3, row=1, padx=5, pady=5)
     
 
     # Calculo para la Fricion 1
@@ -5252,88 +5252,88 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
     # Crear el botón de calcular
     boton_calcular_P1 = tk.Button(ventana2, text="Calcular P1", command=calcular_Peso1 ,bg="white", fg="black")
-    boton_calcular_P1.grid(column=0, row=5, padx=10, pady=10)
+    boton_calcular_P1.grid(column=0, row=5, padx=5, pady=5)
     boton_calcular_P2 = tk.Button(ventana2, text="Calcular P2", command=calcular_Peso2 ,bg="white", fg="black")
-    boton_calcular_P2.grid(column=0, row=6, padx=10, pady=10)
+    boton_calcular_P2.grid(column=0, row=6, padx=5, pady=5)
     boton_calcular_Fr1 = tk.Button(ventana2, text="Calcular Fr1", command=calcular_Friccion1 ,bg="white", fg="black")
-    boton_calcular_Fr1.grid(column=1, row=5, padx=10, pady=10)
+    boton_calcular_Fr1.grid(column=1, row=5, padx=5, pady=5)
     boton_calcular_Fr2 = tk.Button(ventana2, text="Calcular Fr2", command=calcular_Friccion2 ,bg="white", fg="black")
-    boton_calcular_Fr2.grid(column=1, row=6, padx=10, pady=10)
+    boton_calcular_Fr2.grid(column=1, row=6, padx=5, pady=5)
     boton_calcular_Py1 = tk.Button(ventana2, text="Calcular Py1", command=calcular_Pesoy1 ,bg="white", fg="black")
-    boton_calcular_Py1.grid(column=2, row=5, padx=10, pady=10)
+    boton_calcular_Py1.grid(column=2, row=5, padx=5, pady=5)
     boton_calcular_Px1 = tk.Button(ventana2, text="Calcular Px1", command=calcular_Pesox1 ,bg="white", fg="black")
-    boton_calcular_Px1.grid(column=3, row=5, padx=10, pady=10)
+    boton_calcular_Px1.grid(column=3, row=5, padx=5, pady=5)
     boton_calcular_Py2 = tk.Button(ventana2, text="Calcular Py2", command=calcular_Pesoy2 ,bg="white", fg="black")
-    boton_calcular_Py2.grid(column=2, row=6, padx=10, pady=10)
+    boton_calcular_Py2.grid(column=2, row=6, padx=5, pady=5)
     boton_calcular_Px2 = tk.Button(ventana2, text="Calcular Px2", command=calcular_Pesox2 ,bg="white", fg="black")
-    boton_calcular_Px2.grid(column=3, row=6, padx=10, pady=10)
+    boton_calcular_Px2.grid(column=3, row=6, padx=5, pady=5)
     boton_calcular_a = tk.Button(ventana2, text="Calcular 'a' \n a favor de m1", command=calcular_aceleraciónfm1 ,bg="white", fg="black")
-    boton_calcular_a.grid(column=4, row=5, padx=10, pady=10)
+    boton_calcular_a.grid(column=4, row=5, padx=5, pady=5)
     boton_calcular_a = tk.Button(ventana2, text="Calcular 'a' \n a favor de m2", command=calcular_aceleraciónfm2 ,bg="white", fg="black")
-    boton_calcular_a.grid(column=4, row=6, padx=10, pady=10)
+    boton_calcular_a.grid(column=4, row=6, padx=5, pady=5)
     boton_calcular_T = tk.Button(ventana2, text="Calcular T", command=calcular_tension, bg="white", fg="black")
-    boton_calcular_T.grid(column=5, row=6, padx=10, pady=10)
+    boton_calcular_T.grid(column=5, row=6, padx=5, pady=5)
     boton_borrar = tk.Button(ventana2, text="Borrar datos laterales", command=limpiar_barra_lateral ,bg="red", fg="gold")
-    boton_borrar.grid(column=5, row=5, padx=10, pady=10)
+    boton_borrar.grid(column=5, row=5, padx=5, pady=5)
 
     # Crear la etiqueta para mostrar el resultado
     label_resultado = tk.Label(ventana2, text="" ,bg="lightblue", fg="black")
-    label_resultado.grid(column=2, row=7, columnspan=2, padx=10, pady=10)
+    label_resultado.grid(column=2, row=7, columnspan=2, padx=5, pady=5)
 
     # Crear la etiqueta para almacenar el resultado
     label_resultado1 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado1.grid(column=6, row=1, columnspan=1, padx=10, pady=10)
+    label_resultado1.grid(column=6, row=1, columnspan=1, padx=5, pady=5)
 
     label_resultado2 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado2.grid(column=6, row=2, columnspan=1, padx=10, pady=10)
+    label_resultado2.grid(column=6, row=2, columnspan=1, padx=5, pady=5)
 
     label_resultado3 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado3.grid(column=6, row=3, columnspan=1, padx=10, pady=10)
+    label_resultado3.grid(column=6, row=3, columnspan=1, padx=5, pady=5)
 
     label_resultado4 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado4.grid(column=6, row=4, columnspan=1, padx=10, pady=10)
+    label_resultado4.grid(column=6, row=4, columnspan=1, padx=5, pady=5)
 
     label_resultado5 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado5.grid(column=6, row=5, columnspan=1, padx=10, pady=10)
+    label_resultado5.grid(column=6, row=5, columnspan=1, padx=5, pady=5)
 
     label_resultado6 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado6.grid(column=6, row=6, columnspan=1, padx=10, pady=10)
+    label_resultado6.grid(column=6, row=6, columnspan=1, padx=5, pady=5)
 
     label_resultado7 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado7.grid(column=6, row=7, columnspan=1, padx=10, pady=10)
+    label_resultado7.grid(column=6, row=7, columnspan=1, padx=5, pady=5)
 
     label_resultado8 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado8.grid(column=6, row=8, columnspan=1, padx=10, pady=10)
+    label_resultado8.grid(column=6, row=8, columnspan=1, padx=5, pady=5)
 
     label_resultado9 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado9.grid(column=6, row=9, columnspan=1, padx=10, pady=10)
+    label_resultado9.grid(column=6, row=9, columnspan=1, padx=5, pady=5)
 
     label_resultado10 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado10.grid(column=6, row=10, columnspan=1, padx=10, pady=10)
+    label_resultado10.grid(column=6, row=10, columnspan=1, padx=5, pady=5)
 
     label_resultado11 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado11.grid(column=6, row=11, columnspan=1, padx=10, pady=10)
+    label_resultado11.grid(column=6, row=11, columnspan=1, padx=5, pady=5)
 
     def cerrar_ventana():
         ventana2.destroy()
 
     btn_cerrar = tk.Button(ventana2, text="                                Cerrar ventana                                ", font=("Helvetica", 10, "bold"), command=cerrar_ventana, bg="red", fg="black")
-    btn_cerrar.grid(column=2, row=10, columnspan=3, padx=10, pady=10)
+    btn_cerrar.grid(column=0, row=10, columnspan=3, padx=5, pady=5)
 
     etiqueta_Creargrafico = tk.Label(ventana2, text="Cual es la masa que cae: \n 1. A favor de la masa 1 \n 2. A favor de la masa 2",bg="black", fg="white")
-    etiqueta_Creargrafico.grid(column=1, row=9, padx=10, pady=10)
+    etiqueta_Creargrafico.grid(column=0, row=9, padx=5, pady=5)
     Creargrafico = (tk.Entry(ventana2))
-    Creargrafico.grid(column=2, row=9, padx=10, pady=10)
+    Creargrafico.grid(column=1, row=9, padx=5, pady=5)
 
     etiqueta_angulo_de_inclinacion1 = tk.Label(ventana2, text="Algulo de inclinación 1:",bg="black", fg="white")
-    etiqueta_angulo_de_inclinacion1.grid(column=0, row=4, padx=10, pady=10)
+    etiqueta_angulo_de_inclinacion1.grid(column=0, row=4, padx=5, pady=5)
     angulo_de_inclinacion1 = (tk.Entry(ventana2))
-    angulo_de_inclinacion1.grid(column=1, row=4, padx=10, pady=10)
+    angulo_de_inclinacion1.grid(column=1, row=4, padx=5, pady=5)
 
     etiqueta_angulo_de_inclinacion2 = tk.Label(ventana2, text="Algulo de inclinación 2:",bg="black", fg="white")
-    etiqueta_angulo_de_inclinacion2.grid(column=2, row=4, padx=10, pady=10)
+    etiqueta_angulo_de_inclinacion2.grid(column=2, row=4, padx=5, pady=5)
     angulo_de_inclinacion2 = (tk.Entry(ventana2))
-    angulo_de_inclinacion2.grid(column=3, row=4, padx=10, pady=10)
+    angulo_de_inclinacion2.grid(column=3, row=4, padx=5, pady=5)
 
     def grafico():
 
@@ -15206,7 +15206,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             pop1()
 
     boton_grafico = tk.Button(ventana2, text="Crea el gráfico", command=grafico ,bg="green", fg="white")
-    boton_grafico.grid(column=3, row=9, padx=10, pady=10)
+    boton_grafico.grid(column=2, row=9, padx=5, pady=5)
 
     # Mantiene la ventana simpre abierta hasta que el usuario la cierra
     ventana2.mainloop()
