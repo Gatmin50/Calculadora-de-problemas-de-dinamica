@@ -5,6 +5,9 @@ import turtle
 import os
 import requests
 import shutil
+import time
+import Intro
+
 
 # URL del archivo de imagen en GitHub
 url = 'https://drive.google.com/file/d/1W7796a5ysIzM2KAjMkJ23UmDCuT3IXl9/view?usp=sharing'
@@ -32,6 +35,8 @@ if not os.path.exists(ruta_local):
 else:
     print(f"El archivo ya existe en {ruta_local}")
 
+# Intro
+Intro.animacion_inicial()
 
 # Crear la ventana del menu de la calculadora
 ventana1 = tk.Tk()
