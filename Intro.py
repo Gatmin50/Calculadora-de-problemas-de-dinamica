@@ -131,5 +131,6 @@ def animacion_inicial():
     t.left(180)
     t.forward(60)
     
+    t.hideturtle()
     time.sleep(5)
     ventanag.bye()
