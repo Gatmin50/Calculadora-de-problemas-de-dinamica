@@ -4,7 +4,7 @@ import time
 def animacion_inicial():
     ventanag = t.Screen()
     ventanag.title("Icono inicio")
-    ventanag.setup(width=1.0, height=1.0, startx=-683, starty=-384)
+    ventanag.setup(width=1.0, height=1.0)
     ventanag.bgcolor("white")
 
     # velocidad del lapiz
