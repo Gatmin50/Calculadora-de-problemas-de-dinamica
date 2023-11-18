@@ -5378,7 +5378,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(200, -100)
+            t.setpos(200, -140)
             t.pendown()
 
             t.left(-a1)
@@ -6003,7 +6003,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, -50)
             t.pendown()
 
             # Quadrado
@@ -6161,13 +6161,13 @@ def programa_plano_inclinado_con_dos_cuerpos():
             # cual es cada massa
             t.pencolor('black')
             x = 310
-            y = 200
+            y = 130
             t.penup()
             t.goto(x, y)
             t.write(text1, align="center", font=('Courier New', 10))
 
             x = 100
-            y = 200
+            y = 130
             t.goto(x, y)
             t.write(text2, align="center", font=('Courier New', 10))
 
