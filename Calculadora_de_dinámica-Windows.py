@@ -202,7 +202,7 @@ def programa_plano_inclinado():
             Fa = math.degrees(num_rad)
             xp = m * g * math.sin(math.radians(cos))
             nf = m * g * math.cos(math.radians(cos)) * mu
-            xff =  (f * Fa) + xp - nf
+            xff =  (f * Fa) - xp - nf
             x = min(xff / m, 299792458)
             resultado7 = round(x, 3)
             label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
@@ -217,8 +217,8 @@ def programa_plano_inclinado():
             mu = float(coeficiente.get())
             xp = m * g * math.sin(math.radians(cos))
             nf = m * g * math.cos(math.radians(cos)) * mu
-            xff =  f + xp - nf
-            x = min(xff / m, 299792458)
+            a =  f - xp - nf
+            x = min(a / m, 299792458)
             resultado7 = round(x, 3)
             label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
             label_resultado6.config(text=f"La aceleración es de {resultado7}(m/s²)")
@@ -1315,7 +1315,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(0, -150)
+            t.setpos(-100, -100)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -1797,7 +1797,7 @@ def programa_plano_inclinado():
             t.pencolor('gray')
 
             t.penup()
-            t.setpos(0, -150)
+            t.setpos(-100, -100)
             t.pendown()
 
             # Dibuja el triángulo rectángulo
@@ -5812,7 +5812,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
         elif xz >= 31 and xy >= 90:
 
             lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
+            lienzo_turtle.grid(column=4, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
             # Crear un objeto Turtle en el lienzo
             t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
@@ -6612,13 +6612,13 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 120
+            x = 160
             y = 150
             t.penup()
             t.goto(x, y)
             t.write(text1, align="center", font=('Courier New', 10))
 
-            x = -100
+            x = -60
             y = 150
             t.goto(x, y)
             t.write(text2, align="center", font=('Courier New', 10))
