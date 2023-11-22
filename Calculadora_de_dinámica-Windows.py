@@ -127,20 +127,40 @@ def programa_plano_inclinado():
 
     # Calculo para la Fuerza
     def calcular_Fuerza():
+        
+        try:
+            if aceleracion.get() != "":
 
-        m = float(masa.get())
-        a = float(aceleracion.get())
-        cos = float(a1.get())
-        sen = float(a1.get())
-        mu = float(coeficiente.get())
-        g = float(Gravedad.get())
-        inoin = sen - mu * cos
-        ino = -1 * (m * g * inoin)
-        fin = ino + (a * m)
-        x = fin
-        resultado3 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado3}(N)")
-        label_resultado3.config(text=f"La fuerza es de {resultado3}(N)")
+                m = float(masa.get())
+                a = float(aceleracion.get())
+                cos = float(a1.get())
+                g = float(Gravedad.get())
+                mu = float(coeficiente.get())
+                Fr = m * g * math.cos(math.radians(cos)) * mu
+                F =  m * a
+                if F > Fr: 
+                    resultado3 = round(F, 3)
+                    label_resultado.config(text=f"El resultado es: {resultado3}(N)")
+                    label_resultado3.config(text=f"La fuerza es de {resultado3}(N)")
+                else:
+                    resultado3 = round(F, 3)
+                    label_resultado.config(text=f"El resultado es: {resultado3}(N), pero \n es insuficiente para mover el cuerpo")
+                    label_resultado3.config(text=f"La fuerza es de {resultado3}(N), pero \n es insuficiente para mover el cuerpo")
+            else:
+
+                m = float(masa.get())
+                cos = float(a1.get())
+                g = float(Gravedad.get())
+                mu = float(coeficiente.get())
+                Fa = m * g * math.sin(math.radians(cos))
+                Fr = m * g * math.cos(math.radians(cos)) * mu
+                F =  Fr + Fa
+                resultado3 = round(F, 3)
+                label_resultado.config(text=f"El resultado es: {resultado3}(N)")
+                label_resultado3.config(text=f"La fuerza es de {resultado3}(N)")
+
+        except ValueError:
+            print("Debe ingresar un número.")
 
     # Crear las etiquetas y entradas de datos
     etiqueta_aceleracion = tk.Label(ventana, text="Aceleración (m/s²):",bg="black", fg="white")

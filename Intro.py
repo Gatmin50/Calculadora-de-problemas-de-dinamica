@@ -1,14 +1,17 @@
 import turtle as t
 import time
+import os
+
+
 
 def animacion_inicial():
     ventanag = t.Screen()
-    ventanag.title("Icono inicio")
+    ventanag.title("Intro")
     ventanag.setup(width=1.0, height=1.0)
     ventanag.bgcolor("white")
 
     # velocidad del lapiz
-    t.speed(10)
+    t.speed(5)
 
     # Definir el tamaño de la línea y el color del trazo
     t.pensize(7)
