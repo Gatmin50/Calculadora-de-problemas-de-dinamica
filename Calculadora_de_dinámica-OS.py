@@ -166,7 +166,7 @@ def programa_plano_inclinado():
             Fa = math.degrees(num_rad)
             xp = m * g * math.sin(math.radians(cos))
             nf = m * g * math.cos(math.radians(cos)) * mu
-            xff =  (f * Fa) + xp - nf
+            xff =  (f * Fa) - xp - nf
             x = min(xff / m, 299792458)
             resultado7 = round(x, 3)
             label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
@@ -181,7 +181,7 @@ def programa_plano_inclinado():
             mu = float(coeficiente.get())
             xp = m * g * math.sin(math.radians(cos))
             nf = m * g * math.cos(math.radians(cos)) * mu
-            xff =  f + xp - nf
+            xff =  f - xp - nf
             x = min(xff / m, 299792458)
             resultado7 = round(x, 3)
             label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
@@ -5356,13 +5356,13 @@ def programa_plano_inclinado_con_dos_cuerpos():
         text2 = 'Masa 2'
         xz = float(angulo_de_inclinacion1.get())
         xy = float(angulo_de_inclinacion2.get())
+        lienzo_turtle = turtle.ScrolledCanvas(ventana2)
+        lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=7, padx=10, pady=5)
+        # Crear un objeto Turtle en el lienzo
+        t = turtle.RawTurtle(lienzo_turtle)
 
         if xz >= 90 and xy >= 31:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=7, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -6180,10 +6180,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
                 
         elif xz >= 31 and xy >= 90:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -7001,10 +6997,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
         
         elif xz >= 51 and xy >= 51:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -7819,10 +7811,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
         elif xz >= 90:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -8640,10 +8628,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
             
         elif xy >= 90:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -9460,10 +9444,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.hideturtle()
 
         else:
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -10282,13 +10262,13 @@ def programa_plano_inclinado_con_dos_cuerpos():
         texto2 = 'Masa 2'
         xz1 = float(angulo_de_inclinacion1.get())
         xy1 = float(angulo_de_inclinacion2.get())
+        lienzo_turtle = turtle.ScrolledCanvas(ventana2)
+        lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=7, padx=10, pady=5)
+        # Crear un objeto Turtle en el lienzo
+        t = turtle.RawTurtle(lienzo_turtle)
 
         if xz1 >= 90 and xy1 >= 31:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -11106,11 +11086,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.hideturtle()
 
         elif xz1 >= 31 and xy1 >= 90:
-                
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
+            
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -11929,10 +11905,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
         elif xz1 >= 51 and xy1 >= 51:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -12386,7 +12358,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.forward(5)
             t.pendown()
             t.forward(10)
-                   
+        
             # Letra Y del eje
             t.penup()
             t.forward(5)
@@ -12748,10 +12720,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
         elif xz1 >= 90:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -13569,11 +13537,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.hideturtle()
                 
         elif xy1 >= 90:
-                
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
+            
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
@@ -14392,10 +14356,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
         else:
 
-            lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-            lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
-            # Crear un objeto Turtle en el lienzo
-            t = turtle.RawTurtle(lienzo_turtle)
             t.speed(100)
 
             a1 = float(angulo_de_inclinacion1.get())
