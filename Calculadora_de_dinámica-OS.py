@@ -38,12 +38,15 @@ def programa_plano_inclinado():
     # Calculo para el Peso
     def calcular_Peso():
 
-        m = float(masa.get())
-        g = float(Gravedad.get())
-        x = m * g
-        resultado = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado}(N)")
-        label_resultado1.config(text=f"El peso es de {resultado}(N)")
+        try:
+            m = float(masa.get())
+            g = float(Gravedad.get())
+            x = m * g
+            resultado = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado}(N)")
+            label_resultado1.config(text=f"El peso es de {resultado}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Crear las etiquetas y entradas de datos
     etiqueta_masa = tk.Label(ventana, text="Masa (Kg):",bg="black", fg="white")
@@ -61,25 +64,31 @@ def programa_plano_inclinado():
     # Calculo para el Normal
     def calcular_Normal():
 
-        m = float(masa.get())
-        g = float(Gravedad.get())
-        cos = float(a1.get())
-        x = m * g * math.cos(math.radians(cos))
-        resultado = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado}(N)")
-        label_resultado7.config(text=f"La Normal es de {resultado}(N)")
+        try:
+            m = float(masa.get())
+            g = float(Gravedad.get())
+            cos = float(a1.get())
+            x = m * g * math.cos(math.radians(cos))
+            resultado = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado}(N)")
+            label_resultado7.config(text=f"La Normal es de {resultado}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Calculo para la Fricion
     def calcular_Friccion():
 
-        m = float(masa.get())
-        cos = float(a1.get())
-        g = float(Gravedad.get())
-        mu = float(coeficiente.get())
-        x = (m * g * (math.cos(math.radians(cos)))) * mu
-        resultado2 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado2}(N)")
-        label_resultado2.config(text=f"La fricción es de {resultado2}(N)")
+        try:
+            m = float(masa.get())
+            cos = float(a1.get())
+            g = float(Gravedad.get())
+            mu = float(coeficiente.get())
+            x = (m * g * (math.cos(math.radians(cos)))) * mu
+            resultado2 = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado2}(N)")
+            label_resultado2.config(text=f"La fricción es de {resultado2}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     etiqueta_coeficiente = tk.Label(ventana, text="Coeficiente de fricción:",bg="black", fg="white")
     etiqueta_coeficiente.grid(column=2, row=3, padx=10, pady=10)
@@ -90,20 +99,40 @@ def programa_plano_inclinado():
 
     # Calculo para la Fuerza
     def calcular_Fuerza():
+        
+        try:
+            if aceleracion.get() != "":
 
-        m = float(masa.get())
-        a = float(aceleracion.get())
-        cos = float(a1.get())
-        sen = float(a1.get())
-        mu = float(coeficiente.get())
-        g = float(Gravedad.get())
-        inoin = sen - mu * cos
-        ino = -1 * (m * g * inoin)
-        fin = ino + (a * m)
-        x = fin
-        resultado3 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado3}(N)")
-        label_resultado3.config(text=f"La fuerza es de {resultado3}(N)")
+                m = float(masa.get())
+                a = float(aceleracion.get())
+                cos = float(a1.get())
+                g = float(Gravedad.get())
+                mu = float(coeficiente.get())
+                Fr = m * g * math.cos(math.radians(cos)) * mu
+                F =  m * a
+                if F > Fr: 
+                    resultado3 = round(F, 3)
+                    label_resultado.config(text=f"El resultado es: {resultado3}(N)")
+                    label_resultado3.config(text=f"La fuerza es de {resultado3}(N)")
+                else:
+                    resultado3 = round(F, 3)
+                    label_resultado.config(text=f"El resultado es: {resultado3}(N), pero \n es insuficiente para mover el cuerpo")
+                    label_resultado3.config(text=f"La fuerza es de {resultado3}(N), pero \n es insuficiente para mover el cuerpo")
+            else:
+
+                m = float(masa.get())
+                cos = float(a1.get())
+                g = float(Gravedad.get())
+                mu = float(coeficiente.get())
+                Fa = m * g * math.sin(math.radians(cos))
+                Fr = m * g * math.cos(math.radians(cos)) * mu
+                F =  Fr + Fa
+                resultado3 = round(F, 3)
+                label_resultado.config(text=f"El resultado es: {resultado3}(N)")
+                label_resultado3.config(text=f"La fuerza es de {resultado3}(N)")
+
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Crear las etiquetas y entradas de datos
     etiqueta_aceleracion = tk.Label(ventana, text="Aceleración (m/s²):",bg="black", fg="white")
@@ -116,25 +145,31 @@ def programa_plano_inclinado():
     # Calculo para el Peso en (Y)
     def calcular_Pesoy():
 
-        m = float(masa.get())
-        g = float(Gravedad.get())
-        cos = float(a1.get())
-        x = m * g * math.cos(math.radians(cos))
-        resultado4 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado4}(N)")
-        label_resultado4.config(text=f"El peso en Y es: {resultado4}(N)")
+        try:
+            m = float(masa.get())
+            g = float(Gravedad.get())
+            cos = float(a1.get())
+            x = m * g * math.cos(math.radians(cos))
+            resultado4 = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado4}(N)")
+            label_resultado4.config(text=f"El peso en Y es: {resultado4}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
 
     # Calculo para el Peso en (X)
     def calcular_Pesox():
 
-        m = float(masa.get())
-        g = float(Gravedad.get())
-        sen = float(a1.get())
-        x = m * g * math.sin(math.radians(sen))
-        resultado5 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado5}(N)")
-        label_resultado5.config(text=f"El peso en X es: {resultado5}(N)")
+        try:
+            m = float(masa.get())
+            g = float(Gravedad.get())
+            sen = float(a1.get())
+            x = m * g * math.sin(math.radians(sen))
+            resultado5 = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado5}(N)")
+            label_resultado5.config(text=f"El peso en X es: {resultado5}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Crear las etiquetas y entradas de datos
     etiqueta_Fuerza_ang = tk.Label(ventana, text="Ángulo de \n la Fuerza:",bg="black", fg="white")
@@ -154,38 +189,41 @@ def programa_plano_inclinado():
     # Calculo para la aceleración
     def calcular_Aceleracion():
 
-        if Fuerza_ang.get() != "":
+        try:
+            if Fuerza_ang.get() != "":
 
-            fa = float(Fuerza_ang.get())
-            f = float(Fuerza.get())
-            m = float(masa.get())
-            cos = float(a1.get())
-            g = float(Gravedad.get())
-            mu = float(coeficiente.get())
-            num_rad = fa / 180 * math.pi
-            Fa = math.degrees(num_rad)
-            xp = m * g * math.sin(math.radians(cos))
-            nf = m * g * math.cos(math.radians(cos)) * mu
-            xff =  (f * Fa) - xp - nf
-            x = min(xff / m, 299792458)
-            resultado7 = round(x, 3)
-            label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
-            label_resultado6.config(text=f"La aceleracion es de {resultado7}(m/s²)")
+                fa = float(Fuerza_ang.get())
+                f = float(Fuerza.get())
+                m = float(masa.get())
+                cos = float(a1.get())
+                g = float(Gravedad.get())
+                mu = float(coeficiente.get())
+                num_rad = fa / 180 * math.pi
+                Fa = math.degrees(num_rad)
+                xp = m * g * math.sin(math.radians(cos))
+                nf = m * g * math.cos(math.radians(cos)) * mu
+                xff =  (f * Fa) - xp - nf
+                x = min(xff / m, 299792458)
+                resultado7 = round(x, 3)
+                label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
+                label_resultado6.config(text=f"La aceleración es de {resultado7}(m/s²)")
 
-        else:
+            else:
 
-            f = float(Fuerza.get())
-            m = float(masa.get())
-            cos = float(a1.get())
-            g = float(Gravedad.get())
-            mu = float(coeficiente.get())
-            xp = m * g * math.sin(math.radians(cos))
-            nf = m * g * math.cos(math.radians(cos)) * mu
-            xff =  f - xp - nf
-            x = min(xff / m, 299792458)
-            resultado7 = round(x, 3)
-            label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
-            label_resultado6.config(text=f"La aceleracion es de {resultado7}(m/s²)")
+                f = float(Fuerza.get())
+                m = float(masa.get())
+                cos = float(a1.get())
+                g = float(Gravedad.get())
+                mu = float(coeficiente.get())
+                xp = m * g * math.sin(math.radians(cos))
+                nf = m * g * math.cos(math.radians(cos)) * mu
+                a =  f - xp - nf
+                x = min(a / m, 299792458)
+                resultado7 = round(x, 3)
+                label_resultado.config(text=f"El resultado es: {resultado7}(m/s²)")
+                label_resultado6.config(text=f"La aceleración es de {resultado7}(m/s²)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
     
     # Borrar todos los datos laterales guardados
     def limpiar_barra_lateral():
@@ -5033,12 +5071,15 @@ def programa_plano_inclinado_con_dos_cuerpos():
     # Calculo para el Peso1
     def calcular_Peso1():
 
-        m = float(masa1.get())
-        g = float(Gravedad.get())
-        x = m * g
-        resultado = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado}(N)")
-        label_resultado1.config(text=f"El peso 1 es de {resultado}(N)")
+        try:
+            m = float(masa1.get())
+            g = float(Gravedad.get())
+            x = m * g
+            resultado = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado}(N)")
+            label_resultado1.config(text=f"El peso 1 es de {resultado}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Crear las etiquetas y entradas de datos de la masa 1
     etiqueta_masa1 = tk.Label(ventana2, text="Masa 1 (Kg):",bg="black", fg="white")
@@ -5056,12 +5097,15 @@ def programa_plano_inclinado_con_dos_cuerpos():
     # Calculo para el Peso2
     def calcular_Peso2():
 
-        m = float(masa2.get())
-        g = float(Gravedad.get())
-        x = m * g
-        resultado = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado}(N)")
-        label_resultado2.config(text=f"El peso 2 es de {resultado}(N)")
+        try:
+            m = float(masa2.get())
+            g = float(Gravedad.get())
+            x = m * g
+            resultado = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado}(N)")
+            label_resultado2.config(text=f"El peso 2 es de {resultado}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
     
     # Crear las etiquetas y entradas de datos de la masa 2
     etiqueta_masa2 = tk.Label(ventana2, text="Masa 2 (Kg):",bg="black", fg="white")
@@ -5073,172 +5117,200 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
     # Calculo para la Fricion 1
     def calcular_Friccion1():
-        
-        if angulo_de_inclinacion1.get() != "":
-        
-            m = float(masa1.get())
-            g = float(Gravedad.get())
-            mu = float(friccion1.get())
-            cos = float(angulo_de_inclinacion1.get())
-            x = mu * (m * g * math.cos(math.radians(cos)))
-            resultado2 = round(x, 3)
-            label_resultado.config(text=f"El resultado es: {resultado2}(N)")
-            label_resultado3.config(text=f"La friccion 1 es de {resultado2}(N)")
 
-        else:
-            m = float(masa1.get())
-            g = float(Gravedad.get())
-            mu = float(friccion1.get())
-            x = mu * (m * g)
-            resultado2 = round(x, 3)
-            label_resultado.config(text=f"El resultado es: {resultado2}(N)")
-            label_resultado3.config(text=f"La friccion 1 es de {resultado2}(N)")
+        try:
+            if angulo_de_inclinacion1.get() != "":
+        
+                m = float(masa1.get())
+                g = float(Gravedad.get())
+                mu = float(friccion1.get())
+                cos = float(angulo_de_inclinacion1.get())
+                x = mu * (m * g * math.cos(math.radians(cos)))
+                resultado2 = round(x, 3)
+                label_resultado.config(text=f"El resultado es: {resultado2}(N)")
+                label_resultado3.config(text=f"La friccion 1 es de {resultado2}(N)")
+
+            else:
+                m = float(masa1.get())
+                g = float(Gravedad.get())
+                mu = float(friccion1.get())
+                x = mu * (m * g)
+                resultado2 = round(x, 3)
+                label_resultado.config(text=f"El resultado es: {resultado2}(N)")
+                label_resultado3.config(text=f"La friccion 1 es de {resultado2}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Calculo para la Fricion 2
     def calcular_Friccion2():
 
-        if angulo_de_inclinacion2.get() != "":
+        try:
+            if angulo_de_inclinacion2.get() != "":
             
-            m = float(masa2.get())
-            g = float(Gravedad.get())
-            mu = float(friccion2.get())
-            cos = float(angulo_de_inclinacion2.get())
-            x = mu * (m * g * math.cos(math.radians(cos)))
-            resultado2 = round(x, 3)
-            label_resultado.config(text=f"El resultado es: {resultado2}(N)")
-            label_resultado4.config(text=f"La friccion 2 es de {resultado2}(N)")
+                m = float(masa2.get())
+                g = float(Gravedad.get())
+                mu = float(friccion2.get())
+                cos = float(angulo_de_inclinacion2.get())
+                x = mu * (m * g * math.cos(math.radians(cos)))
+                resultado2 = round(x, 3)
+                label_resultado.config(text=f"El resultado es: {resultado2}(N)")
+                label_resultado4.config(text=f"La friccion 2 es de {resultado2}(N)")
         
-        else:
-            m = float(masa2.get())
-            g = float(Gravedad.get())
-            mu = float(friccion2.get())
-            x = mu * (m * g)
-            resultado2 = round(x, 3)
-            label_resultado.config(text=f"El resultado es: {resultado2}(N)")
-            label_resultado4.config(text=f"La friccion 2 es de {resultado2}(N)")
+            else:
+                m = float(masa2.get())
+                g = float(Gravedad.get())
+                mu = float(friccion2.get())
+                x = mu * (m * g)
+                resultado2 = round(x, 3)
+                label_resultado.config(text=f"El resultado es: {resultado2}(N)")
+                label_resultado4.config(text=f"La friccion 2 es de {resultado2}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
     
     # Calculo para el Peso 1 en (Y)
     def calcular_Pesoy1():
 
-        m = float(masa1.get())
-        g = float(Gravedad.get())
-        cos = float(angulo_de_inclinacion1.get())
-        x = m * g * math.cos(math.radians(cos))
-        resultado4 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado4}(N)")
-        label_resultado5.config(text=f"El peso 1 en Y es: {resultado4}(N)")
+        try:
+            m = float(masa1.get())
+            g = float(Gravedad.get())
+            cos = float(angulo_de_inclinacion1.get())
+            x = m * g * math.cos(math.radians(cos))
+            resultado4 = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado4}(N)")
+            label_resultado5.config(text=f"El peso 1 en Y es: {resultado4}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
     
     # Calculo para el Peso 1 en (X)
     def calcular_Pesox1():
 
-        m = float(masa1.get())
-        g = float(Gravedad.get())
-        sen = float(angulo_de_inclinacion1.get())
-        x = m * g * math.sin(math.radians(sen))
-        resultado4 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado4}(N)")
-        label_resultado6.config(text=f"El peso 1 en X es: {resultado4}(N)")
+        try:
+            m = float(masa1.get())
+            g = float(Gravedad.get())
+            sen = float(angulo_de_inclinacion1.get())
+            x = m * g * math.sin(math.radians(sen))
+            resultado4 = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado4}(N)")
+            label_resultado6.config(text=f"El peso 1 en X es: {resultado4}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
     
     # Calculo para el Peso 2 en (Y)
     def calcular_Pesoy2():
 
-        m = float(masa2.get())
-        g = float(Gravedad.get())
-        cos = float(angulo_de_inclinacion2.get())
-        x = m * g * math.cos(math.radians(cos))
-        resultado4 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado4}(N)")
-        label_resultado7.config(text=f"El peso 1 en Y es: {resultado4}(N)")
+        try:
+            m = float(masa2.get())
+            g = float(Gravedad.get())
+            cos = float(angulo_de_inclinacion2.get())
+            x = m * g * math.cos(math.radians(cos))
+            resultado4 = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado4}(N)")
+            label_resultado7.config(text=f"El peso 1 en Y es: {resultado4}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
     
     # Calculo para el Peso 2 en (X)
     def calcular_Pesox2():
 
-        m = float(masa2.get())
-        g = float(Gravedad.get())
-        cos = float(angulo_de_inclinacion2.get())
-        x = m * g * math.sin(math.radians(cos))
-        resultado4 = round(x, 3)
-        label_resultado.config(text=f"El resultado es: {resultado4}(N)")
-        label_resultado8.config(text=f"El peso 1 en X es: {resultado4}(N)")
+        try:
+            m = float(masa2.get())
+            g = float(Gravedad.get())
+            cos = float(angulo_de_inclinacion2.get())
+            x = m * g * math.sin(math.radians(cos))
+            resultado4 = round(x, 3)
+            label_resultado.config(text=f"El resultado es: {resultado4}(N)")
+            label_resultado8.config(text=f"El peso 1 en X es: {resultado4}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Calculo para la aceleración1
     def calcular_aceleraciónfm1():
 
-        m2 = float(masa2.get())
-        m1 = float(masa1.get())
-        g = float(Gravedad.get())
-        cos1 = float(angulo_de_inclinacion1.get())
-        cos2 = float(angulo_de_inclinacion2.get())
-        mu1 = float(friccion1.get())
-        mu2 = float(friccion2.get())
-        fr1 = mu1 * (m1 * g * math.cos(math.radians(cos1)))
-        fr2 = mu2 * (m2 * g * math.cos(math.radians(cos2)))
-        px1 = m1 * g * math.cos(math.radians(cos1))
-        px2 = m2 * g * math.cos(math.radians(cos2))
-        z = -1
-        a = z * (px2 - px1) - (fr1 - fr2)
-        x = a / (m1 + m2)
-        resultado4 = round(x, 3)
-        if resultado4 >= 0:
-            label_resultado.config(text=f"La aceleración es: {resultado4}(m/s²)")
-            label_resultado9.config(text=f"La aceleración a favor \n de la masa1 es: {resultado4}(m/s²)")
-        else:
-            label_resultado.config(text=f"Este caso es imposible")
-            label_resultado9.config(text=f"Este caso es imposible")
+        try:
+            m2 = float(masa2.get())
+            m1 = float(masa1.get())
+            g = float(Gravedad.get())
+            cos1 = float(angulo_de_inclinacion1.get())
+            cos2 = float(angulo_de_inclinacion2.get())
+            mu1 = float(friccion1.get())
+            mu2 = float(friccion2.get())
+            fr1 = mu1 * (m1 * g * math.cos(math.radians(cos1)))
+            fr2 = mu2 * (m2 * g * math.cos(math.radians(cos2)))
+            px1 = m1 * g * math.cos(math.radians(cos1))
+            px2 = m2 * g * math.cos(math.radians(cos2))
+            z = -1
+            a = z * (px2 - px1) - (fr1 - fr2)
+            x = a / (m1 + m2)
+            resultado4 = round(x, 3)
+            if resultado4 >= 0:
+                label_resultado.config(text=f"La aceleración es: {resultado4}(m/s²)")
+                label_resultado9.config(text=f"La aceleración a favor \n de la masa1 es: {resultado4}(m/s²)")
+            else:
+                label_resultado.config(text=f"Este caso es imposible")
+                label_resultado9.config(text=f"Este caso es imposible")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Calculo para la aceleración2
     def calcular_aceleraciónfm2():
 
-        m2 = float(masa2.get())
-        m1 = float(masa1.get())
-        g = float(Gravedad.get())
-        cos1 = float(angulo_de_inclinacion1.get())
-        cos2 = float(angulo_de_inclinacion2.get())
-        mu1 = float(friccion1.get())
-        mu2 = float(friccion2.get())
-        fr1 = mu1 * (m1 * g * math.cos(math.radians(cos1)))
-        fr2 = mu2 * (m2 * g * math.cos(math.radians(cos2)))
-        px1 = m1 * g * math.cos(math.radians(cos1))
-        px2 = m2 * g * math.cos(math.radians(cos2))
-        z = 1
-        a = z * (px2 - px1) - (fr1 - fr2)
-        x = a / (m1 + m2)
-        resultado4 = round(x, 3)
-        if resultado4 >= 0:
-            label_resultado.config(text=f"La aceleración es: {resultado4}(m/s²)")
-            label_resultado10.config(text=f"La aceleración a favor \n de la masa2 es: {resultado4}(m/s²)")
-        else:
-            label_resultado.config(text=f"Este caso es imposible")
-            label_resultado10.config(text=f"Este caso es imposible")
-    
-    def calcular_tension():
-        if masa1.get() != '':
+        try:
+            m2 = float(masa2.get())
             m1 = float(masa1.get())
             g = float(Gravedad.get())
             cos1 = float(angulo_de_inclinacion1.get())
-            mu1 = float(friccion1.get())
-            a = float(aceleracion.get())
-            z = m1 * a
-            y = m1 * g * math.sin(math.radians(cos1))
-            w = mu1 * m1 * g * math.cos(math.radians(cos1))
-            x = z + y + w
-            resultado4 = round(x, 3)
-            label_resultado.config(text=f"El resultado es: {resultado4}(N)")
-            label_resultado11.config(text=f"La tension es de: {resultado4}(N)")
-
-        else:
-            m2 = float(masa2.get())
-            g = float(Gravedad.get())
             cos2 = float(angulo_de_inclinacion2.get())
+            mu1 = float(friccion1.get())
             mu2 = float(friccion2.get())
-            a = float(aceleracion.get())
-            z = m2 * a
-            y = m2 * g * math.sin(math.radians(cos2))
-            w = mu2 * m2 * g * math.cos(math.radians(cos2))
-            x = z + y + w
+            fr1 = mu1 * (m1 * g * math.cos(math.radians(cos1)))
+            fr2 = mu2 * (m2 * g * math.cos(math.radians(cos2)))
+            px1 = m1 * g * math.cos(math.radians(cos1))
+            px2 = m2 * g * math.cos(math.radians(cos2))
+            z = 1
+            a = z * (px2 - px1) - (fr1 - fr2)
+            x = a / (m1 + m2)
             resultado4 = round(x, 3)
-            label_resultado.config(text=f"El resultado es: {resultado4}(N)")
-            label_resultado11.config(text=f"La tension es de: {resultado4}(N)")
+            if resultado4 >= 0:
+                label_resultado.config(text=f"La aceleración es: {resultado4}(m/s²)")
+                label_resultado10.config(text=f"La aceleración a favor \n de la masa2 es: {resultado4}(m/s²)")
+            else:
+                label_resultado.config(text=f"Este caso es imposible")
+                label_resultado10.config(text=f"Este caso es imposible")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
+    
+    def calcular_tension():
+
+        try:
+            if masa1.get() != '':
+                m1 = float(masa1.get())
+                g = float(Gravedad.get())
+                cos1 = float(angulo_de_inclinacion1.get())
+                mu1 = float(friccion1.get())
+                a = float(aceleracion.get())
+                z = m1 * a
+                y = m1 * g * math.sin(math.radians(cos1))
+                w = mu1 * m1 * g * math.cos(math.radians(cos1))
+                x = z + y + w
+                resultado4 = round(x, 3)
+                label_resultado.config(text=f"El resultado es: {resultado4}(N)")
+                label_resultado11.config(text=f"La tension es de: {resultado4}(N)")
+
+            else:
+                m2 = float(masa2.get())
+                g = float(Gravedad.get())
+                cos2 = float(angulo_de_inclinacion2.get())
+                mu2 = float(friccion2.get())
+                a = float(aceleracion.get())
+                z = m2 * a
+                y = m2 * g * math.sin(math.radians(cos2))
+                w = mu2 * m2 * g * math.cos(math.radians(cos2))
+                x = z + y + w
+                resultado4 = round(x, 3)
+                label_resultado.config(text=f"El resultado es: {resultado4}(N)")
+                label_resultado11.config(text=f"La tension es de: {resultado4}(N)")
+        except ValueError:
+            label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     # Borrar todos los datos laterales guardados
     def limpiar_barra_lateral():
@@ -5369,16 +5441,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 300
-            l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
+            l1 = 200
+            l2 = (math.sin(math.radians(a1)) * 200) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 200) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(200, -140)
+            t.setpos(150, -110)
             t.pendown()
 
             t.left(-a1)
@@ -6003,7 +6075,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, -50)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -6160,13 +6232,13 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 310
+            x = 200
             y = 130
             t.penup()
             t.goto(x, y)
             t.write(text1, align="center", font=('Courier New', 10))
 
-            x = 100
+            x = 0
             y = 130
             t.goto(x, y)
             t.write(text2, align="center", font=('Courier New', 10))
@@ -6186,16 +6258,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 400
-            l2 = (math.sin(math.radians(a1)) * 400) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 400) / math.sin(math.radians(a2))
+            l1 = 300
+            l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(300, -140)
+            t.setpos(180, -120)
             t.pendown()
 
             t.left(-a1)
@@ -6820,7 +6892,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -6977,14 +7049,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 170
-            y = 200
+            x = 160
+            y = 150
             t.penup()
             t.goto(x, y)
             t.write(text1, align="center", font=('Courier New', 10))
 
-            x = -50
-            y = 200
+            x = -60
+            y = 150
             t.goto(x, y)
             t.write(text2, align="center", font=('Courier New', 10))
 
@@ -7634,7 +7706,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -8451,7 +8523,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -9268,7 +9340,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -10081,7 +10153,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -10910,7 +10982,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -11728,7 +11800,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -12543,7 +12615,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -13361,7 +13433,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -14179,7 +14251,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -14993,7 +15065,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('black')
 
             t.penup()
-            t.setpos(-150, 70)
+            t.setpos(-150, 25)
             t.pendown()
 
             # Quadrado
@@ -15389,80 +15461,112 @@ def Vertical():
 
     # Calculos
     def altura_max():
-        g = float(gravedad.get())
-        vi = float(velocidad_i.get())
-        hi = float(altura_i.get())
-        v2 = vi * vi                
-        hmax = ((1/2) * v2) / g
-        hf = hmax + hi
-        resultado = round(hf, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(m)")
-        etiqueta_resultado1.config(text=f"La altura maxima es: {resultado}(m)")
+
+        try:
+            g = float(gravedad.get())
+            vi = float(velocidad_i.get())
+            hi = float(altura_i.get())
+            v2 = vi * vi                
+            hmax = ((1/2) * v2) / g
+            hf = hmax + hi
+            resultado = round(hf, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(m)")
+            etiqueta_resultado1.config(text=f"La altura maxima es: {resultado}(m)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def altura_a_velocidad_media():
-        g = float(gravedad.get())
-        vi = float(velocidad_i.get())
-        hi = float(altura_i.get())
-        v2 = vi * vi
-        hmax = ((3/8) * v2) / g
-        hf = hmax + hi
-        resultado = round(hf, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(m)")
-        etiqueta_resultado2.config(text=f"La altura a la mitad de \n velocidad es: {resultado}(m)")
+
+        try:
+            g = float(gravedad.get())
+            vi = float(velocidad_i.get())
+            hi = float(altura_i.get())
+            v2 = vi * vi
+            hmax = ((3/8) * v2) / g
+            hf = hmax + hi
+            resultado = round(hf, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(m)")
+            etiqueta_resultado2.config(text=f"La altura a la mitad de \n velocidad es: {resultado}(m)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
     
     def velocidad_de_impacto():
-        vi = float(velocidad_i.get())
-        v_impacto = vi
-        resultado = round(v_impacto, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(m/s)")
-        etiqueta_resultado3.config(text=f"La velocidad de impacto es: {resultado}(m/s)")
+
+        try:
+            vi = float(velocidad_i.get())
+            v_impacto = vi
+            resultado = round(v_impacto, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(m/s)")
+            etiqueta_resultado3.config(text=f"La velocidad de impacto es: {resultado}(m/s)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def trabajo():
-        f = float(Fuerza.get())
-        d = float(distancia.get())
-        w = f * d
-        resultado = round(w, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado4.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+
+        try:
+            f = float(Fuerza.get())
+            d = float(distancia.get())
+            w = f * d
+            resultado = round(w, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado4.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def energia_cinetica():
-        v = float(velocidad_i.get())
-        v2 = v * v
-        m = float(masa.get())
-        Ec = 0.5 * m * v2
-        resultado = round(Ec, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado5.config(text=f"La enegia cinetica es: {resultado}(J)")
+
+        try:
+            v = float(velocidad_i.get())
+            v2 = v * v
+            m = float(masa.get())
+            Ec = 0.5 * m * v2
+            resultado = round(Ec, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado5.config(text=f"La enegia cinetica es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def energia_potencial_gravitatoria():
-        h = float(Altura.get())
-        m = float(masa.get())
-        g = float(gravedad.get())
-        Epg = m * g * h
-        resultado = round(Epg, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado6.config(text=f"La enegia potencial es: {resultado}(J)")
+
+        try:
+            h = float(Altura.get())
+            m = float(masa.get())
+            g = float(gravedad.get())
+            Epg = m * g * h
+            resultado = round(Epg, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado6.config(text=f"La enegia potencial es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def energia_mecanica_total():
-        v = float(velocidad_i.get())
-        v2 = v * v
-        m = float(masa.get())
-        h = float(Altura.get())
-        g = float(gravedad.get())
-        Epg = m * g * h
-        Ec = 0.5 * m * v2
-        Emt = Epg + Ec
-        resultado = round(Emt, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado7.config(text=f"La enegia mecanica total es: {resultado}(J)")
+
+        try:
+            v = float(velocidad_i.get())
+            v2 = v * v
+            m = float(masa.get())
+            h = float(Altura.get())
+            g = float(gravedad.get())
+            Epg = m * g * h
+            Ec = 0.5 * m * v2
+            Emt = Epg + Ec
+            resultado = round(Emt, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado7.config(text=f"La enegia mecanica total es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def potencia():
-        t = float(Tiempo.get())
-        w = float(Trabajo.get())
-        p = w / t
-        resultado = round(p, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(W)")
-        etiqueta_resultado8.config(text=f"La potencia es: {resultado}(W)")
+
+        try:
+            t = float(Tiempo.get())
+            w = float(Trabajo.get())
+            p = w / t
+            resultado = round(p, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(W)")
+            etiqueta_resultado8.config(text=f"La potencia es: {resultado}(W)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
 
     # Graficos
@@ -16130,51 +16234,71 @@ def Plano():
     Altura.grid(row=2, column=5, padx=10, pady=10)
 
     def trabajo():
-        f = float(Fuerza.get())
-        d = float(distancia.get())
-        w = f * d
-        resultado = round(w, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+
+        try:
+            f = float(Fuerza.get())
+            d = float(distancia.get())
+            w = f * d
+            resultado = round(w, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def energia_cinetica():
-        v = float(velocidad.get())
-        v2 = v * v
-        m = float(masa.get())
-        Ec = 0.5 * m * v2
-        resultado = round(Ec, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado2.config(text=f"La enegia cinetica es: {resultado}(J)")
+
+        try:
+            v = float(velocidad.get())
+            v2 = v * v
+            m = float(masa.get())
+            Ec = 0.5 * m * v2
+            resultado = round(Ec, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado2.config(text=f"La enegia cinetica es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def energia_potencial_gravitatoria():
-        h = float(Altura.get())
-        m = float(masa.get())
-        g = float(gravedad.get())
-        Epg = m * g * h
-        resultado = round(Epg, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado3.config(text=f"La enegia potencial es: {resultado}(J)")
+
+        try:
+            h = float(Altura.get())
+            m = float(masa.get())
+            g = float(gravedad.get())
+            Epg = m * g * h
+            resultado = round(Epg, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado3.config(text=f"La enegia potencial es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def energia_mecanica_total():
-        v = float(velocidad.get())
-        v2 = v * v
-        m = float(masa.get())
-        h = float(Altura.get())
-        g = float(gravedad.get())
-        Epg = m * g * h
-        Ec = 0.5 * m * v2
-        Emt = Epg + Ec
-        resultado = round(Emt, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado4.config(text=f"La enegia mecanica total es: {resultado}(J)")
+
+        try:
+            v = float(velocidad.get())
+            v2 = v * v
+            m = float(masa.get())
+            h = float(Altura.get())
+            g = float(gravedad.get())
+            Epg = m * g * h
+            Ec = 0.5 * m * v2
+            Emt = Epg + Ec
+            resultado = round(Emt, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado4.config(text=f"La enegia mecanica total es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def potencia():
-        t = float(Tiempo.get())
-        w = float(Trabajo.get())
-        p = w / t
-        resultado = round(p, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(W)")
-        etiqueta_resultado5.config(text=f"La potencia es: {resultado}(W)")
+
+        try:
+            t = float(Tiempo.get())
+            w = float(Trabajo.get())
+            p = w / t
+            resultado = round(p, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(W)")
+            etiqueta_resultado5.config(text=f"La potencia es: {resultado}(W)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def grafico_orizontal():
         lienzo_turtle = turtle.ScrolledCanvas(ventana6)
@@ -16340,52 +16464,72 @@ def Inclinado():
     inclinacion_del_plano.grid(row=3, column=5, padx=10, pady=10)
 
     def trabajo():
-        f = float(Fuerza.get())
-        d = float(distancia.get())
-        i = float(inclinacion_del_plano.get())
-        w = f * d * math.radians(math.cos(i))
-        resultado = round(w, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+
+        try:
+            f = float(Fuerza.get())
+            d = float(distancia.get())
+            i = float(inclinacion_del_plano.get())
+            w = f * d * math.radians(math.cos(i))
+            resultado = round(w, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def energia_cinetica():
-        v = float(velocidad.get())
-        v2 = v * v
-        m = float(masa.get())
-        Ec = 0.5 * m * v2
-        resultado = round(Ec, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado2.config(text=f"La enegia cinetica es: {resultado}(J)")
+
+        try:
+            v = float(velocidad.get())
+            v2 = v * v
+            m = float(masa.get())
+            Ec = 0.5 * m * v2
+            resultado = round(Ec, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado2.config(text=f"La enegia cinetica es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def energia_potencial_gravitatoria():
-        h = float(Altura.get())
-        m = float(masa.get())
-        g = float(gravedad.get())
-        Epg = m * g * h
-        resultado = round(Epg, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado3.config(text=f"La enegia potencial es: {resultado}(J)")
+
+        try:
+            h = float(Altura.get())
+            m = float(masa.get())
+            g = float(gravedad.get())
+            Epg = m * g * h
+            resultado = round(Epg, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado3.config(text=f"La enegia potencial es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def energia_mecanica_total():
-        v = float(velocidad.get())
-        v2 = v * v
-        m = float(masa.get())
-        h = float(Altura.get())
-        g = float(gravedad.get())
-        Epg = m * g * h
-        Ec = 0.5 * m * v2
-        Emt = Epg + Ec
-        resultado = round(Emt, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado4.config(text=f"La enegia mecanica total es: {resultado}(J)")
+
+        try:
+            v = float(velocidad.get())
+            v2 = v * v
+            m = float(masa.get())
+            h = float(Altura.get())
+            g = float(gravedad.get())
+            Epg = m * g * h
+            Ec = 0.5 * m * v2
+            Emt = Epg + Ec
+            resultado = round(Emt, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado4.config(text=f"La enegia mecanica total es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def potencia():
-        t = float(Tiempo.get())
-        w = float(Trabajo.get())
-        p = w / t
-        resultado = round(p, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(W)")
-        etiqueta_resultado5.config(text=f"La potencia es: {resultado}(W)")
+
+        try:
+            t = float(Tiempo.get())
+            w = float(Trabajo.get())
+            p = w / t
+            resultado = round(p, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(W)")
+            etiqueta_resultado5.config(text=f"La potencia es: {resultado}(W)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def grafico_triangulo():
         lienzo_turtle = turtle.ScrolledCanvas(ventana7)
@@ -16600,98 +16744,133 @@ def Circular():
     etiqueta_seleccion.grid(row=3, column=4, padx=10, pady=10)
 
     def trabajo_uq():
-        f = float(Fuerza.get())
-        R = float(Radio.get())
-        pi = math.pi
-        d = (pi * R)/2
-        w = f * d * math.radians(math.cos(pi/2))
-        resultado = round(w, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+
+        try:
+            f = float(Fuerza.get())
+            R = float(Radio.get())
+            pi = math.pi
+            d = (pi * R)/2
+            w = f * d * math.radians(math.cos(pi/2))
+            resultado = round(w, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def trabajo_uv():
-        f = float(Fuerza.get())
-        R = float(Radio.get())
-        pi = math.pi
-        d = (pi * R)/2
-        w = f * d * math.radians(math.cos(pi * 2))
-        resultado = round(w, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+
+        try:
+            f = float(Fuerza.get())
+            R = float(Radio.get())
+            pi = math.pi
+            d = (pi * R)/2
+            w = f * d * math.radians(math.cos(pi * 2))
+            resultado = round(w, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def trabajo_tq():
-        f = float(Fuerza.get())
-        R = float(Radio.get())
-        pi = math.pi
-        d = (pi * R)/2
-        w = f * d * math.radians(math.cos((3 * pi)/2))
-        resultado = round(w, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
-        
+
+        try:
+            f = float(Fuerza.get())
+            R = float(Radio.get())
+            pi = math.pi
+            d = (pi * R)/2
+            w = f * d * math.radians(math.cos((3 * pi)/2))
+            resultado = round(w, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
+
     def trabajo_sv():
-        f = float(Fuerza.get())
-        R = float(Radio.get())
-        pi = math.pi
-        d = (pi * R)/2
-        w = f * d * math.radians(math.cos(pi))
-        resultado = round(w, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+
+        try:
+            f = float(Fuerza.get())
+            R = float(Radio.get())
+            pi = math.pi
+            d = (pi * R)/2
+            w = f * d * math.radians(math.cos(pi))
+            resultado = round(w, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado1.config(text=f"El trabajo del cuerpo es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def potencia():
-        t = float(Tiempo.get())
-        w = float(Trabajo.get())
-        p = w / t
-        resultado = round(p, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(W)")
-        etiqueta_resultado2.config(text=f"La potencia es: {resultado}(W)")
+
+        try:
+            t = float(Tiempo.get())
+            w = float(Trabajo.get())
+            p = w / t
+            resultado = round(p, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(W)")
+            etiqueta_resultado2.config(text=f"La potencia es: {resultado}(W)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def momento_de_Inercia():
-        m = float(masa.get())
-        R = float(Radio.get())
-        R2 = R * R
-        I = (1/4) * m * R2
-        resultado = round(I, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(Kg·m^2)")
-        etiqueta_resultado3.config(text=f"El trabajo del cuerpo es: {resultado}(Kg·m^2)")
+
+        try:
+            m = float(masa.get())
+            R = float(Radio.get())
+            R2 = R * R
+            I = (1/4) * m * R2
+            resultado = round(I, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(Kg·m^2)")
+            etiqueta_resultado3.config(text=f"El trabajo del cuerpo es: {resultado}(Kg·m^2)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def energia_cinetica():
-        w = float(velocidad_angular.get())
-        w2 = w * w
-        m = float(masa.get())
-        R = float(Radio.get())
-        R2 = R * R
-        I = (1/4) * m * R2
-        Ec = 0.5 * I * w2
-        resultado = round(Ec, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado4.config(text=f"La enegia cinetica es: {resultado}(J)")
+
+        try:
+            w = float(velocidad_angular.get())
+            w2 = w * w
+            m = float(masa.get())
+            R = float(Radio.get())
+            R2 = R * R
+            I = (1/4) * m * R2
+            Ec = 0.5 * I * w2
+            resultado = round(Ec, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado4.config(text=f"La enegia cinetica es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
         
     def energia_potencial_gravitatoria():
-        h = float(Altura.get())
-        m = float(masa.get())
-        g = float(gravedad.get())
-        Epg = m * g * h
-        resultado = round(Epg, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado5.config(text=f"La enegia potencial es: {resultado}(J)")
+
+        try:
+            h = float(Altura.get())
+            m = float(masa.get())
+            g = float(gravedad.get())
+            Epg = m * g * h
+            resultado = round(Epg, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado5.config(text=f"La enegia potencial es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def energia_mecanica_total():
-        w = float(velocidad_angular.get())
-        w2 = w * w
-        m = float(masa.get())
-        h = float(Altura.get())
-        g = float(gravedad.get())
-        R = float(Radio.get())
-        R2 = R * R
-        I = (1/4) * m * R2
-        Epg = m * g * h
-        Ec = 0.5 * I * w2
-        Emt = Epg + Ec
-        resultado = round(Emt, 3)
-        etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
-        etiqueta_resultado6.config(text=f"La enegia mecanica total es: {resultado}(J)")
+        try:
+            w = float(velocidad_angular.get())
+            w2 = w * w
+            m = float(masa.get())
+            h = float(Altura.get())
+            g = float(gravedad.get())
+            R = float(Radio.get())
+            R2 = R * R
+            I = (1/4) * m * R2
+            Epg = m * g * h
+            Ec = 0.5 * I * w2
+            Emt = Epg + Ec
+            resultado = round(Emt, 3)
+            etiqueta_resultado.config(text=f"El resultado es: {resultado}(J)")
+            etiqueta_resultado6.config(text=f"La enegia mecanica total es: {resultado}(J)")
+        except ValueError:
+            etiqueta_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
     def grafico_Circular():
         lienzo_turtle = turtle.ScrolledCanvas(ventana8)
