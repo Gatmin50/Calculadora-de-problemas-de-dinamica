@@ -16941,6 +16941,7 @@ def Circular():
         t.left(90)
         t.pendown()
         t.pencolor('gold')
+        t.left(180)
         t.forward(60)
         t.left(90)
         t.forward(15)
