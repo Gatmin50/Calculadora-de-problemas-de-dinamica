@@ -4664,7 +4664,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
     rectangulo1 = lienzo.create_rectangle(115, 225, 135, 245, fill='gold')
     rectangulo2 = lienzo.create_rectangle(115, 284, 135, 304, fill='gold')
-    rectangulo3 = lienzo.create_rectangle(910, 284, 930, 304, fill='violet')
+    rectangulo3 = lienzo.create_rectangle(825, 284, 845, 304, fill='violet')
     rectangulo4 = lienzo.create_rectangle(276, 225, 296, 245, fill='red')
     rectangulo5 = lienzo.create_rectangle(276, 284, 296, 304, fill='red')
     lienzo.place(x=0, y=0)
@@ -4675,7 +4675,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
     # Enunciado de la calculadora
     etiqueta_ca = tk.Label(ventana2, text="Botones y cuadros de texto para el grafico",bg="black", fg="orange")
-    etiqueta_ca.grid(column=0, row=8, columnspan=2, padx=10, pady=10)
+    etiqueta_ca.grid(column=0, row=7, columnspan=2, padx=10, pady=10)
 
     # Crear las etiquetas y entradas de datos
     etiqueta_tension = tk.Label(ventana2, text="Tension:",bg="black", fg="white")
@@ -4984,63 +4984,67 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
     # Crear la etiqueta para mostrar el resultado
     label_resultado = tk.Label(ventana2, text="" ,bg="lightblue", fg="black")
-    label_resultado.grid(column=2, row=7, columnspan=2, padx=10, pady=10)
+    label_resultado.grid(column=4, row=2, columnspan=2, rowspan=2, padx=10, pady=10)
 
     # Crear la etiqueta para almacenar el resultado
     label_resultado1 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado1.grid(column=6, row=1, columnspan=1, padx=10, pady=10)
+    label_resultado1.grid(column=7, row=1, columnspan=1, padx=10, pady=10)
 
     label_resultado2 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado2.grid(column=6, row=2, columnspan=1, padx=10, pady=10)
+    label_resultado2.grid(column=7, row=2, columnspan=1, padx=10, pady=10)
 
     label_resultado3 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado3.grid(column=6, row=3, columnspan=1, padx=10, pady=10)
+    label_resultado3.grid(column=7, row=3, columnspan=1, padx=10, pady=10)
 
     label_resultado4 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado4.grid(column=6, row=4, columnspan=1, padx=10, pady=10)
+    label_resultado4.grid(column=7, row=4, columnspan=1, padx=10, pady=10)
 
     label_resultado5 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado5.grid(column=6, row=5, columnspan=1, padx=10, pady=10)
+    label_resultado5.grid(column=7, row=5, columnspan=1, padx=10, pady=10)
 
     label_resultado6 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado6.grid(column=6, row=6, columnspan=1, padx=10, pady=10)
+    label_resultado6.grid(column=7, row=6, columnspan=1, padx=10, pady=10)
 
     label_resultado7 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado7.grid(column=6, row=7, columnspan=1, padx=10, pady=10)
+    label_resultado7.grid(column=7, row=7, columnspan=1, padx=10, pady=10)
 
     label_resultado8 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado8.grid(column=6, row=8, columnspan=1, padx=10, pady=10)
+    label_resultado8.grid(column=7, row=8, columnspan=1, padx=10, pady=10)
 
     label_resultado9 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado9.grid(column=6, row=9, columnspan=1, padx=10, pady=10)
+    label_resultado9.grid(column=7, row=9, columnspan=1, padx=10, pady=10)
 
     label_resultado10 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado10.grid(column=6, row=10, columnspan=1, padx=10, pady=10)
+    label_resultado10.grid(column=7, row=10, columnspan=1, padx=10, pady=10)
 
     label_resultado11 = tk.Label(ventana2, text="" ,bg="black", fg="white")
-    label_resultado11.grid(column=6, row=11, columnspan=1, padx=10, pady=10)
+    label_resultado11.grid(column=7, row=11, columnspan=1, padx=10, pady=10)
 
     def cerrar_ventana():
         ventana2.destroy()
 
     btn_cerrar = tk.Button(ventana2, text="                                Cerrar ventana                                ", font=("Helvetica", 10, "bold"), command=cerrar_ventana, bg="red", fg="black")
-    btn_cerrar.grid(column=0, row=10, columnspan=3, padx=5, pady=5)
+    btn_cerrar.grid(column=0, row=9, columnspan=3, padx=5, pady=5)
 
     # despliege de secciones
     def seleccionar_opcion(event):
         opcion_seleccionada = combobox.get()
 
         if opcion_seleccionada == "1":
+            rectangulo6 = lienzo.create_rectangle(920, 284, 940, 304, fill='violet')
+            lienzo.delete(rectangulo3)
             pop()
         elif opcion_seleccionada == "2":
+            rectangulo6 = lienzo.create_rectangle(920, 284, 940, 304, fill='violet')
+            lienzo.delete(rectangulo3)
             pop1()
 
     opciones = ["1", "2"]
     combobox = ttk.Combobox(ventana2, values=opciones)
-    combobox.grid(row=9, column=1, padx=5, pady=5)
+    combobox.grid(row=8, column=1, padx=5, pady=5)
     combobox.bind("<<ComboboxSelected>>", seleccionar_opcion)
     etiqueta_seleccion = tk.Label(ventana2, text="Cual es la masa que cae: \n 1. A favor de la masa 1 \n 2. A favor de la masa 2", bg="black", fg="white")
-    etiqueta_seleccion.grid(row=9, column=0, padx=5, pady=5)
+    etiqueta_seleccion.grid(row=8, column=0, padx=5, pady=5)
 
     etiqueta_angulo_de_inclinacion1 = tk.Label(ventana2, text="Algulo de inclinación 1:",bg="black", fg="white")
     etiqueta_angulo_de_inclinacion1.grid(column=0, row=4, padx=5, pady=5)
@@ -5060,7 +5064,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
         xz = float(angulo_de_inclinacion1.get())
         xy = float(angulo_de_inclinacion2.get())
         lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-        lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=7, padx=10, pady=5)
+        lienzo_turtle.grid(column=3, row=7, columnspan=4, rowspan=7, padx=10, pady=5)
         # Crear un objeto Turtle en el lienzo
         t = turtle.RawTurtle(lienzo_turtle)
 
@@ -6706,16 +6710,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 300
-            l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
+            l1 = 250
+            l2 = (math.sin(math.radians(a1)) * 250) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 250) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(300, -150)
+            t.setpos(150, -160)
             t.pendown()
 
             t.left(-a1)
@@ -7494,14 +7498,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 280
-            y = 200
+            x = 130
+            y = 80
             t.penup()
             t.goto(x, y)
             t.write(text1, align="center", font=('Courier New', 10))
 
-            x = 70
-            y = 200
+            x = -80
+            y = 80
             t.goto(x, y)
             t.write(text2, align="center", font=('Courier New', 10))
 
@@ -7520,16 +7524,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 200
-            l2 = (math.sin(math.radians(a1)) * 200) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 200) / math.sin(math.radians(a2))
+            l1 = 100
+            l2 = (math.sin(math.radians(a1)) * 100) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 100) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(240, -70)
+            t.setpos(140, -80)
             t.pendown()
 
             t.left(-a1)
