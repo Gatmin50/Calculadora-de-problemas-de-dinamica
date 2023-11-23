@@ -14,7 +14,7 @@ ventana1.geometry('710x300+400+200')
 ventana1.configure(background='black')
 
 def programa_plano_inclinado():
-    
+
     # Crear la ventana de la calculadora
     ventana = tk.Tk()
     ventana.title("Calculadora de Dinámica")
@@ -5032,11 +5032,11 @@ def programa_plano_inclinado_con_dos_cuerpos():
     lienzo.configure(bg='black')
     lienzo.pack()
 
-    rectangulo1 = lienzo.create_rectangle(145, 235, 165, 255, fill='gold')
-    rectangulo2 = lienzo.create_rectangle(145, 304, 165, 324, fill='gold')
-    rectangulo3 = lienzo.create_rectangle(1035, 304, 1055, 324, fill='violet')
-    rectangulo4 = lienzo.create_rectangle(336, 235, 356, 255, fill='red')
-    rectangulo5 = lienzo.create_rectangle(336, 304, 356, 324, fill='red')
+    rectangulo1 = lienzo.create_rectangle(145, 190, 165, 210, fill='gold')
+    rectangulo2 = lienzo.create_rectangle(145, 250, 165, 270, fill='gold')
+    rectangulo3 = lienzo.create_rectangle(995, 250, 1015, 270, fill='violet')
+    rectangulo4 = lienzo.create_rectangle(336, 190, 356, 210, fill='red')
+    rectangulo5 = lienzo.create_rectangle(336, 250, 356, 270, fill='red')
     lienzo.place(x=0, y=0)
 
     # Enunciado de la calculadora
@@ -5401,8 +5401,10 @@ def programa_plano_inclinado_con_dos_cuerpos():
         opcion_seleccionada = combobox.get()
 
         if opcion_seleccionada == "1":
+            rectangulo6 = lienzo.create_rectangle(1020, 250, 1040, 270, fill='violet')
             pop()
         elif opcion_seleccionada == "2":
+            rectangulo6 = lienzo.create_rectangle(1020, 250, 1040, 270, fill='violet')
             pop1()
 
     opciones = ["1", "2"]
