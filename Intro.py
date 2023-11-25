@@ -8,7 +8,7 @@ def animacion_inicial():
     ventanag = t.Screen()
     ventanag.title("Intro")
     ventanag.setup(width=1.0, height=1.0)
-    ventanag.bgcolor("white")
+    ventanag.bgcolor("white") 
 
     # velocidad del lapiz
     t.speed(5)
