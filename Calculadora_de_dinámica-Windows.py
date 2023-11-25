@@ -6719,7 +6719,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(150, -160)
+            t.setpos(170, -160)
             t.pendown()
 
             t.left(-a1)
