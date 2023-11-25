@@ -8315,14 +8315,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 310
-            y = 200
+            x = 170
+            y = 160
             t.penup()
             t.goto(x, y)
             t.write(text1, align="center", font=('Courier New', 10))
 
-            x = 100
-            y = 200
+            x = -80
+            y = 160
             t.goto(x, y)
             t.write(text2, align="center", font=('Courier New', 10))
 
@@ -8341,16 +8341,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 400
-            l2 = (math.sin(math.radians(a1)) * 400) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 400) / math.sin(math.radians(a2))
+            l1 = 300
+            l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(300, -70)
+            t.setpos(210, -55)
             t.pendown()
 
             t.left(-a1)
@@ -9133,13 +9133,13 @@ def programa_plano_inclinado_con_dos_cuerpos():
             # cual es cada massa
             t.pencolor('black')
             x = 170
-            y = 200
+            y = 160
             t.penup()
             t.goto(x, y)
             t.write(text1, align="center", font=('Courier New', 10))
 
             x = -80
-            y = 200
+            y = 160
             t.goto(x, y)
             t.write(text2, align="center", font=('Courier New', 10))
 
@@ -9157,16 +9157,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = (math.sin(math.radians(a2)) * 400) / math.sin(math.radians(a3))
-            l2 = (math.sin(math.radians(a1)) * 400) / math.sin(math.radians(a3))
-            l3 = 400
+            l1 = (math.sin(math.radians(a2)) * 350) / math.sin(math.radians(a3))
+            l2 = (math.sin(math.radians(a1)) * 350) / math.sin(math.radians(a3))
+            l3 = 350
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(300, -70)
+            t.setpos(220, -120)
             t.pendown()
 
             t.left(-a1)
@@ -9945,14 +9945,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 230
-            y = 200
+            x = 170
+            y = 130
             t.penup()
             t.goto(x, y)
             t.write(text1, align="center", font=('Courier New', 10))
 
-            x = 10
-            y = 200
+            x = -80
+            y = 130
             t.goto(x, y)
             t.write(text2, align="center", font=('Courier New', 10))
 
@@ -9970,7 +9970,7 @@ def programa_plano_inclinado_con_dos_cuerpos():
         xz1 = float(angulo_de_inclinacion1.get())
         xy1 = float(angulo_de_inclinacion2.get())
         lienzo_turtle = turtle.ScrolledCanvas(ventana2)
-        lienzo_turtle.grid(column=3, row=8, columnspan=4, rowspan=8, padx=10, pady=5)
+        lienzo_turtle.grid(column=3, row=7, columnspan=4, rowspan=7, padx=10, pady=5)
         # Crear un objeto Turtle en el lienzo
         t = turtle.RawTurtle(lienzo_turtle)
 
@@ -9982,16 +9982,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 300
-            l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
+            l1 = 200
+            l2 = (math.sin(math.radians(a1)) * 200) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 200) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(250, -100)
+            t.setpos(150, -110)
             t.pendown()
 
             t.left(-a1)
@@ -10774,14 +10774,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 310
-            y = 200
+            x = 200
+            y = 130
             t.penup()
             t.goto(x, y)
             t.write(texto1, align="center", font=('Courier New', 10))
 
-            x = 100
-            y = 200
+            x = 0
+            y = 130
             t.goto(x, y)
             t.write(texto2, align="center", font=('Courier New', 10))
 
@@ -10800,16 +10800,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 400
-            l2 = (math.sin(math.radians(a1)) * 400) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 400) / math.sin(math.radians(a2))
+            l1 = 300
+            l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(350, -100)
+            t.setpos(180, -120)
             t.pendown()
 
             t.left(-a1)
@@ -11592,14 +11592,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 210
-            y = 200
+            x = 160
+            y = 150
             t.penup()
             t.goto(x, y)
             t.write(texto1, align="center", font=('Courier New', 10))
 
-            x = 0
-            y = 200
+            x = -60
+            y = 150
             t.goto(x, y)
             t.write(texto2, align="center", font=('Courier New', 10))
 
@@ -11618,16 +11618,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 300
-            l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
+            l1 = 250
+            l2 = (math.sin(math.radians(a1)) * 250) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 250) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(300, -100)
+            t.setpos(170, -160)
             t.pendown()
 
             t.left(-a1)
@@ -12407,14 +12407,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 270
-            y = 200
+            x = 130
+            y = 80
             t.penup()
             t.goto(x, y)
             t.write(texto1, align="center", font=('Courier New', 10))
 
-            x = 60
-            y = 200
+            x = -80
+            y = 80
             t.goto(x, y)
             t.write(texto2, align="center", font=('Courier New', 10))
 
@@ -12433,16 +12433,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 200
-            l2 = (math.sin(math.radians(a1)) * 200) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 200) / math.sin(math.radians(a2))
+            l1 = 100
+            l2 = (math.sin(math.radians(a1)) * 100) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 100) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(240, -70)
+            t.setpos(140, -80)
             t.pendown()
 
             t.left(-a1)
@@ -13225,14 +13225,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 310
-            y = 200
+            x = 170
+            y = 160
             t.penup()
             t.goto(x, y)
             t.write(texto1, align="center", font=('Courier New', 10))
 
-            x = 100
-            y = 200
+            x = -80
+            y = 160
             t.goto(x, y)
             t.write(texto2, align="center", font=('Courier New', 10))
 
@@ -13251,16 +13251,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = 400
-            l2 = (math.sin(math.radians(a1)) * 400) / math.sin(math.radians(a2))
-            l3 = (math.sin(math.radians(a3)) * 400) / math.sin(math.radians(a2))
+            l1 = 300
+            l2 = (math.sin(math.radians(a1)) * 300) / math.sin(math.radians(a2))
+            l3 = (math.sin(math.radians(a3)) * 300) / math.sin(math.radians(a2))
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(300, -70)
+            t.setpos(210, -55)
             t.pendown()
 
             t.left(-a1)
@@ -14044,13 +14044,13 @@ def programa_plano_inclinado_con_dos_cuerpos():
             # cual es cada massa
             t.pencolor('black')
             x = 170
-            y = 200
+            y = 160
             t.penup()
             t.goto(x, y)
             t.write(texto1, align="center", font=('Courier New', 10))
 
             x = -80
-            y = 200
+            y = 160
             t.goto(x, y)
             t.write(texto2, align="center", font=('Courier New', 10))
 
@@ -14069,16 +14069,16 @@ def programa_plano_inclinado_con_dos_cuerpos():
             a2 = float(angulo_de_inclinacion2.get())
             a3 = 360 - (a1 + a2)
 
-            l1 = (math.sin(math.radians(a2)) * 400) / math.sin(math.radians(a3))
-            l2 = (math.sin(math.radians(a1)) * 400) / math.sin(math.radians(a3))
-            l3 = 400
+            l1 = (math.sin(math.radians(a2)) * 350) / math.sin(math.radians(a3))
+            l2 = (math.sin(math.radians(a1)) * 350) / math.sin(math.radians(a3))
+            l3 = 350
 
             #Triangulo de dos massas
             t.pensize(4)
             t.pencolor('grey')
 
             t.penup()
-            t.setpos(300, -70)
+            t.setpos(220, -120)
             t.pendown()
 
             t.left(-a1)
@@ -14857,14 +14857,14 @@ def programa_plano_inclinado_con_dos_cuerpos():
 
             # cual es cada massa
             t.pencolor('black')
-            x = 230
-            y = 200
+            x = 170
+            y = 130
             t.penup()
             t.goto(x, y)
             t.write(texto1, align="center", font=('Courier New', 10))
 
-            x = 10
-            y = 200
+            x = -80
+            y = 130
             t.goto(x, y)
             t.write(texto2, align="center", font=('Courier New', 10))
 
