@@ -10,11 +10,11 @@ import Intro
 
 
 # URL del archivo de imagen en GitHub
-url = 'https://drive.google.com/file/d/1YeMGFlglS_-L8BJbi0QDLBasY6UgJJdd/view?usp=sharing'
+url = 'https://raw.githubusercontent.com/Gatmin50/Calculadora-de-problemas-de-dinamica/main/Icono.ico'
 
 # Directorio donde deseas guardar el archivo descargado
 directorio = 'C:/calculadora_de_dinamica/'
-ruta_local = os.path.join(directorio, '5010110.ico')
+ruta_local = os.path.join(directorio, 'Icono.ico')
 
 # Verificar si el directorio existe y, si no, crearlo
 if not os.path.exists(directorio):
