@@ -10,7 +10,7 @@ import Intro
 
 
 # URL del archivo de imagen en GitHub
-url = 'https://drive.google.com/file/d/1W7796a5ysIzM2KAjMkJ23UmDCuT3IXl9/view?usp=sharing'
+url = 'https://drive.google.com/file/d/1YeMGFlglS_-L8BJbi0QDLBasY6UgJJdd/view?usp=sharing'
 
 # Directorio donde deseas guardar el archivo descargado
 directorio = 'C:/calculadora_de_dinamica/'
