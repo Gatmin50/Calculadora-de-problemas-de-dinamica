@@ -1,3 +1,4 @@
+import customtkinter as ctk
 import tkinter as tk
 from tkinter import ttk
 import math
@@ -5,13 +6,14 @@ import turtle
 import time
 import Intro
 
-Intro.animacion_inicial()
+#Intro.animacion_inicial()
 
 # Crear la ventana del menu de la calculadora
-ventana1 = tk.Tk()
+ctk.set_appearance_mode("system")
+ventana1 = ctk.CTk()
 ventana1.title("Menu calculadora de Dinámica")
 ventana1.geometry('710x300+400+200')
-ventana1.configure(background='black')
+ventana1.configure(fg_color="black")
 
 def programa_plano_inclinado():
 
@@ -16996,6 +16998,122 @@ def Circular():
     btn_cerrar = tk.Button(ventana8, text="      Cerrar ventana      ", font=("Helvetica", 10, "bold"), command=cerrar_ventana8, bg="red", fg="black")
     btn_cerrar.grid(column=2, row=5, columnspan=1, padx=10, pady=10)
 
+def ondas_armónicas():
+
+    ventana9 = ctk.CTk()
+    ventana9.title("Calculadora ondas armonicas")
+    ventana9.geometry('1400x650+400+200')
+    ventana9.configure(fg_color="black")
+
+    # Etiquetas
+        
+    etiqueta_periodo = ctk.CTkLabel(ventana9, text='Periodo (s)', text_color='white')
+    etiqueta_periodo.grid(row=1, column=0, padx=10, pady=10)
+        
+    etiqueta_longitud_de_onda = ctk.CTkLabel(ventana9, text='Longitud de onda (m)', text_color='white')
+    etiqueta_longitud_de_onda.grid(row=1, column=2, padx=10, pady=10)
+
+    etiqueta_velocidad_propagación = ctk.CTkLabel(ventana9, text='velocidad de propagacion (m/s)', text_color='white')
+    etiqueta_velocidad_propagación.grid(row=2, column=0, padx=10, pady=10)
+
+    etiqueta_número_de_onda = ctk.CTkLabel(ventana9, text='número de onda', text_color='white')
+    etiqueta_número_de_onda.grid(row=2, column=2, padx=10, pady=10)
+
+    etiqueta_frecuencia = ctk.CTkLabel(ventana9, text='fercuencia (Hz)', text_color='white')
+    etiqueta_frecuencia.grid(row=1, column=4, padx=10, pady=10)
+        
+    etiqueta_resultado = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado.grid(row=5, column=4, columnspan=2, padx=10, pady=10)
+        
+    etiqueta_resultado1 = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado1.grid(row=1, column=6, padx=10, pady=10)
+    etiqueta_resultado2 = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado2.grid(row=2, column=6, padx=10, pady=10)
+    etiqueta_resultado3 = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado3.grid(row=3, column=6, padx=10, pady=10)
+    etiqueta_resultado4 = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado4.grid(row=4, column=6, padx=10, pady=10)
+    etiqueta_resultado5 = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado5.grid(row=5, column=6, padx=10, pady=10)
+    etiqueta_resultado6 = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado6.grid(row=6, column=6, padx=10, pady=10)
+
+    # Entradas de datos
+
+    periodo = ctk.CTkEntry(ventana9)
+    periodo.grid(row=1, column=1, padx=10, pady=10)
+    longitud_de_onda = ctk.CTkEntry(ventana9)
+    longitud_de_onda.grid(row=1, column=3, padx=10, pady=10)
+    velocidad_propagación = ctk.CTkEntry(ventana9)
+    velocidad_propagación.grid(row=2, column=1, padx=10, pady=10)
+    número_de_onda = ctk.CTkEntry(ventana9)
+    número_de_onda.grid(row=2, column=3, padx=10, pady=10)
+    frecuencia = ctk.CTkEntry(ventana9)
+    frecuencia.grid(row=1, column=5, padx=10, pady=10)
+    pi = math.pi
+
+    def calcular_omega():
+        if T:
+        try:
+            T = float(periodo.get())
+            w = (2*pi)/T
+            resultado = round(w, 3)
+            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+        except ValueError:
+            etiqueta_resultado.configure(text=f"El valor de T debe ser numérico")
+    elif landa:
+        try:
+            c = float(300000000)
+            landa = float(landa)
+            f = c / landa
+            w = 2 * pi * f
+            resultado = round(w, 3)
+            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+        except ValueError:
+            etiqueta_resultado.configure(text=f"El valor de landa debe ser numérico")
+    elif k and Vprop:
+        try:
+            k = float(k)
+            Vprop = float(Vprop)
+            w = k * Vprop
+            resultado = round(w, 3)
+            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+        except ValueError:
+            etiqueta_resultado.configure(text=f"Los valores de k y Vprop deben ser numéricos")
+    elif f:
+        try:
+            f = float(f)
+            w = 2 * pi * f
+            resultado = round(w, 3)
+            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+        except ValueError:
+            etiqueta_resultado.configure(text=f"El valor de f debe ser numérico")
+    else:
+        etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+
+
+
+    def longitud_onda():
+        try:
+            landa = 'hola'
+        
+        except ValueError:
+            print('hola')
+    
+    #Resetear los datos laterales
+    def reset_datos():
+        etiqueta_resultado1.configure(text=f"")
+        etiqueta_resultado2.configure(text=f"")
+        etiqueta_resultado3.configure(text=f"")
+        etiqueta_resultado4.configure(text=f"")
+        etiqueta_resultado5.configure(text=f"")
+        etiqueta_resultado6.configure(text=f"")
+    btn_cerrar = ctk.CTkButton(ventana9, text="Borrar datos laterales", font=("Helvetica", 10, "bold"), command=reset_datos)
+    btn_cerrar.grid(column=3, row=5, padx=10, pady=10)
+
+    btn_cerrar = ctk.CTkButton(ventana9, text="Calcular W", font=("Helvetica", 10, "bold"), command=calcular_omega)
+    btn_cerrar.grid(column=0, row=3, padx=10, pady=10)
+
 def cerrar_ventana4():
     combobox.grid_remove()
     etiqueta_resultado.grid_remove()
@@ -17007,12 +17125,9 @@ def cerrar_ventana4():
     boton_calculadora.grid(column=2, row=3, columnspan=2, padx=10, pady=10)
     boton_calculadora_te.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
     btn_cerrar.grid(column=2, row=4, columnspan=3, padx=10, pady=10)
-    label_espacio.grid(column=0, row=0, columnspan=2, padx=10, pady=10)
-    label_espacio1.grid(column=0, row=1, columnspan=2, padx=10, pady=10)
-    label_espacio2.grid(column=1, row=0, columnspan=2, padx=10, pady=10)
     ventana1.geometry('710x300+400+200')
 
-btn_back = tk.Button(ventana1, text="                                Atras                                ", font=("Helvetica", 10, "bold"), command=cerrar_ventana4, bg="red", fg="black")
+btn_back = ctk.CTkButton(ventana1, text="Atras", font=("Helvetica", 10, "bold"), command=cerrar_ventana4, bg_color="red", fg_color="black")
 btn_back.grid_remove()
 
 def traspaso1():
@@ -17021,9 +17136,6 @@ def traspaso1():
     boton_calculadora.grid_remove()
     boton_calculadora_te.grid_remove()
     btn_cerrar.grid_remove()
-    label_espacio.grid_remove()
-    label_espacio1.grid_remove()
-    label_espacio2.grid_remove()
     ventana1.title("Menu calculadora de Trabajo y Energía")
     combobox.grid(row=0, column=1, padx=10, pady=10)
     etiqueta_resultado.grid(row=1, column=1, padx=10, pady=10)
@@ -17032,28 +17144,22 @@ def traspaso1():
     ventana1.geometry('390x150')
 
 # Crear el botón de la calculadora de plano inclinado
-boton_calculadora_plano_inclinado = tk.Button(ventana1, text="Calculadora de plano inclinado", command=programa_plano_inclinado , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
+boton_calculadora_plano_inclinado = ctk.CTkButton(ventana1, text="Calculadora de plano inclinado", command=programa_plano_inclinado , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora_plano_inclinado.grid(column=2, row=2, padx=10, pady=10)
-boton_calculadora_plano_inclinado_con_dos_cuerpos = tk.Button(ventana1, text="Calculadora de plano inclinado \n con dos cuerpos unidos", command=programa_plano_inclinado_con_dos_cuerpos , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
+boton_calculadora_plano_inclinado_con_dos_cuerpos = ctk.CTkButton(ventana1, text="Calculadora de plano inclinado \n con dos cuerpos unidos", command=programa_plano_inclinado_con_dos_cuerpos , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=4, row=2, padx=10, pady=10)
-boton_calculadora = tk.Button(ventana1, text="Calculadora", command=mini_calculadora , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
+boton_calculadora = ctk.CTkButton(ventana1, text="Calculadora", command=mini_calculadora , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora.grid(column=2, row=3, columnspan=2, padx=10, pady=10)
-boton_calculadora_te = tk.Button(ventana1, text="Problemas de trabajo y energia", command=traspaso1 , font=("Helvetica", 15, "bold"), bg="darkblue", fg="white")
+boton_calculadora_te = ctk.CTkButton(ventana1, text="Problemas de trabajo y energia", command=traspaso1 , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora_te.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
-
-# Crear la etiqueta para almacenar el resultado
-label_espacio = tk.Label(ventana1, text="" ,bg="black", fg="black")
-label_espacio.grid(column=0, row=0, columnspan=2, padx=10, pady=10)
-label_espacio1 = tk.Label(ventana1, text="" ,bg="black", fg="black")
-label_espacio1.grid(column=0, row=1, columnspan=2, padx=10, pady=10)
-label_espacio2 = tk.Label(ventana1, text="" ,bg="black", fg="black")
-label_espacio2.grid(column=1, row=0, columnspan=2, padx=10, pady=10)
+boton_calculadora_ondas_armonicas = ctk.CTkButton(ventana1, text="Calculadora de \n ondas armonicas", command=ondas_armónicas , font=("Helvetica", 15, "bold"),corner_radius=20)
+boton_calculadora_ondas_armonicas.grid(column=4, row=2, columnspan=2, padx=10, pady=10)
 
 def cerrar_ventana():
     ventana1.destroy()
 
-btn_cerrar = tk.Button(ventana1, text="                                Cerrar ventana                                ", font=("Helvetica", 10, "bold"), command=cerrar_ventana, bg="red", fg="black")
-btn_cerrar.grid(column=2, row=4, columnspan=3, padx=10, pady=10)
+btn_cerrar = ctk.CTkButton(ventana1, text="Cerrar ventana", font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
+btn_cerrar.grid(column=2, row=4, columnspan=3, padx=10, pady=10, sticky='s')
 
 # Mantiene la ventana simpre abierta hasta que el usuario la cierra
 ventana1.mainloop()
