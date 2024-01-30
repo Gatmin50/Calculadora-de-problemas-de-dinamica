@@ -17016,16 +17016,31 @@ def ondas_armónicas():
     etiqueta_velocidad_propagación = ctk.CTkLabel(ventana9, text='velocidad de propagacion (m/s)', text_color='white')
     etiqueta_velocidad_propagación.grid(row=2, column=0, padx=10, pady=10)
 
-    etiqueta_número_de_onda = ctk.CTkLabel(ventana9, text='número de onda', text_color='white')
+    etiqueta_número_de_onda = ctk.CTkLabel(ventana9, text='número de onda (rad/m)', text_color='white')
     etiqueta_número_de_onda.grid(row=2, column=2, padx=10, pady=10)
 
     etiqueta_frecuencia = ctk.CTkLabel(ventana9, text='fercuencia (Hz)', text_color='white')
     etiqueta_frecuencia.grid(row=1, column=4, padx=10, pady=10)
+
+    etiqueta_frecuencia_angular = ctk.CTkLabel(ventana9, text='fercuencia angular (rad/s)', text_color='white')
+    etiqueta_frecuencia_angular.grid(row=2, column=4, padx=10, pady=10)
+
+    etiqueta_amplitud = ctk.CTkLabel(ventana9, text='amplitud (m)', text_color='white')
+    etiqueta_amplitud.grid(row=3, column=0, padx=10, pady=10)
+
+    etiqueta_desfase_inicial = ctk.CTkLabel(ventana9, text='desfase inicial (rad)', text_color='white')
+    etiqueta_desfase_inicial.grid(row=3, column=2, padx=10, pady=10)
+
+    etiqueta_posición_x = ctk.CTkLabel(ventana9, text='Posicion en x (m)', text_color='white')
+    etiqueta_posición_x.grid(row=3, column=4, padx=10, pady=10)
+
+    etiqueta_posición_t = ctk.CTkLabel(ventana9, text='Posicion en t (s)', text_color='white')
+    etiqueta_posición_t.grid(row=4, column=4, padx=10, pady=10)
         
     etiqueta_resultado = ctk.CTkLabel(ventana9, text='', text_color='white')
-    etiqueta_resultado.grid(row=5, column=4, columnspan=2, padx=10, pady=10)
+    etiqueta_resultado.grid(row=6, column=4, columnspan=2, padx=10, pady=10)
         
-    etiqueta_resultado1 = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado1 = ctk.CTkLabel(ventana9, text='')
     etiqueta_resultado1.grid(row=1, column=6, padx=10, pady=10)
     etiqueta_resultado2 = ctk.CTkLabel(ventana9, text='', text_color='white')
     etiqueta_resultado2.grid(row=2, column=6, padx=10, pady=10)
@@ -17050,55 +17065,302 @@ def ondas_armónicas():
     número_de_onda.grid(row=2, column=3, padx=10, pady=10)
     frecuencia = ctk.CTkEntry(ventana9)
     frecuencia.grid(row=1, column=5, padx=10, pady=10)
+    frecuencia_angular = ctk.CTkEntry(ventana9)
+    frecuencia_angular.grid(row=2, column=5, padx=10, pady=10)
+    amplitud = ctk.CTkEntry(ventana9)
+    amplitud.grid(row=3, column=1, padx=10, pady=10)
+    desfase_inicial = ctk.CTkEntry(ventana9)
+    desfase_inicial.grid(row=3, column=3, padx=10, pady=10)
+    posición_x = ctk.CTkEntry(ventana9)
+    posición_x.grid(row=3, column=5, padx=10, pady=10)
+    posición_t = ctk.CTkEntry(ventana9)
+    posición_t.grid(row=4, column=5, padx=10, pady=10)
     pi = math.pi
 
-    def calcular_omega():
-        if T:
-        try:
-            T = float(periodo.get())
-            w = (2*pi)/T
-            resultado = round(w, 3)
-            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-        except ValueError:
-            etiqueta_resultado.configure(text=f"El valor de T debe ser numérico")
-    elif landa:
-        try:
-            c = float(300000000)
-            landa = float(landa)
-            f = c / landa
-            w = 2 * pi * f
-            resultado = round(w, 3)
-            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-        except ValueError:
-            etiqueta_resultado.configure(text=f"El valor de landa debe ser numérico")
-    elif k and Vprop:
-        try:
-            k = float(k)
-            Vprop = float(Vprop)
-            w = k * Vprop
-            resultado = round(w, 3)
-            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-        except ValueError:
-            etiqueta_resultado.configure(text=f"Los valores de k y Vprop deben ser numéricos")
-    elif f:
-        try:
-            f = float(f)
-            w = 2 * pi * f
-            resultado = round(w, 3)
-            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-        except ValueError:
-            etiqueta_resultado.configure(text=f"El valor de f debe ser numérico")
-    else:
-        etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+    # Calculos
 
+    def calcular_frecuencia_angular():
+        if periodo.get() != "":
+            try:
+                T = float(periodo.get())
+                w = (2*pi)/T
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de T debe ser numérico")
 
+        elif longitud_de_onda.get() != "":
+            try:
+                c = float(300000000)
+                landa = float(longitud_de_onda.get())
+                f = c / landa
+                w = 2 * pi * f
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de landa debe ser numérico")
 
-    def longitud_onda():
-        try:
-            landa = 'hola'
+        elif número_de_onda.get() != "" and velocidad_propagación.get() != "":
+            try:
+                k = float(número_de_onda)
+                Vprop = float(velocidad_propagación.get())
+                w = k * Vprop
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de k y Vprop deben ser numéricos")
+
+        elif frecuencia.get() != "":
+            try:
+                f = float(frecuencia.get())
+                w = 2 * pi * f
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de f debe ser numérico")
         
-        except ValueError:
-            print('hola')
+        elif número_de_onda.get() != "" and longitud_de_onda.get() != "" and periodo.get() != "":
+            try:
+                landa = float(longitud_de_onda.get())
+                T = float(periodo.get())
+                k = float(número_de_onda.get())
+                w = (k * landa) / T
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de k, Vprop y T deben ser numéricos")
+
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+
+
+    def calcular_longitud_onda():
+        if frecuencia_angular.get() != "":
+            try:
+                c = float(300000000)
+                w = (frecuencia_angular.get())
+                landa = c/w
+                resultado = round(landa, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de ω debe ser numérico")
+        
+        elif número_de_onda.get() != "":
+            try:
+                k = float(número_de_onda.get())
+                landa = (2*pi) / k
+                resultado = round(landa, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de k debe ser numérico")
+        
+        elif periodo.get() != "" and velocidad_propagación.get() != "":
+            try:
+                T = float(periodo.get())
+                Vprop = float(velocidad_propagación.get())
+                landa = Vprop * T
+                resultado = round(landa, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de T y Vprop deben ser numéricos")
+        
+        elif periodo.get() != "" and frecuencia_angular.get() != "" and número_de_onda.get() != "": 
+            try:
+                T = float(periodo.get())
+                w = float(frecuencia_angular.get())
+                k = float(número_de_onda.get())
+                landa = (w*T) / k
+                resultado = round(landa, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de T, ω y k deben ser numéricos")
+        
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+        
+    def calcular_periodo():
+        if frecuencia.get() != "":
+            try:
+                f = float(frecuencia.get())
+                T = 1/f
+                resultado = round(T, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de f debe ser numérico")
+            
+        elif frecuencia_angular.get() != "":
+            try:
+                w = float(frecuencia_angular.get())
+                T = (2*pi) / w
+                resultado = round(T, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de ω debe ser numérico")
+        
+        elif número_de_onda.get() != "" and frecuencia_angular.get() != "" and longitud_de_onda.get() != "": 
+            try:
+                landa = float(longitud_de_onda.get())
+                w = float(frecuencia_angular.get())
+                k = float(número_de_onda.get())
+                T = (k*landa) / w
+                resultado = round(T, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de λ, ω y k deben ser numéricos")
+        
+        elif velocidad_propagación.get() != "" and longitud_de_onda.get() != "": 
+            try:
+                landa = float(longitud_de_onda.get())
+                Vprop = float(velocidad_propagación.get())
+                T = landa / Vprop
+                resultado = round(T, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de λ y Vprop deben ser numéricos")
+        
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+    
+    def calcular_número_de_onda():
+        if longitud_de_onda.get() != "":
+            try:
+                landa = float(longitud_de_onda.get())
+                k = (2*pi) / landa
+                resultado = round(k, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de λ debe ser numérico")
+        
+        elif velocidad_propagación.get() != "" and frecuencia_angular.get() != "": 
+            try:
+                w = float(frecuencia_angular.get())
+                Vprop = float(velocidad_propagación.get())
+                k = w / Vprop
+                resultado = round(k, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de ω y Vprop deben ser numéricos")
+        
+        elif periodo.get() != "" and frecuencia_angular.get() != "" and longitud_de_onda.get() != "": 
+            try:
+                landa = float(longitud_de_onda.get())
+                w = float(frecuencia_angular.get())
+                T = float(periodo.get())
+                k = (w*T) / landa
+                resultado = round(k, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de λ, ω y T deben ser numéricos")
+        
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+    
+    def calcular_velocidad_de_propagación():
+        if frecuencia_angular.get() != "" and número_de_onda.get() != "":
+            try:
+                w = float(frecuencia_angular.get())
+                k = float(número_de_onda.get())
+                Vprop = w / k
+                resultado = round(Vprop, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de k y ω deben ser numéricos")
+        
+        elif periodo.get() != "" and longitud_de_onda.get() != "":
+            try:
+                landa = float(longitud_de_onda.get())
+                T = float(periodo.get())
+                Vprop = landa / T
+                resultado = round(Vprop, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de T y λ deben ser numéricos")
+        
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+        
+    def calcular_frecuencia():
+        if frecuencia_angular.get() != "":
+            try:
+                w = float(frecuencia_angular.get())
+                Vprop = w / (2*pi)
+                resultado = round(Vprop, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de ω debe ser numérico")
+        
+        elif periodo.get() != "":
+            try:
+                T = float(periodo.get())
+                Vprop = (2*pi) / T
+                resultado = round(Vprop, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de T debe ser numérico")
+        
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+
+    def equación_general():
+        if check_var.get() == "si" and número_de_onda.get() != "":
+            try:
+                A = float(amplitud.get())
+                k = float(número_de_onda.get())
+                w = float(frecuencia_angular.get())
+                x = float(posición_x.get())
+                t = float(posición_t.get())
+                fi = float(desfase_inicial.get())
+                y = A * math.sin(k*x + w*t + fi)
+                resultado = round(y, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
+
+        elif check_var.get() == "si" and periodo.get() != "":
+            try:
+                A = float(amplitud.get())
+                landa = float(longitud_de_onda.get())
+                T = float(periodo.get())
+                x = float(posición_x.get())
+                t = float(posición_t.get())
+                fi = float(desfase_inicial.get())
+                y = A * math.sin((2*pi) * (x/landa + t/T) + fi)
+                resultado = round(y, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t y φ deben ser numéricos")
+        
+        elif check_var.get() == "no" and número_de_onda.get() != "":
+            try:
+                A = float(amplitud.get())
+                k = float(número_de_onda.get())
+                w = float(frecuencia_angular.get())
+                x = float(posición_x.get())
+                t = float(posición_t.get())
+                fi = float(desfase_inicial.get())
+                y = A * math.sin(k*x - w*t + fi)
+                resultado = round(y, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
+
+        elif check_var.get() == "no" and periodo.get() != "":
+            try:
+                A = float(amplitud.get())
+                landa = float(longitud_de_onda.get())
+                T = float(periodo.get())
+                x = float(posición_x.get())
+                t = float(posición_t.get())
+                fi = float(desfase_inicial.get())
+                y = A * math.sin((2*pi) * (x/landa - t/T) + fi)
+                resultado = round(y, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t y φ deben ser numéricos")
+
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+
     
     #Resetear los datos laterales
     def reset_datos():
@@ -17108,11 +17370,44 @@ def ondas_armónicas():
         etiqueta_resultado4.configure(text=f"")
         etiqueta_resultado5.configure(text=f"")
         etiqueta_resultado6.configure(text=f"")
-    btn_cerrar = ctk.CTkButton(ventana9, text="Borrar datos laterales", font=("Helvetica", 10, "bold"), command=reset_datos)
-    btn_cerrar.grid(column=3, row=5, padx=10, pady=10)
+    btn_borrar = ctk.CTkButton(ventana9, text="Borrar datos laterales", font=("Helvetica", 10, "bold"), command=reset_datos)
+    btn_borrar.grid(column=2, row=6, padx=10, pady=10)
 
-    btn_cerrar = ctk.CTkButton(ventana9, text="Calcular W", font=("Helvetica", 10, "bold"), command=calcular_omega)
-    btn_cerrar.grid(column=0, row=3, padx=10, pady=10)
+    btn_frecuencia_angular = ctk.CTkButton(ventana9, text="Calcular ω", font=("Helvetica", 10, "bold"), command=calcular_frecuencia_angular)
+    btn_frecuencia_angular.grid(column=0, row=4, padx=10, pady=10)
+    btn_longitud_de_onda = ctk.CTkButton(ventana9, text="Calcular λ", font=("Helvetica", 10, "bold"), command=calcular_longitud_onda)
+    btn_longitud_de_onda.grid(column=1, row=4, padx=10, pady=10)
+    btn_Periodo = ctk.CTkButton(ventana9, text="Calcular T", font=("Helvetica", 10, "bold"), command=calcular_periodo)
+    btn_Periodo.grid(column=2, row=4, padx=10, pady=10)
+    btn_número_de_onda = ctk.CTkButton(ventana9, text="Calcular k", font=("Helvetica", 10, "bold"), command=calcular_número_de_onda)
+    btn_número_de_onda.grid(column=3, row=4, padx=10, pady=10)
+    btn_velocidad_de_propagación = ctk.CTkButton(ventana9, text="Calcular Vprop", font=("Helvetica", 10, "bold"), command=calcular_velocidad_de_propagación)
+    btn_velocidad_de_propagación.grid(column=0, row=5, padx=10, pady=10)
+    btn_frecuencia = ctk.CTkButton(ventana9, text="Calcular f", font=("Helvetica", 10, "bold"), command=calcular_frecuencia)
+    btn_frecuencia.grid(column=1, row=5, padx=10, pady=10)
+    btn_eq_general = ctk.CTkButton(ventana9, text="Calcular Eq general", font=("Helvetica", 10, "bold"), command=equación_general)
+    btn_eq_general.grid(column=2, row=5, padx=10, pady=10)
+
+    def checkbox_event():
+        etiqueta_resultado.configure(text=f"Orintación hacia la izquierda: {check_var.get()}")
+
+    def checkbox_event2():
+        etiqueta_resultado.configure(text=f"Equación en coseno: {check_var2.get()}")
+
+    check_var = ctk.StringVar(value="no")
+    checkbox = ctk.CTkCheckBox(ventana9, text="Activar onda hacia la izquierda", text_color='white', command=checkbox_event, variable=check_var, onvalue="si", offvalue="no")
+    checkbox.grid(column=4, row=5, padx=20, pady=10)
+
+    check_var2 = ctk.StringVar(value="no")
+    checkbox2 = ctk.CTkCheckBox(ventana9, text="Activar equación en coseno", text_color='white', command=checkbox_event2, variable=check_var2, onvalue="si", offvalue="no")
+    checkbox2.grid(column=5, row=5, padx=20, pady=10)
+
+
+    def cerrar_ventana():
+        ventana9.destroy()
+
+    btn_cerrar = ctk.CTkButton(ventana9, text="Cerrar ventana", font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
+    btn_cerrar.grid(column=1, row=6, padx=10, pady=10)
 
 def cerrar_ventana4():
     combobox.grid_remove()
@@ -17143,23 +17438,23 @@ def traspaso1():
     btn_back.grid(column=0, row=2, columnspan=2, padx=10, pady=10)
     ventana1.geometry('390x150')
 
-# Crear el botón de la calculadora de plano inclinado
+# Crear los botones de las calculadoras
 boton_calculadora_plano_inclinado = ctk.CTkButton(ventana1, text="Calculadora de plano inclinado", command=programa_plano_inclinado , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora_plano_inclinado.grid(column=2, row=2, padx=10, pady=10)
 boton_calculadora_plano_inclinado_con_dos_cuerpos = ctk.CTkButton(ventana1, text="Calculadora de plano inclinado \n con dos cuerpos unidos", command=programa_plano_inclinado_con_dos_cuerpos , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=4, row=2, padx=10, pady=10)
 boton_calculadora = ctk.CTkButton(ventana1, text="Calculadora", command=mini_calculadora , font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora.grid(column=2, row=3, columnspan=2, padx=10, pady=10)
+boton_calculadora.grid(column=2, row=4, columnspan=2, padx=10, pady=10)
 boton_calculadora_te = ctk.CTkButton(ventana1, text="Problemas de trabajo y energia", command=traspaso1 , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora_te.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
 boton_calculadora_ondas_armonicas = ctk.CTkButton(ventana1, text="Calculadora de \n ondas armonicas", command=ondas_armónicas , font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_ondas_armonicas.grid(column=4, row=2, columnspan=2, padx=10, pady=10)
+boton_calculadora_ondas_armonicas.grid(column=2, row=3, padx=10, pady=10)
 
 def cerrar_ventana():
     ventana1.destroy()
 
 btn_cerrar = ctk.CTkButton(ventana1, text="Cerrar ventana", font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
-btn_cerrar.grid(column=2, row=4, columnspan=3, padx=10, pady=10, sticky='s')
+btn_cerrar.grid(column=2, row=5, columnspan=3, padx=10, pady=10, sticky='s')
 
 # Mantiene la ventana simpre abierta hasta que el usuario la cierra
 ventana1.mainloop()
