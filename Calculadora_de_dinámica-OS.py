@@ -6,7 +6,7 @@ import turtle
 import time
 import Intro
 
-#Intro.animacion_inicial()
+Intro.animacion_inicial()
 
 # Crear la ventana del menu de la calculadora
 ctk.set_appearance_mode("system")
@@ -17054,42 +17054,46 @@ def ondas_armónicas():
 
     def calcular_omega():
         if T:
-        try:
-            T = float(periodo.get())
-            w = (2*pi)/T
-            resultado = round(w, 3)
-            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-        except ValueError:
-            etiqueta_resultado.configure(text=f"El valor de T debe ser numérico")
-    elif landa:
-        try:
-            c = float(300000000)
-            landa = float(landa)
-            f = c / landa
-            w = 2 * pi * f
-            resultado = round(w, 3)
-            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-        except ValueError:
-            etiqueta_resultado.configure(text=f"El valor de landa debe ser numérico")
-    elif k and Vprop:
-        try:
-            k = float(k)
-            Vprop = float(Vprop)
-            w = k * Vprop
-            resultado = round(w, 3)
-            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-        except ValueError:
-            etiqueta_resultado.configure(text=f"Los valores de k y Vprop deben ser numéricos")
-    elif f:
-        try:
-            f = float(f)
-            w = 2 * pi * f
-            resultado = round(w, 3)
-            etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-        except ValueError:
-            etiqueta_resultado.configure(text=f"El valor de f debe ser numérico")
-    else:
-        etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+            try:
+                T = float(periodo.get())
+                w = (2*pi)/T
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de T debe ser numérico")
+
+        elif landa:
+            try:
+                c = float(300000000)
+                landa = float(longitud_de_onda.get())
+                f = c / landa
+                w = 2 * pi * f
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de landa debe ser numérico")
+
+        elif k and Vprop:
+            try:
+                k = float(k)
+                Vprop = float(velocidad_propagación.get())
+                w = k * Vprop
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de k y Vprop deben ser numéricos")
+
+        elif f:
+            try:
+                f = float(frecuencia.get())
+                w = 2 * pi * f
+                resultado = round(w, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"El valor de f debe ser numérico")
+                
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
 
 
 
