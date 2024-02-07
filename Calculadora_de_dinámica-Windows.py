@@ -5,7 +5,6 @@ import turtle
 import os
 import requests
 import shutil
-import time
 import Intro
 
 
