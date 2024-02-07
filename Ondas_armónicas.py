@@ -2,7 +2,10 @@ import customtkinter as ctk
 import tkinter as tk
 from tkinter import ttk
 import math
-import turtle
+import plotly.graph_objects as go
+import numpy as np
+import ipywidgets as widgets
+from IPython.display import display
 
 def ondas_armónicas():
 
@@ -22,8 +25,6 @@ def ondas_armónicas():
     etiqueta_número_de_onda.grid(row=1, column=0, padx=10, pady=10)
     etiqueta_frecuencia_angular = ctk.CTkLabel(ventana9, text='fercuencia angular (rad/s)', text_color='white')
     etiqueta_frecuencia_angular.grid(row=1, column=2, padx=10, pady=10)
-    etiqueta_desfase_inicial = ctk.CTkLabel(ventana9, text='desfase inicial (rad)', text_color='white')
-    etiqueta_desfase_inicial.grid(row=1, column=4, padx=10, pady=10)
     etiqueta_amplitud = ctk.CTkLabel(ventana9, text='amplitud (m)', text_color='white')
     etiqueta_amplitud.grid(row=2, column=0, padx=10, pady=10)
     etiqueta_periodo = ctk.CTkLabel(ventana9, text='Periodo (s)', text_color='white')
@@ -67,8 +68,6 @@ def ondas_armónicas():
     número_de_onda.grid(row=1, column=1, padx=10, pady=10)
     frecuencia_angular = ctk.CTkEntry(ventana9)
     frecuencia_angular.grid(row=1, column=3, padx=10, pady=10)
-    desfase_inicial = ctk.CTkEntry(ventana9)
-    desfase_inicial.grid(row=1, column=5, padx=10, pady=10)
     amplitud = ctk.CTkEntry(ventana9)
     amplitud.grid(row=2, column=1, padx=10, pady=10)
     periodo = ctk.CTkEntry(ventana9)
@@ -80,6 +79,12 @@ def ondas_armónicas():
     frecuencia = ctk.CTkEntry(ventana9)
     frecuencia.grid(row=3, column=5, padx=10, pady=10)
     pi = math.pi
+
+    # despliege de secciones
+    combobox = ctk.CTkComboBox(ventana9, values=["", "0", "π/2", "π", "3π/2"])
+    combobox.grid(row=1, column=5, padx=10, pady=10)
+    etiqueta_seleccion = ctk.CTkLabel(ventana9, text="Selecciona una opcion:", text_color="white")
+    etiqueta_seleccion.grid(row=1, column=4, padx=10, pady=10)
 
     # Calculos
 
@@ -333,7 +338,7 @@ def ondas_armónicas():
                 w = float(frecuencia_angular.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                fi = float(desfase_inicial.get())
+                fi = float(combobox.get())
                 y = A * math.sin(k*x + w*t + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
@@ -348,7 +353,7 @@ def ondas_armónicas():
                 T = float(periodo.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                fi = float(desfase_inicial.get())
+                fi = float(combobox.get())
                 y = A * math.sin((2*pi) * (x/landa + t/T) + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
@@ -363,7 +368,7 @@ def ondas_armónicas():
                 w = float(frecuencia_angular.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                fi = float(desfase_inicial.get())
+                fi = float(combobox.get())
                 y = A * math.sin(k*x - w*t + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
@@ -378,7 +383,7 @@ def ondas_armónicas():
                 T = float(periodo.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                fi = float(desfase_inicial.get())
+                fi = float(combobox.get())
                 y = A * math.sin((2*pi) * (x/landa - t/T) + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
@@ -393,7 +398,7 @@ def ondas_armónicas():
                 w = float(frecuencia_angular.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                fi = float(desfase_inicial.get())
+                fi = float(combobox.get())
                 y = A * math.cos(k*x + w*t + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
@@ -408,7 +413,7 @@ def ondas_armónicas():
                 T = float(periodo.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                fi = float(desfase_inicial.get())
+                fi = float(combobox.get())
                 y = A * math.cos((2*pi) * (x/landa + t/T) + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
@@ -423,7 +428,7 @@ def ondas_armónicas():
                 w = float(frecuencia_angular.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                fi = float(desfase_inicial.get())
+                fi = float(combobox.get())
                 y = A * math.cos(k*x - w*t + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
@@ -438,7 +443,7 @@ def ondas_armónicas():
                 T = float(periodo.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                fi = float(desfase_inicial.get())
+                fi = float(combobox.get())
                 y = A * math.cos((2*pi) * (x/landa - t/T) + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
@@ -450,7 +455,7 @@ def ondas_armónicas():
             etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
         
     
-    def calcular_desfase_inicial():
+    def calcular_combobox():
         if check_var.get() == "si" and número_de_onda.get() != "" and check_var2.get() == "no":
             try:
                 A = float(amplitud.get())
@@ -458,7 +463,7 @@ def ondas_armónicas():
                 w = float(frecuencia_angular.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                y = float(desfase_inicial.get())
+                y = float(combobox.get())
                 fi = math.arcsen(y/A) - k*x - w*t
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
@@ -473,7 +478,7 @@ def ondas_armónicas():
                 T = float(periodo.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                y = float(desfase_inicial.get())
+                y = float(combobox.get())
                 fi = math.arcsen(y/(A*(2*pi))) -(x/landa) - (t/T)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
@@ -488,7 +493,7 @@ def ondas_armónicas():
                 w = float(frecuencia_angular.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                y = float(desfase_inicial.get())
+                y = float(combobox.get())
                 fi = math.arcsen(y/A) - k*x + w*t
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
@@ -503,7 +508,7 @@ def ondas_armónicas():
                 T = float(periodo.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                y = float(desfase_inicial.get())
+                y = float(combobox.get())
                 fi = math.arcsen(y/(A*(2*pi))) -(x/landa) + (t/T)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
@@ -518,7 +523,7 @@ def ondas_armónicas():
                 w = float(frecuencia_angular.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                y = float(desfase_inicial.get())
+                y = float(combobox.get())
                 fi =math.arccos(y/A) - k*x - w*t
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
@@ -533,7 +538,7 @@ def ondas_armónicas():
                 T = float(periodo.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                y = float(desfase_inicial.get())
+                y = float(combobox.get())
                 fi =math.arccos(y/(A*(2*pi))) -(x/landa) - (t/T)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
@@ -548,7 +553,7 @@ def ondas_armónicas():
                 w = float(frecuencia_angular.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                y = float(desfase_inicial.get())
+                y = float(combobox.get())
                 fi =math.arccos(y/A) - k*x + w*t
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
@@ -563,7 +568,7 @@ def ondas_armónicas():
                 T = float(periodo.get())
                 x = float(posición_x.get())
                 t = float(posición_t.get())
-                y = float(desfase_inicial.get())
+                y = float(combobox.get())
                 fi =math.arccos(y/(A*(2*pi))) -(x/landa) + (t/T)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
@@ -574,7 +579,280 @@ def ondas_armónicas():
         else:
             etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
 
-    
+    def crear_gráfico():
+        if check_var2.get() == "no" and combobox.get() == "0":
+            def plot_sinusoidal(length, amplitude, phase):
+                x = np.linspace(0, 10, 1000)
+                y = amplitude * np.sin(length * x + phase)
+                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+
+                # Añadir flecha para la amplitud
+                fig.add_trace(go.Scatter(
+                    x=[(2 * np.pi / length)/4, (2 * np.pi / length)/4], y=[0, amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="red", width=2),
+                    name="Amplitud",
+                    showlegend=True,
+                ))
+
+                # Añadir flecha para la longitud de onda
+                fig.add_trace(go.Scatter(
+                    x=[(2 * np.pi / length)/4,((2 * np.pi / length)/4)+(2 * np.pi / length)], y=[amplitude, amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="green", width=2),
+                    name="Longitud de onda",
+                    showlegend=True,
+                ))
+
+                fig.update_layout(title='Ecuación Sinusoidal')
+                fig.show()
+
+            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
+            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
+            phase_slider = widgets.FloatSlider(value=0, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+
+        elif check_var2.get() == "no" and combobox.get() == "π/2":
+            def plot_sinusoidal(length, amplitude, phase):
+                x = np.linspace(0, 10, 1000)
+                y = amplitude * np.sin(length * x + phase)
+                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+
+                # Añadir flecha para la amplitud
+                fig.add_trace(go.Scatter(
+                    x=[0, 0], y=[0, amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="red", width=2),
+                    name="Amplitud",
+                    showlegend=True,
+                ))
+
+                # Añadir flecha para la longitud de onda
+                fig.add_trace(go.Scatter(
+                    x=[0,(2 * np.pi / length)], y=[amplitude, amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="green", width=2),
+                    name="Longitud de onda",
+                    showlegend=True,
+                ))
+
+                fig.update_layout(title='Ecuación Sinusoidal')
+                fig.show()
+
+            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
+            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
+            phase_slider = widgets.FloatSlider(value=np.pi/2, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+
+        elif check_var2.get() == "no" and combobox.get() == "π":
+            def plot_sinusoidal(length, amplitude, phase):
+                x = np.linspace(0, 10, 1000)
+                y = amplitude * np.sin(length * x + phase)
+                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+
+                # Añadir flecha para la amplitud
+                fig.add_trace(go.Scatter(
+                    x=[(2 * np.pi / length)/4, (2 * np.pi / length)/4], y=[0, -amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="red", width=2),
+                    name="Amplitud",
+                    showlegend=True,
+                ))
+
+                # Añadir flecha para la longitud de onda
+                fig.add_trace(go.Scatter(
+                    x=[(2 * np.pi / length)/4,((2 * np.pi / length)/4)+(2 * np.pi / length)], y=[-amplitude, -amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="green", width=2),
+                    name="Longitud de onda",
+                    showlegend=True,
+                ))
+
+                fig.update_layout(title='Ecuación Sinusoidal')
+                fig.show()
+
+            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
+            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
+            phase_slider = widgets.FloatSlider(value=np.pi, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+
+        elif check_var2.get() == "no" and combobox.get() == "3π/2":
+            def plot_sinusoidal(length, amplitude, phase):
+                x = np.linspace(0, 10, 1000)
+                y = amplitude * np.sin(length * x + phase)
+                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+
+                # Añadir flecha para la amplitud
+                fig.add_trace(go.Scatter(
+                    x=[0, 0], y=[0, -amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="red", width=2),
+                    name="Amplitud",
+                    showlegend=True,
+                ))
+
+                # Añadir flecha para la longitud de onda
+                fig.add_trace(go.Scatter(
+                    x=[0,(2 * np.pi / length)], y=[-amplitude, -amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="green", width=2),
+                    name="Longitud de onda",
+                    showlegend=True,
+                ))
+
+                fig.update_layout(title='Ecuación Sinusoidal')
+                fig.show()
+
+            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
+            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
+            phase_slider = widgets.FloatSlider(value=3*np.pi/2, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+        
+        elif check_var2.get() == "si" and combobox.get() == "0":
+            def plot_sinusoidal(length, amplitude, phase):
+                x = np.linspace(0, 10, 1000)
+                y = amplitude * np.cos(length * x + phase)
+                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+
+                # Añadir flecha para la amplitud
+                fig.add_trace(go.Scatter(
+                    x=[0, 0], y=[0, amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="red", width=2),
+                    name="Amplitud",
+                    showlegend=True,
+                ))
+
+                # Añadir flecha para la longitud de onda
+                fig.add_trace(go.Scatter(
+                    x=[0, (2 * np.pi / length)], y=[amplitude, amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="green", width=2),
+                    name="Longitud de onda",
+                    showlegend=True,
+                ))
+
+                fig.update_layout(title='Ecuación Sinusoidal')
+                fig.show()
+
+            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
+            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
+            phase_slider = widgets.FloatSlider(value=0, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+
+        elif check_var2.get() == "si" and combobox.get() == "π/2":
+            def plot_sinusoidal(length, amplitude, phase):
+                x = np.linspace(0, 10, 1000)
+                y = amplitude * np.cos(length * x + phase)
+                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+
+                # Añadir flecha para la amplitud
+                fig.add_trace(go.Scatter(
+                    x=[(2 * np.pi / length)/4, (2 * np.pi / length)/4], y=[0, -amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="red", width=2),
+                    name="Amplitud",
+                    showlegend=True,
+                ))
+
+                # Añadir flecha para la longitud de onda
+                fig.add_trace(go.Scatter(
+                    x=[(2 * np.pi / length)/4,((2 * np.pi / length)/4)+(2 * np.pi / length)], y=[-amplitude, -amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="green", width=2),
+                    name="Longitud de onda",
+                    showlegend=True,
+                ))
+
+                fig.update_layout(title='Ecuación Sinusoidal')
+                fig.show()
+
+            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
+            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
+            phase_slider = widgets.FloatSlider(value=np.pi/2, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+
+        elif check_var2.get() == "si" and combobox.get() == "π":
+            def plot_sinusoidal(length, amplitude, phase):
+                x = np.linspace(0, 10, 1000)
+                y = amplitude * np.cos(length * x + phase)
+                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+
+                # Añadir flecha para la amplitud
+                fig.add_trace(go.Scatter(
+                    x=[0, 0], y=[0, -amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="red", width=2),
+                    name="Amplitud",
+                    showlegend=True,
+                ))
+
+                # Añadir flecha para la longitud de onda
+                fig.add_trace(go.Scatter(
+                    x=[0,(2 * np.pi / length)], y=[-amplitude, -amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="green", width=2),
+                    name="Longitud de onda",
+                    showlegend=True,
+                ))
+
+                fig.update_layout(title='Ecuación Sinusoidal')
+                fig.show()
+
+            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
+            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
+            phase_slider = widgets.FloatSlider(value=np.pi, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+
+        elif check_var2.get() == "si" and combobox.get() == "3π/2":
+            def plot_sinusoidal(length, amplitude, phase):
+                x = np.linspace(0, 10, 1000)
+                y = amplitude * np.cos(length * x + phase)
+                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+
+                # Añadir flecha para la amplitud
+                fig.add_trace(go.Scatter(
+                    x=[(2 * np.pi / length)/4, (2 * np.pi / length)/4], y=[0, amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="red", width=2),
+                    name="Amplitud",
+                    showlegend=True,
+                ))
+
+                # Añadir flecha para la longitud de onda
+                fig.add_trace(go.Scatter(
+                    x=[(2 * np.pi / length)/4,((2 * np.pi / length)/4)+(2 * np.pi / length)], y=[amplitude, amplitude],
+                    mode="lines+markers",
+                    marker=dict(symbol="circle", size=10),
+                    line=dict(color="green", width=2),
+                    name="Longitud de onda",
+                    showlegend=True,
+                ))
+
+                fig.update_layout(title='Ecuación Sinusoidal')
+                fig.show()
+
+            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
+            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
+            phase_slider = widgets.FloatSlider(value=3*np.pi/2, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+
+
     #Resetear los datos laterales
     def reset_datos():
         etiqueta_resultado1.configure(text=f"")
@@ -584,7 +862,7 @@ def ondas_armónicas():
         etiqueta_resultado5.configure(text=f"")
         etiqueta_resultado6.configure(text=f"")
     btn_borrar = ctk.CTkButton(ventana9, text="Borrar datos laterales", font=("Helvetica", 10, "bold"), command=reset_datos)
-    btn_borrar.grid(column=3, row=5, padx=10, pady=10)
+    btn_borrar.grid(column=4, row=5, padx=10, pady=10)
 
     #Botones
     btn_frecuencia_angular = ctk.CTkButton(ventana9, text="Calcular ω", font=("Helvetica", 10, "bold"), command=calcular_frecuencia_angular)
@@ -601,8 +879,10 @@ def ondas_armónicas():
     btn_frecuencia.grid(column=1, row=4, padx=10, pady=10)
     btn_eq_general = ctk.CTkButton(ventana9, text="Calcular y", font=("Helvetica", 10, "bold"), command=equación_general)
     btn_eq_general.grid(column=2, row=4, padx=10, pady=10)
-    btn_desfase_inicial = ctk.CTkButton(ventana9, text="Calcular φ", font=("Helvetica", 10, "bold"), command=calcular_desfase_inicial)
-    btn_desfase_inicial.grid(column=3, row=4, padx=10, pady=10)
+    btn_combobox = ctk.CTkButton(ventana9, text="Calcular φ", font=("Helvetica", 10, "bold"), command=calcular_combobox)
+    btn_combobox.grid(column=3, row=4, padx=10, pady=10)
+    btn_crear_grafico = ctk.CTkButton(ventana9, text="Crear gráfico", font=("Helvetica", 10, "bold"), command=crear_gráfico)
+    btn_crear_grafico.grid(column=3, row=5, padx=10, pady=10)
 
     def checkbox_event():
         etiqueta_resultado.configure(text=f"Orintación hacia la izquierda: {check_var.get()}")
@@ -623,4 +903,4 @@ def ondas_armónicas():
         ventana9.destroy()
 
     btn_cerrar = ctk.CTkButton(ventana9, text="Cerrar ventana", font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
-    btn_cerrar.grid(column=2, row=5, padx=10, pady=10)
+    btn_cerrar.grid(column=5, row=5, padx=10, pady=10)

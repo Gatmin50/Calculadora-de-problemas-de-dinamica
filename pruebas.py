@@ -1,96 +1,37 @@
-# Importa las bibliotecas necesarias
 import plotly.graph_objects as go
 import numpy as np
+import ipywidgets as widgets
+from IPython.display import display
 
-# Define la amplitud, la frecuencia y el desfase
-amplitud = 2  # por ejemplo, 2
-frecuencia = 2 * np.pi  # ajustado para que la longitud de onda sea 1 unidad
-phi = np.pi / 2  # desfase inicial de pi/2 radianes, por ejemplo
+def plot_sinusoidal(length, amplitude, phase):
+    x = np.linspace(0, 10, 1000)
+    y = amplitude * np.sin(length * x + phase)
+    fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
 
-# Crea algunos datos
-x = np.linspace(0, 10, 1000)  
-y = amplitud * np.sin(frecuencia * x + phi)  
+    # Añadir flecha para la amplitud
+    fig.add_trace(go.Scatter(
+        x=[0, 0], y=[0, amplitude],
+        mode="lines+markers",
+        marker=dict(symbol="circle", size=10),
+        line=dict(color="red", width=2),
+        name="Amplitud",
+        showlegend=True,
+    ))
 
-# Crea un objeto de trazado
-fig = go.Figure(data=go.Scatter(x=x, y=y, mode='lines'))
+    # Añadir flecha para la longitud de onda
+    fig.add_trace(go.Scatter(
+        x=[0,(2 * np.pi / length)], y=[amplitude, amplitude],
+        mode="lines+markers",
+        marker=dict(symbol="circle", size=10),
+        line=dict(color="green", width=2),
+        name="Longitud de onda",
+        showlegend=True,
+    ))
 
-# Añade anotaciones para la amplitud y longitud de onda 
-fig.add_annotation(
-    x=0,
-    y=amplitud,
-    text="A",
-    showarrow=True,
-    arrowhead=2,
-    arrowsize=1,
-    arrowwidth=2,
-    arrowcolor="#EB5252",
-    ax=0,
-    ay=-50,
-)
-lambda_position = 2*np.pi/frecuencia   # Calcula posición basada en frecuencia 
-fig.add_annotation(
-    x=lambda_position,
-    y=amplitud,
-    text="λ",
-    showarrow=True,
-    arrowhead=2,   # Cambia estilo de cabeza de flecha si es necesario 
-    arrowsize=1,
-    arrowwidth=2,
-    arrowcolor="#11C26F",
-    ax=lambda_position,   # Calcula diferencia en 'x' entre inicio y posición calculada 
-    ay=0   # Ajusta posición vertical si es necesario 
-)
+    fig.update_layout(title='Ecuación Sinusoidal')
+    fig.show()
 
-# Muestra el gráfico 
-fig.show()
-
-
-
-
-
-
-# Importa las bibliotecas necesarias
-import plotly.graph_objects as go
-import numpy as np
-
-# Define la amplitud, la frecuencia y el desfase
-amplitud = 2  # por ejemplo, 2
-frecuencia = 2 * np.pi  # ajustado para que la longitud de onda sea 1 unidad
-phi = np.pi / 2  # desfase inicial de pi/2 radianes, por ejemplo
-
-# Crea algunos datos
-x = np.linspace(0, 10, 1000)  
-y = amplitud * np.sin(frecuencia * x + phi)  
-
-# Crea un objeto de trazado
-fig = go.Figure(data=go.Scatter(x=x, y=y, mode='lines'))
-
-# Añade anotaciones para la amplitud y longitud de onda 
-fig.add_annotation(
-    x=0,
-    y=amplitud,
-    text="A",
-    showarrow=True,
-    arrowhead=2,
-    arrowsize=1,
-    arrowwidth=2,
-    arrowcolor="#EB5252",
-    ax=0,
-    ay=-50,
-)
-lambda_position = 2*np.pi/frecuencia   # Calcula posición basada en frecuencia 
-fig.add_annotation(
-    x=lambda_position/2,  # Coloca el texto en el centro de la longitud de onda
-    y=0,
-    text="λ",
-    showarrow=True,
-    arrowhead=4,   # Cambia estilo de cabeza de flecha si es necesario 
-    arrowsize=1,
-    arrowwidth=2,
-    arrowcolor="#11C26F",
-    ax=lambda_position/2,   # Calcula diferencia en 'x' entre inicio y posición calculada 
-    ay=0   # Ajusta posición vertical si es necesario 
-)
-
-# Muestra el gráfico 
-fig.show()
+length_slider = widgets.FloatSlider(value=np.pi/0.5, min=0.1, max=10, step=0.1, description='Longitud de onda:')
+amplitude_slider = widgets.FloatSlider(value=1, min=0.1, max=5, step=0.1, description='Amplitud:')
+phase_slider = widgets.FloatSlider(value=0, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
+widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
