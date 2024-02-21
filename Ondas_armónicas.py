@@ -1,17 +1,18 @@
 import customtkinter as ctk
-import tkinter as tk
-from tkinter import ttk
 import math
 import plotly.graph_objects as go
 import numpy as np
 import ipywidgets as widgets
 from IPython.display import display
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import tkinter as tk
 
 def ondas_armónicas():
 
     ventana9 = ctk.CTk()
     ventana9.title("Calculadora ondas armonicas")
-    ventana9.geometry('1400x650+400+200')
+    ventana9.geometry('1400x700+400+200')
     ventana9.configure(fg_color="black")
 
     # Etiquetas
@@ -39,7 +40,7 @@ def ondas_armónicas():
     etiqueta_resultado = ctk.CTkLabel(ventana9, text='', text_color='white')
     etiqueta_resultado.grid(row=6, column=4, columnspan=2, padx=10, pady=10)
         
-    etiqueta_resultado1 = ctk.CTkLabel(ventana9, text='')
+    etiqueta_resultado1 = ctk.CTkLabel(ventana9, text='', text_color='white')
     etiqueta_resultado1.grid(row=0, column=6, padx=10, pady=10)
     etiqueta_resultado2 = ctk.CTkLabel(ventana9, text='', text_color='white')
     etiqueta_resultado2.grid(row=1, column=6, padx=10, pady=10)
@@ -55,6 +56,8 @@ def ondas_armónicas():
     etiqueta_resultado7.grid(row=6, column=6, padx=10, pady=10)
     etiqueta_resultado8 = ctk.CTkLabel(ventana9, text='', text_color='white')
     etiqueta_resultado8.grid(row=7, column=6, padx=10, pady=10)
+    etiqueta_resultado9 = ctk.CTkLabel(ventana9, text='', text_color='white')
+    etiqueta_resultado9.grid(row=8, column=6, padx=10, pady=10)
 
     # Entradas de datos
 
@@ -95,7 +98,7 @@ def ondas_armónicas():
                 w = (2*pi)/T
                 resultado = round(w, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
-                etiqueta_resultado1.configure(text=f"La frecuencia angular es {resultado}(rad/s)")
+                etiqueta_resultado1.configure(text=f"La frecuencia angular es \n {resultado}(rad/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de T debe ser numérico")
 
@@ -107,7 +110,7 @@ def ondas_armónicas():
                 w = 2 * pi * f
                 resultado = round(w, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
-                etiqueta_resultado1.configure(text=f"La frecuencia angular es {resultado}(rad/s)")
+                etiqueta_resultado1.configure(text=f"La frecuencia angular es \n {resultado}(rad/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de landa debe ser numérico")
 
@@ -118,7 +121,7 @@ def ondas_armónicas():
                 w = k * Vprop
                 resultado = round(w, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
-                etiqueta_resultado1.configure(text=f"La frecuencia angular es {resultado}(rad/s)")
+                etiqueta_resultado1.configure(text=f"La frecuencia angular es \n {resultado}(rad/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de k y Vprop deben ser numéricos")
 
@@ -128,7 +131,7 @@ def ondas_armónicas():
                 w = 2 * pi * f
                 resultado = round(w, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
-                etiqueta_resultado1.configure(text=f"La frecuencia angular es {resultado}(rad/s)")
+                etiqueta_resultado1.configure(text=f"La frecuencia angular es \n {resultado}(rad/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de f debe ser numérico")
         
@@ -140,7 +143,7 @@ def ondas_armónicas():
                 w = (k * landa) / T
                 resultado = round(w, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/s)")
-                etiqueta_resultado1.configure(text=f"La frecuencia angular es {resultado}(rad/s)")
+                etiqueta_resultado1.configure(text=f"La frecuencia angular es \n {resultado}(rad/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de k, Vprop y T deben ser numéricos")
 
@@ -156,7 +159,7 @@ def ondas_armónicas():
                 landa = c/w
                 resultado = round(landa, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado2.configure(text=f"La logitud de onda es {resultado}(m)")
+                etiqueta_resultado2.configure(text=f"La logitud de onda es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de ω debe ser numérico")
         
@@ -166,7 +169,7 @@ def ondas_armónicas():
                 landa = (2*pi) / k
                 resultado = round(landa, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado2.configure(text=f"La logitud de onda es {resultado}(m)")
+                etiqueta_resultado2.configure(text=f"La logitud de onda es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de k debe ser numérico")
         
@@ -177,7 +180,7 @@ def ondas_armónicas():
                 landa = Vprop * T
                 resultado = round(landa, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado2.configure(text=f"La logitud de onda es {resultado}(m)")
+                etiqueta_resultado2.configure(text=f"La logitud de onda es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de T y Vprop deben ser numéricos")
         
@@ -189,7 +192,7 @@ def ondas_armónicas():
                 landa = (w*T) / k
                 resultado = round(landa, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado2.configure(text=f"La logitud de onda es {resultado}(m)")
+                etiqueta_resultado2.configure(text=f"La logitud de onda es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de T, ω y k deben ser numéricos")
         
@@ -203,7 +206,7 @@ def ondas_armónicas():
                 T = 1/f
                 resultado = round(T, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(s)")
-                etiqueta_resultado3.configure(text=f"El periodo es {resultado}(s)")
+                etiqueta_resultado3.configure(text=f"El periodo es \n {resultado}(s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de f debe ser numérico")
             
@@ -213,7 +216,7 @@ def ondas_armónicas():
                 T = (2*pi) / w
                 resultado = round(T, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(s)")
-                etiqueta_resultado3.configure(text=f"El periodo es {resultado}(s)")
+                etiqueta_resultado3.configure(text=f"El periodo es \n {resultado}(s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de ω debe ser numérico")
         
@@ -225,7 +228,7 @@ def ondas_armónicas():
                 T = (k*landa) / w
                 resultado = round(T, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(s)")
-                etiqueta_resultado3.configure(text=f"El periodo es {resultado}(s)")
+                etiqueta_resultado3.configure(text=f"El periodo es \n {resultado}(s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de λ, ω y k deben ser numéricos")
         
@@ -236,7 +239,7 @@ def ondas_armónicas():
                 T = landa / Vprop
                 resultado = round(T, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(s)")
-                etiqueta_resultado3.configure(text=f"El periodo es {resultado}(s)")
+                etiqueta_resultado3.configure(text=f"El periodo es \n {resultado}(s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de λ y Vprop deben ser numéricos")
         
@@ -250,7 +253,7 @@ def ondas_armónicas():
                 k = (2*pi) / landa
                 resultado = round(k, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/m)")
-                etiqueta_resultado4.configure(text=f"El número de onda es {resultado}(rad/m)")
+                etiqueta_resultado4.configure(text=f"El número de onda es \n {resultado}(rad/m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de λ debe ser numérico")
         
@@ -261,7 +264,7 @@ def ondas_armónicas():
                 k = w / Vprop
                 resultado = round(k, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/m)")
-                etiqueta_resultado4.configure(text=f"El número de onda es {resultado}(rad/m)")
+                etiqueta_resultado4.configure(text=f"El número de onda es \n {resultado}(rad/m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de ω y Vprop deben ser numéricos")
         
@@ -273,7 +276,7 @@ def ondas_armónicas():
                 k = (w*T) / landa
                 resultado = round(k, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad/m)")
-                etiqueta_resultado4.configure(text=f"El número de onda es {resultado}(rad/m)")
+                etiqueta_resultado4.configure(text=f"El número de onda es \n {resultado}(rad/m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de λ, ω y T deben ser numéricos")
         
@@ -288,7 +291,7 @@ def ondas_armónicas():
                 Vprop = w / k
                 resultado = round(Vprop, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-                etiqueta_resultado5.configure(text=f"La velocidad de propagación es {resultado}(m/s)")
+                etiqueta_resultado5.configure(text=f"La velocidad de propagación es \n {resultado}(m/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de k y ω deben ser numéricos")
         
@@ -299,7 +302,7 @@ def ondas_armónicas():
                 Vprop = landa / T
                 resultado = round(Vprop, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-                etiqueta_resultado5.configure(text=f"La velocidad de propagación es {resultado}(m/s)")
+                etiqueta_resultado5.configure(text=f"La velocidad de propagación es \n {resultado}(m/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de T y λ deben ser numéricos")
         
@@ -313,7 +316,7 @@ def ondas_armónicas():
                 Vprop = w / (2*pi)
                 resultado = round(Vprop, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-                etiqueta_resultado6.configure(text=f"La frecuencia es {resultado}(m/s)")
+                etiqueta_resultado6.configure(text=f"La frecuencia es \n {resultado}(m/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de ω debe ser numérico")
         
@@ -323,7 +326,7 @@ def ondas_armónicas():
                 Vprop = (2*pi) / T
                 resultado = round(Vprop, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
-                etiqueta_resultado6.configure(text=f"La frecuencia es {resultado}(m/s)")
+                etiqueta_resultado6.configure(text=f"La frecuencia es \n {resultado}(m/s)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"El valor de T debe ser numérico")
         
@@ -342,7 +345,7 @@ def ondas_armónicas():
                 y = A * math.sin(k*x + w*t + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado7.configure(text=f"La posicion en y es {resultado}(m)")
+                etiqueta_resultado7.configure(text=f"La posicion en y es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
 
@@ -357,7 +360,7 @@ def ondas_armónicas():
                 y = A * math.sin((2*pi) * (x/landa + t/T) + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado7.configure(text=f"La posicion en y es {resultado}(m)")
+                etiqueta_resultado7.configure(text=f"La posicion en y es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t y φ deben ser numéricos")
         
@@ -372,7 +375,7 @@ def ondas_armónicas():
                 y = A * math.sin(k*x - w*t + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado7.configure(text=f"La posicion en y es {resultado}(m)")
+                etiqueta_resultado7.configure(text=f"La posicion en y es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
 
@@ -387,7 +390,7 @@ def ondas_armónicas():
                 y = A * math.sin((2*pi) * (x/landa - t/T) + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado7.configure(text=f"La posicion en y es {resultado}(m)")
+                etiqueta_resultado7.configure(text=f"La posicion en y es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t y φ deben ser numéricos")
 
@@ -402,7 +405,7 @@ def ondas_armónicas():
                 y = A * math.cos(k*x + w*t + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado7.configure(text=f"La posicion en y es {resultado}(m)")
+                etiqueta_resultado7.configure(text=f"La posicion en y es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
 
@@ -417,7 +420,7 @@ def ondas_armónicas():
                 y = A * math.cos((2*pi) * (x/landa + t/T) + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado7.configure(text=f"La posicion en y es {resultado}(m)")
+                etiqueta_resultado7.configure(text=f"La posicion en y es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t y φ deben ser numéricos")
         
@@ -432,7 +435,7 @@ def ondas_armónicas():
                 y = A * math.cos(k*x - w*t + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado7.configure(text=f"La posicion en y es {resultado}(m)")
+                etiqueta_resultado7.configure(text=f"La posicion en y es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
 
@@ -447,7 +450,7 @@ def ondas_armónicas():
                 y = A * math.cos((2*pi) * (x/landa - t/T) + fi)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(m)")
-                etiqueta_resultado7.configure(text=f"La posicion en y es {resultado}(m)")
+                etiqueta_resultado7.configure(text=f"La posicion en y es \n {resultado}(m)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t y φ deben ser numéricos")
 
@@ -467,7 +470,7 @@ def ondas_armónicas():
                 fi = math.arcsen(y/A) - k*x - w*t
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
-                etiqueta_resultado8.configure(text=f"El desfase inicial es {resultado}(rad)")
+                etiqueta_resultado8.configure(text=f"El desfase inicial es \n {resultado}(rad)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t e y deben ser numéricos")
 
@@ -482,7 +485,7 @@ def ondas_armónicas():
                 fi = math.arcsen(y/(A*(2*pi))) -(x/landa) - (t/T)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
-                etiqueta_resultado8.configure(text=f"El desfase inicial es {resultado}(rad)")
+                etiqueta_resultado8.configure(text=f"El desfase inicial es \n {resultado}(rad)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t e y deben ser numéricos")
         
@@ -497,7 +500,7 @@ def ondas_armónicas():
                 fi = math.arcsen(y/A) - k*x + w*t
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
-                etiqueta_resultado8.configure(text=f"El desfase inicial es {resultado}(rad)")
+                etiqueta_resultado8.configure(text=f"El desfase inicial es \n {resultado}(rad)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t e y deben ser numéricos")
 
@@ -512,7 +515,7 @@ def ondas_armónicas():
                 fi = math.arcsen(y/(A*(2*pi))) -(x/landa) + (t/T)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
-                etiqueta_resultado8.configure(text=f"El desfase inicial es {resultado}(rad)")
+                etiqueta_resultado8.configure(text=f"El desfase inicial es \n {resultado}(rad)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t e y deben ser numéricos")
 
@@ -527,7 +530,7 @@ def ondas_armónicas():
                 fi =math.arccos(y/A) - k*x - w*t
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
-                etiqueta_resultado8.configure(text=f"El desfase inicial es {resultado}(rad)")
+                etiqueta_resultado8.configure(text=f"El desfase inicial es \n {resultado}(rad)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t e y deben ser numéricos")
 
@@ -542,7 +545,7 @@ def ondas_armónicas():
                 fi =math.arccos(y/(A*(2*pi))) -(x/landa) - (t/T)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
-                etiqueta_resultado8.configure(text=f"El desfase inicial es {resultado}(rad)")
+                etiqueta_resultado8.configure(text=f"El desfase inicial es \n {resultado}(rad)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t e y deben ser numéricos")
         
@@ -557,7 +560,7 @@ def ondas_armónicas():
                 fi =math.arccos(y/A) - k*x + w*t
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
-                etiqueta_resultado8.configure(text=f"El desfase inicial es {resultado}(rad)")
+                etiqueta_resultado8.configure(text=f"El desfase inicial es \n {resultado}(rad)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t e y deben ser numéricos")
 
@@ -572,285 +575,310 @@ def ondas_armónicas():
                 fi =math.arccos(y/(A*(2*pi))) -(x/landa) + (t/T)
                 resultado = round(y, 3)
                 etiqueta_resultado.configure(text=f"El resultado es {resultado}(rad)")
-                etiqueta_resultado8.configure(text=f"El desfase inicial es {resultado}(rad)")
+                etiqueta_resultado8.configure(text=f"El desfase inicial es \n {resultado}(rad)")
             except ValueError:
                 etiqueta_resultado.configure(text=f"Los valores de A, λ, T, x, t y y deben ser numéricos")
 
         else:
             etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
 
+    def velocidad_y():
+        if check_var.get() == "no" and número_de_onda.get() != "" and check_var2.get() == "no":
+            try:
+                A = float(amplitud.get())
+                k = float(número_de_onda.get())
+                w = float(frecuencia_angular.get())
+                x = float(posición_x.get())
+                t = float(posición_t.get())
+                fi = float(combobox.get())
+                vy = A * (-w) * math.cos(k*x - w*t + fi)
+                resultado = round(vy, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+                etiqueta_resultado9.configure(text=f"La velocidad en y es \n {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
+        
+        elif check_var.get() == "si" and número_de_onda.get() != "" and check_var2.get() == "no":
+            try:
+                A = float(amplitud.get())
+                k = float(número_de_onda.get())
+                w = float(frecuencia_angular.get())
+                x = float(posición_x.get())
+                t = float(posición_t.get())
+                fi = float(combobox.get())
+                vy = A * w * math.cos(k*x + w*t + fi)
+                resultado = round(vy, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+                etiqueta_resultado9.configure(text=f"La velocidad en y es \n {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
+        
+        if check_var.get() == "no" and número_de_onda.get() != "" and check_var2.get() == "si":
+            try:
+                A = float(amplitud.get())
+                k = float(número_de_onda.get())
+                w = float(frecuencia_angular.get())
+                x = float(posición_x.get())
+                t = float(posición_t.get())
+                fi = float(combobox.get())
+                vy = A * w * math.sin(k*x - w*t + fi)
+                resultado = round(vy, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+                etiqueta_resultado9.configure(text=f"La velocidad en y es \n {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
+        
+        elif check_var.get() == "si" and número_de_onda.get() != "" and check_var2.get() == "si":
+            try:
+                A = float(amplitud.get())
+                k = float(número_de_onda.get())
+                w = float(frecuencia_angular.get())
+                x = float(posición_x.get())
+                t = float(posición_t.get())
+                fi = float(combobox.get())
+                vy = A * w * (-math.sin(k*x + w*t + fi))
+                resultado = round(vy, 3)
+                etiqueta_resultado.configure(text=f"El resultado es {resultado}(m/s)")
+                etiqueta_resultado9.configure(text=f"La velocidad en y es \n {resultado}(m/s)")
+            except ValueError:
+                etiqueta_resultado.configure(text=f"Los valores de A, k, ω, x, t y φ deben ser numéricos")
+
+        else:
+            etiqueta_resultado.configure(text=f"Por favor, introduce al menos un valor")
+
+
     def crear_gráfico():
         if check_var2.get() == "no" and combobox.get() == "0":
-            def plot_sinusoidal(length, amplitude, phase):
-                x = np.linspace(0, 10, 1000)
-                y = amplitude * np.sin(length * x + phase)
-                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+            # Limpiar la figura existente
+            plt.clf()
 
-                # Añadir flecha para la amplitud
-                fig.add_trace(go.Scatter(
-                    x=[(2 * np.pi / length)/4, (2 * np.pi / length)/4], y=[0, amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="red", width=2),
-                    name="Amplitud",
-                    showlegend=True,
-                ))
+            # Obtener los valores de los controles deslizantes
+            longitud_de_onda2 = np.pi / (float(longitud_de_onda.get()) / 2)
+            amplitud2 = float(amplitud.get())
+            desfase_inicial2 = 0
 
-                # Añadir flecha para la longitud de onda
-                fig.add_trace(go.Scatter(
-                    x=[(2 * np.pi / length)/4,((2 * np.pi / length)/4)+(2 * np.pi / length)], y=[amplitude, amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="green", width=2),
-                    name="Longitud de onda",
-                    showlegend=True,
-                ))
+            # Crear el gráfico con tamaño personalizado
+            fig, ax = plt.subplots(figsize=(8, 3.7))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
+            x = np.linspace(0, 10, 1000)
+            y = amplitud2 * np.sin(longitud_de_onda2 * x + desfase_inicial2)
+            ax.plot(x, y, label='Ecuación Sinusoidal')
 
-                fig.update_layout(title='Ecuación Sinusoidal')
-                fig.show()
+            # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, (2 * np.pi / longitud_de_onda2) / 4], [0, amplitud2], 'r--', label='Amplitud')
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda')
 
-            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
-            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
-            phase_slider = widgets.FloatSlider(value=0, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
-            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+            # Añadir etiquetas a los ejes
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.legend()
+
+            # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+            canvas = FigureCanvasTkAgg(fig, master=ventana9)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=6, column=1, padx=10, pady=10, rowspan=5, columnspan=5)
 
         elif check_var2.get() == "no" and combobox.get() == "π/2":
-            def plot_sinusoidal(length, amplitude, phase):
-                x = np.linspace(0, 10, 1000)
-                y = amplitude * np.sin(length * x + phase)
-                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+            # Limpiar la figura existente
+            plt.clf()
 
-                # Añadir flecha para la amplitud
-                fig.add_trace(go.Scatter(
-                    x=[0, 0], y=[0, amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="red", width=2),
-                    name="Amplitud",
-                    showlegend=True,
-                ))
+            # Obtener los valores de los controles deslizantes
+            longitud_de_onda2 = np.pi / (float(longitud_de_onda.get()) / 2)
+            amplitud2 = float(amplitud.get())
+            desfase_inicial2 = np.pi/2
 
-                # Añadir flecha para la longitud de onda
-                fig.add_trace(go.Scatter(
-                    x=[0,(2 * np.pi / length)], y=[amplitude, amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="green", width=2),
-                    name="Longitud de onda",
-                    showlegend=True,
-                ))
+            # Crear el gráfico con tamaño personalizado
+            fig, ax = plt.subplots(figsize=(8, 3.7))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
+            x = np.linspace(0, 10, 1000)
+            y = amplitud2 * np.sin(longitud_de_onda2 * x + desfase_inicial2)
+            ax.plot(x, y, label='Ecuación Sinusoidal')
 
-                fig.update_layout(title='Ecuación Sinusoidal')
-                fig.show()
+            # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0, 0], [0, amplitud2], 'r--', label='Amplitud')
+            ax.plot([0, float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda')
 
-            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
-            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
-            phase_slider = widgets.FloatSlider(value=np.pi/2, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
-            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+            # Añadir etiquetas a los ejes
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.legend()
+
+            # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+            canvas = FigureCanvasTkAgg(fig, master=ventana9)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=6, column=1, padx=10, pady=10, rowspan=5, columnspan=5)
 
         elif check_var2.get() == "no" and combobox.get() == "π":
-            def plot_sinusoidal(length, amplitude, phase):
-                x = np.linspace(0, 10, 1000)
-                y = amplitude * np.sin(length * x + phase)
-                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+            # Limpiar la figura existente
+            plt.clf()
 
-                # Añadir flecha para la amplitud
-                fig.add_trace(go.Scatter(
-                    x=[(2 * np.pi / length)/4, (2 * np.pi / length)/4], y=[0, -amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="red", width=2),
-                    name="Amplitud",
-                    showlegend=True,
-                ))
+            # Obtener los valores de los controles deslizantes
+            longitud_de_onda2 = np.pi / (float(longitud_de_onda.get()) / 2)
+            amplitud2 = float(amplitud.get())
+            desfase_inicial2 = np.pi
 
-                # Añadir flecha para la longitud de onda
-                fig.add_trace(go.Scatter(
-                    x=[(2 * np.pi / length)/4,((2 * np.pi / length)/4)+(2 * np.pi / length)], y=[-amplitude, -amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="green", width=2),
-                    name="Longitud de onda",
-                    showlegend=True,
-                ))
+            # Crear el gráfico con tamaño personalizado
+            fig, ax = plt.subplots(figsize=(8, 3.7))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
+            x = np.linspace(0, 10, 1000)
+            y = amplitud2 * np.sin(longitud_de_onda2 * x + desfase_inicial2)
+            ax.plot(x, y, label='Ecuación Sinusoidal')
 
-                fig.update_layout(title='Ecuación Sinusoidal')
-                fig.show()
+            # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, (2 * np.pi / longitud_de_onda2) / 4], [0, -amplitud2], 'r--', label='Amplitud')
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda')
 
-            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
-            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
-            phase_slider = widgets.FloatSlider(value=np.pi, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
-            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+            # Añadir etiquetas a los ejes
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.legend()
+
+            # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+            canvas = FigureCanvasTkAgg(fig, master=ventana9)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=6, column=1, padx=10, pady=10, rowspan=5, columnspan=5)
 
         elif check_var2.get() == "no" and combobox.get() == "3π/2":
-            def plot_sinusoidal(length, amplitude, phase):
-                x = np.linspace(0, 10, 1000)
-                y = amplitude * np.sin(length * x + phase)
-                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+            # Limpiar la figura existente
+            plt.clf()
 
-                # Añadir flecha para la amplitud
-                fig.add_trace(go.Scatter(
-                    x=[0, 0], y=[0, -amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="red", width=2),
-                    name="Amplitud",
-                    showlegend=True,
-                ))
+            # Obtener los valores de los controles deslizantes
+            longitud_de_onda2 = np.pi / (float(longitud_de_onda.get()) / 2)
+            amplitud2 = float(amplitud.get())
+            desfase_inicial2 = (3*np.pi)/2
 
-                # Añadir flecha para la longitud de onda
-                fig.add_trace(go.Scatter(
-                    x=[0,(2 * np.pi / length)], y=[-amplitude, -amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="green", width=2),
-                    name="Longitud de onda",
-                    showlegend=True,
-                ))
+            # Crear el gráfico con tamaño personalizado
+            fig, ax = plt.subplots(figsize=(8, 3.7))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
+            x = np.linspace(0, 10, 1000)
+            y = amplitud2 * np.sin(longitud_de_onda2 * x + desfase_inicial2)
+            ax.plot(x, y, label='Ecuación Sinusoidal')
 
-                fig.update_layout(title='Ecuación Sinusoidal')
-                fig.show()
+            # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0, 0], [0, -amplitud2], 'r--', label='Amplitud')
+            ax.plot([0, float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda')
 
-            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
-            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
-            phase_slider = widgets.FloatSlider(value=3*np.pi/2, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
-            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
-        
+            # Añadir etiquetas a los ejes
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.legend()
+
+            # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+            canvas = FigureCanvasTkAgg(fig, master=ventana9)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=6, column=1, padx=10, pady=10, rowspan=5, columnspan=5)
+
         elif check_var2.get() == "si" and combobox.get() == "0":
-            def plot_sinusoidal(length, amplitude, phase):
-                x = np.linspace(0, 10, 1000)
-                y = amplitude * np.cos(length * x + phase)
-                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+            # Limpiar la figura existente
+            plt.clf()
 
-                # Añadir flecha para la amplitud
-                fig.add_trace(go.Scatter(
-                    x=[0, 0], y=[0, amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="red", width=2),
-                    name="Amplitud",
-                    showlegend=True,
-                ))
+            # Obtener los valores de los controles deslizantes
+            longitud_de_onda2 = np.pi / (float(longitud_de_onda.get()) / 2)
+            amplitud2 = float(amplitud.get())
+            desfase_inicial2 = 0
 
-                # Añadir flecha para la longitud de onda
-                fig.add_trace(go.Scatter(
-                    x=[0, (2 * np.pi / length)], y=[amplitude, amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="green", width=2),
-                    name="Longitud de onda",
-                    showlegend=True,
-                ))
+            # Crear el gráfico con tamaño personalizado
+            fig, ax = plt.subplots(figsize=(8, 3.7))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
+            x = np.linspace(0, 10, 1000)
+            y = amplitud2 * np.cos(longitud_de_onda2 * x + desfase_inicial2)
+            ax.plot(x, y, label='Ecuación Sinusoidal')
 
-                fig.update_layout(title='Ecuación Sinusoidal')
-                fig.show()
+            # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0, 0], [0, amplitud2], 'r--', label='Amplitud')
+            ax.plot([0, float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda')
 
-            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
-            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
-            phase_slider = widgets.FloatSlider(value=0, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
-            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+            # Añadir etiquetas a los ejes
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.legend()
+
+            # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+            canvas = FigureCanvasTkAgg(fig, master=ventana9)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=6, column=1, padx=10, pady=10, rowspan=5, columnspan=5)
 
         elif check_var2.get() == "si" and combobox.get() == "π/2":
-            def plot_sinusoidal(length, amplitude, phase):
-                x = np.linspace(0, 10, 1000)
-                y = amplitude * np.cos(length * x + phase)
-                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+            # Limpiar la figura existente
+            plt.clf()
 
-                # Añadir flecha para la amplitud
-                fig.add_trace(go.Scatter(
-                    x=[(2 * np.pi / length)/4, (2 * np.pi / length)/4], y=[0, -amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="red", width=2),
-                    name="Amplitud",
-                    showlegend=True,
-                ))
+            # Obtener los valores de los controles deslizantes
+            longitud_de_onda2 = np.pi / (float(longitud_de_onda.get()) / 2)
+            amplitud2 = float(amplitud.get())
+            desfase_inicial2 = np.pi/2
 
-                # Añadir flecha para la longitud de onda
-                fig.add_trace(go.Scatter(
-                    x=[(2 * np.pi / length)/4,((2 * np.pi / length)/4)+(2 * np.pi / length)], y=[-amplitude, -amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="green", width=2),
-                    name="Longitud de onda",
-                    showlegend=True,
-                ))
+            # Crear el gráfico con tamaño personalizado
+            fig, ax = plt.subplots(figsize=(8, 3.7))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
+            x = np.linspace(0, 10, 1000)
+            y = amplitud2 * np.cos(longitud_de_onda2 * x + desfase_inicial2)
+            ax.plot(x, y, label='Ecuación Sinusoidal')
 
-                fig.update_layout(title='Ecuación Sinusoidal')
-                fig.show()
+            # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, (2 * np.pi / longitud_de_onda2) / 4], [0, -amplitud2], 'r--', label='Amplitud')
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda')
 
-            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
-            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
-            phase_slider = widgets.FloatSlider(value=np.pi/2, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
-            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+            # Añadir etiquetas a los ejes
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.legend()
+
+            # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+            canvas = FigureCanvasTkAgg(fig, master=ventana9)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=6, column=1, padx=10, pady=10, rowspan=5, columnspan=5)
 
         elif check_var2.get() == "si" and combobox.get() == "π":
-            def plot_sinusoidal(length, amplitude, phase):
-                x = np.linspace(0, 10, 1000)
-                y = amplitude * np.cos(length * x + phase)
-                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+            # Limpiar la figura existente
+            plt.clf()
 
-                # Añadir flecha para la amplitud
-                fig.add_trace(go.Scatter(
-                    x=[0, 0], y=[0, -amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="red", width=2),
-                    name="Amplitud",
-                    showlegend=True,
-                ))
+            # Obtener los valores de los controles deslizantes
+            longitud_de_onda2 = np.pi / (float(longitud_de_onda.get()) / 2)
+            amplitud2 = float(amplitud.get())
+            desfase_inicial2 = np.pi
 
-                # Añadir flecha para la longitud de onda
-                fig.add_trace(go.Scatter(
-                    x=[0,(2 * np.pi / length)], y=[-amplitude, -amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="green", width=2),
-                    name="Longitud de onda",
-                    showlegend=True,
-                ))
+            # Crear el gráfico con tamaño personalizado
+            fig, ax = plt.subplots(figsize=(8, 3.7))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
+            x = np.linspace(0, 10, 1000)
+            y = amplitud2 * np.cos(longitud_de_onda2 * x + desfase_inicial2)
+            ax.plot(x, y, label='Ecuación Sinusoidal')
 
-                fig.update_layout(title='Ecuación Sinusoidal')
-                fig.show()
+            # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0, 0], [0, -amplitud2], 'r--', label='Amplitud')
+            ax.plot([0, float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda')
 
-            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
-            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
-            phase_slider = widgets.FloatSlider(value=np.pi, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
-            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+            # Añadir etiquetas a los ejes
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.legend()
+
+            # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+            canvas = FigureCanvasTkAgg(fig, master=ventana9)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=6, column=1, padx=10, pady=10, rowspan=5, columnspan=5)
 
         elif check_var2.get() == "si" and combobox.get() == "3π/2":
-            def plot_sinusoidal(length, amplitude, phase):
-                x = np.linspace(0, 10, 1000)
-                y = amplitude * np.cos(length * x + phase)
-                fig = go.FigureWidget(data=go.Scatter(x=x, y=y, mode='lines'))
+            # Limpiar la figura existente
+            plt.clf()
 
-                # Añadir flecha para la amplitud
-                fig.add_trace(go.Scatter(
-                    x=[(2 * np.pi / length)/4, (2 * np.pi / length)/4], y=[0, amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="red", width=2),
-                    name="Amplitud",
-                    showlegend=True,
-                ))
+            # Obtener los valores de los controles deslizantes
+            longitud_de_onda2 = np.pi / (float(longitud_de_onda.get()) / 2)
+            amplitud2 = float(amplitud.get())
+            desfase_inicial2 = (3*np.pi)/2
 
-                # Añadir flecha para la longitud de onda
-                fig.add_trace(go.Scatter(
-                    x=[(2 * np.pi / length)/4,((2 * np.pi / length)/4)+(2 * np.pi / length)], y=[amplitude, amplitude],
-                    mode="lines+markers",
-                    marker=dict(symbol="circle", size=10),
-                    line=dict(color="green", width=2),
-                    name="Longitud de onda",
-                    showlegend=True,
-                ))
+            # Crear el gráfico con tamaño personalizado
+            fig, ax = plt.subplots(figsize=(8, 3.7))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
+            x = np.linspace(0, 10, 1000)
+            y = amplitud2 * np.cos(longitud_de_onda2 * x + desfase_inicial2)
+            ax.plot(x, y, label='Ecuación Sinusoidal')
 
-                fig.update_layout(title='Ecuación Sinusoidal')
-                fig.show()
+            # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, (2 * np.pi / longitud_de_onda2) / 4], [0, amplitud2], 'r--', label='Amplitud')
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda')
 
-            length_slider = widgets.FloatSlider(value=np.pi/(float(longitud_de_onda.get())/2), min=0.1, max=10, step=0.1, description='Longitud de onda:')
-            amplitude_slider = widgets.FloatSlider(value=float(amplitud.get()), min=0.1, max=5, step=0.1, description='Amplitud:')
-            phase_slider = widgets.FloatSlider(value=3*np.pi/2, min=0, max=2 * np.pi, step=0.1, description='Desfase inicial:')
-            widgets.interactive(plot_sinusoidal, length=length_slider, amplitude=amplitude_slider, phase=phase_slider)
+            # Añadir etiquetas a los ejes
+            ax.set_xlabel('x')
+            ax.set_ylabel('y')
+            ax.legend()
+
+            # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+            canvas = FigureCanvasTkAgg(fig, master=ventana9)
+            canvas.draw()
+            canvas.get_tk_widget().grid(row=6, column=1, padx=10, pady=10, rowspan=5, columnspan=5)
 
 
     #Resetear los datos laterales
@@ -881,6 +909,8 @@ def ondas_armónicas():
     btn_eq_general.grid(column=2, row=4, padx=10, pady=10)
     btn_combobox = ctk.CTkButton(ventana9, text="Calcular φ", font=("Helvetica", 10, "bold"), command=calcular_combobox)
     btn_combobox.grid(column=3, row=4, padx=10, pady=10)
+    btn_velocidad_de_obscilación = ctk.CTkButton(ventana9, text="Calcular Vy", font=("Helvetica", 10, "bold"), command=velocidad_y)
+    btn_velocidad_de_obscilación.grid(column=2, row=5, padx=10, pady=10)
     btn_crear_grafico = ctk.CTkButton(ventana9, text="Crear gráfico", font=("Helvetica", 10, "bold"), command=crear_gráfico)
     btn_crear_grafico.grid(column=3, row=5, padx=10, pady=10)
 
