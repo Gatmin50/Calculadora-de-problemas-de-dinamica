@@ -4,53 +4,48 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import customtkinter as ctk
 import tkinter as tk
 
-def graficar_sinusoidal():
-    # Limpiar la figura existente
-    plt.clf()
+def calculadora_nuclear():
 
-    # Obtener los valores de los controles deslizantes
-    longitud_de_onda = np.pi / (longitud_de_onda_slider.get() / 2)
-    amplitud = amplitud_slider.get()
-    desfase_inicial = desfase_inicial_slider.get()
+    ventana10 = ctk.CTk()
+    ventana10.title("Calculadora ondas armonicas")
+    ventana10.geometry('1400x650+400+200')
+    ventana10.configure(fg_color="black")
 
-    # Crear el gráfico con tamaño personalizado
-    fig, ax = plt.subplots(figsize=(8, 6))  # Ancho: 8 pulgadas, Alto: 6 pulgadas
-    x = np.linspace(0, 10, 1000)
-    y = amplitud * np.sin(longitud_de_onda * x + desfase_inicial)
-    ax.plot(x, y, label='Ecuación Sinusoidal')
+    def graficar():
+        # Definir los parámetros de la desintegración
+        N0 = 3  # Número inicial de núcleos
+        lambda_ = 0.1  # Constante de desintegración
+        t_half = np.log(2) / lambda_  # Tiempo de semivida
+        t = np.linspace(0, 5*t_half, 1000)  # Tiempo
 
-    # Añadir las flechas para la amplitud y la longitud de onda
-    ax.plot([(2 * np.pi / longitud_de_onda) / 4, (2 * np.pi / longitud_de_onda) / 4], [0, amplitud], 'r--', label='Amplitud')
-    ax.plot([(2 * np.pi / longitud_de_onda) / 4, ((2 * np.pi / longitud_de_onda) / 4) + longitud_de_onda_slider.get()], [amplitud, amplitud], label='Longitud de onda')
+        # Calcular el número de núcleos en función del tiempo
+        N = N0 * np.exp(-lambda_ * t)
 
-    # Añadir etiquetas a los ejes
-    ax.set_xlabel('x')
-    ax.set_ylabel('y')
-    ax.legend()
+        # Crear el gráfico
+        fig, ax = plt.subplots()
+        ax.plot(t, N, label='Desintegración nuclear')
 
-    # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
-    canvas = FigureCanvasTkAgg(fig, master=ventana)
-    canvas.draw()
-    canvas.get_tk_widget().pack()
+        # Añadir las líneas de semivida hasta el punto de intersección
+        ax.plot([0, t_half], [N0/2, N0/2], 'r--')
+        ax.plot([t_half, t_half], [0, N0/2], 'r--')
 
-# Resto del código sin cambios
+        # Marcar el punto de intersección con una 'x'
+        ax.plot(t_half, N0/2, 'rx', markersize=5    , label='Semivida')
 
-# Crear la ventana de tkinter
-ventana = tk.Tk()
-ventana.geometry('800x600')
+        # Añadir etiquetas a los ejes
+        ax.set_xlabel('Tiempo (s)')
+        ax.set_ylabel('Número de núcleos')
 
-# Crear los controles deslizantes
-longitud_de_onda_slider = tk.Scale(ventana, from_=0.1, to=10, resolution=0.1, orient='horizontal', label='Longitud de onda')
-longitud_de_onda_slider.pack()
-amplitud_slider = tk.Scale(ventana, from_=0.1, to=5, resolution=0.1, orient='horizontal', label='Amplitud')
-amplitud_slider.pack()
-desfase_inicial_slider = tk.Scale(ventana, from_=0, to=2 * np.pi, resolution=0.1, orient='horizontal', label='Desfase inicial')
-desfase_inicial_slider.pack()
+        ax.legend()
 
-# Crear el botón que al presionarlo mostrará el gráfico
-boton = ctk.CTkButton(master=ventana,
-                    text='Graficar',
-                    command=graficar_sinusoidal)
-boton.pack()
+        # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
+        canvas = FigureCanvasTkAgg(fig, master=ventana10)
+        canvas.draw()
+        canvas.get_tk_widget().pack()
 
-ventana.mainloop()
+    # Crear el botón que al presionarlo mostrará el gráfico
+    boton = ctk.CTkButton(master=ventana10, text='Graficar', command=graficar)
+    boton.pack()
+
+    # Iniciar el bucle principal de tkinter
+    ventana10.mainloop()

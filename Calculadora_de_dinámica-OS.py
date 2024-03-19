@@ -1,8 +1,6 @@
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import ttk
-import math
-import turtle
 import Intro
 import Una_masa
 import Dos_masas
@@ -14,14 +12,14 @@ import Trabajo_circular
 import Ondas_armónicas
 import Nuclear
 
-#Intro.animacion_inicial()
+Intro.animacion_inicial()
 
 # Crear la ventana del menu de la calculadora
-ctk.set_appearance_mode("system")
 ventana1 = ctk.CTk()
 ventana1.title("Menu calculadora de Dinámica")
 ventana1.geometry('710x300+400+200')
 ventana1.configure(fg_color="black")
+ctk.set_default_color_theme("green")
 
 def programa_plano_inclinado():
     Una_masa.programa_plano_inclinado()
@@ -48,7 +46,7 @@ def Ondas():
     Ondas_armónicas.ondas_armónicas()
 
 def nuclear():
-    Nuclear.calculadora_nuclear()
+    Nuclear.calculo_nuclear()
 
 # despliege de secciones
 def seleccionar_opcion(event):

@@ -7,24 +7,104 @@ import turtle
 def programa_plano_inclinado():
 
     # Crear la ventana de la calculadora
-    ventana = tk.Tk()
+    ventana = ctk.CTk()
     ventana.title("Calculadora de Dinámica")
     ventana.geometry('1400x650+50+100')
-    ventana.configure(background='black')
-
-    lienzo = tk.Canvas(ventana, width=1400, height=650)
-    lienzo.configure(bg='black')
-    lienzo.pack()
-
-    rectangulo = lienzo.create_rectangle(120, 137, 140, 157, fill='lightgreen')
-    rectangulo = lienzo.create_rectangle(125, 295, 145, 315, fill='red')
-    rectangulo = lienzo.create_rectangle(330, 245, 350, 265, fill='gold')
-    rectangulo = lienzo.create_rectangle(330, 295, 350, 315, fill='blue')
-    lienzo.place(x=0, y=0)
+    ventana.configure(fg_color='black')
 
     # Enunciado de la calculadora
-    etiqueta_masa = tk.Label(ventana, text="Botones y cuadros de texto para la calculadora",bg="black", fg="orange")
-    etiqueta_masa.grid(column=1, row=0, columnspan=2, padx=10, pady=10)
+    etiqueta_up = ctk.CTkLabel(ventana, text="Botones y cuadros de texto para la calculadora",text_color="white")
+    etiqueta_up.grid(column=1, row=0, columnspan=2, padx=10, pady=10)
+
+    # Crear las etiquetas y entradas de datos
+    etiqueta_masa = ctk.CTkLabel(ventana, text="Masa (Kg):",text_color='white')
+    etiqueta_masa.grid(column=0, row=1, padx=10, pady=10)
+
+    masa = ctk.CTkEntry(ventana)
+    masa.grid(column=1, row=1, padx=10, pady=10)
+
+    etiqueta_gravedad = ctk.CTkLabel(ventana, text="Gravedad (m/s²):",text_color='white')
+    etiqueta_gravedad.grid(column=0, row=2, padx=10, pady=10)
+
+    Gravedad = ctk.CTkEntry(ventana)
+    Gravedad.grid(column=1, row=2, padx=10, pady=10)
+
+    etiqueta_coeficiente = ctk.CTkLabel(ventana, text="Coeficiente de fricción:",text_color='white')
+    etiqueta_coeficiente.grid(column=2, row=3, padx=10, pady=10)
+
+    coeficiente = ctk.CTkEntry(ventana)
+    coeficiente.grid(column=3, row=3, padx=10, pady=10)
+
+    etiqueta_aceleracion = ctk.CTkLabel(ventana, text="Aceleración (m/s²):",text_color='white')
+    etiqueta_aceleracion.grid(column=2, row=1, padx=10, pady=10)
+
+    aceleracion = ctk.CTkEntry(ventana)
+    aceleracion.grid(column=3, row=1, padx=10, pady=10)
+
+    etiqueta_Fuerza_ang = ctk.CTkLabel(ventana, text="Ángulo de \n la Fuerza:",text_color='white')
+    etiqueta_Fuerza_ang.grid(column=0, row=4, padx=10, pady=10)
+
+    Fuerza_ang = (ctk.CTkEntry(ventana))
+    Fuerza_ang.grid(column=1, row=4, padx=10, pady=10)
+
+    etiqueta_Fuerza = ctk.CTkLabel(ventana, text="La Fuerza (N):",text_color='white')
+    etiqueta_Fuerza.grid(column=0, row=3, padx=10, pady=10)
+
+    Fuerza = (ctk.CTkEntry(ventana))
+    Fuerza.grid(column=1, row=3, padx=10, pady=10)
+
+    etiqueta_a1 = ctk.CTkLabel(ventana, text="Inclinacion del plano:",text_color='white')
+    etiqueta_a1.grid(column=2, row=2, padx=10, pady=10)
+
+    a1 = (ctk.CTkEntry(ventana))
+    a1.grid(column=3, row=2, padx=10, pady=10)
+
+    # Crear la etiqueta para mostrar el resultado
+    label_resultado = ctk.CTkLabel(ventana, text="" ,text_color='white')
+    label_resultado.grid(column=2, row=6, columnspan=1, padx=10, pady=10)
+
+    # Crear la etiqueta para almacenar el resultado
+    label_resultado1 = ctk.CTkLabel(ventana, text="" ,text_color='white')
+    label_resultado1.grid(column=4, row=1, columnspan=2, padx=10, pady=10)
+
+    label_resultado2 = ctk.CTkLabel(ventana, text="" ,text_color='white')
+    label_resultado2.grid(column=4, row=3, columnspan=2, padx=10, pady=10)
+
+    label_resultado3 = ctk.CTkLabel(ventana, text="" ,text_color='white')
+    label_resultado3.grid(column=4, row=4, columnspan=2, padx=10, pady=10)
+
+    label_resultado4 = ctk.CTkLabel(ventana, text="" ,text_color='white')
+    label_resultado4.grid(column=4, row=5, columnspan=2, padx=10, pady=10)
+
+    label_resultado5 = ctk.CTkLabel(ventana, text="" ,text_color='white')
+    label_resultado5.grid(column=4, row=6, columnspan=2, padx=10, pady=10)
+
+    label_resultado6 = ctk.CTkLabel(ventana, text="" ,text_color='white')
+    label_resultado6.grid(column=4, row=7, columnspan=2, padx=10, pady=10)
+
+    label_resultado7 = ctk.CTkLabel(ventana, text="" ,text_color='white')
+    label_resultado7.grid(column=4, row=2, columnspan=2, padx=10, pady=10)
+
+    etiqueta_masa = ctk.CTkLabel(ventana, text="Cuadros de texto para la creacion del grafico",text_color='white')
+    etiqueta_masa.grid(column=1, row=7, columnspan=2, padx=10, pady=10)
+
+    # despliege de secciones
+    def seleccionar_opcion(event):
+        opcion_seleccionada = combobox.get()
+
+        if opcion_seleccionada == "1":
+            plup()
+        elif opcion_seleccionada == "2.1":
+            plup2_1()
+        elif opcion_seleccionada == "2.2":
+            plup2_2()
+        elif opcion_seleccionada == "3":
+            plup3()
+
+    combobox = ctk.CTkComboBox(ventana, values=["","1", "2.1", "2.2", "3"], command=seleccionar_opcion)
+    combobox.grid(row=8, column=2, padx=10, pady=10)
+    etiqueta_seleccion = ctk.CTkLabel(ventana, text="Ingresar situacion\n 1: Cuerpo en la parte superior\n 2.1: Cuerpo en la parte media\n 2.2: Cuerpo en la parte media invertido \n 3: Cuerpo en la parte inferior", text_color='white')
+    etiqueta_seleccion.grid(row=8, column=1, padx=10, pady=10)
 
     # Calculo para el Peso
     def calcular_Peso():
@@ -38,19 +118,6 @@ def programa_plano_inclinado():
             label_resultado1.config(text=f"El peso es de {resultado}(N)")
         except ValueError:
             label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
-
-    # Crear las etiquetas y entradas de datos
-    etiqueta_masa = tk.Label(ventana, text="Masa (Kg):",bg="black", fg="white")
-    etiqueta_masa.grid(column=0, row=1, padx=10, pady=10)
-
-    masa = tk.Entry(ventana)
-    masa.grid(column=1, row=1, padx=10, pady=10)
-
-    etiqueta_gravedad = tk.Label(ventana, text="Gravedad (m/s²):",bg="black", fg="white")
-    etiqueta_gravedad.grid(column=0, row=2, padx=10, pady=10)
-
-    Gravedad = tk.Entry(ventana)
-    Gravedad.grid(column=1, row=2, padx=10, pady=10)
 
     # Calculo para el Normal
     def calcular_Normal():
@@ -80,13 +147,6 @@ def programa_plano_inclinado():
             label_resultado2.config(text=f"La fricción es de {resultado2}(N)")
         except ValueError:
             label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
-
-    etiqueta_coeficiente = tk.Label(ventana, text="Coeficiente de fricción:",bg="black", fg="white")
-    etiqueta_coeficiente.grid(column=2, row=3, padx=10, pady=10)
-
-    coeficiente = tk.Entry(ventana)
-    coeficiente.grid(column=3, row=3, padx=10, pady=10)
-
 
     # Calculo para la Fuerza
     def calcular_Fuerza():
@@ -125,14 +185,6 @@ def programa_plano_inclinado():
         except ValueError:
             label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
 
-    # Crear las etiquetas y entradas de datos
-    etiqueta_aceleracion = tk.Label(ventana, text="Aceleración (m/s²):",bg="black", fg="white")
-    etiqueta_aceleracion.grid(column=2, row=1, padx=10, pady=10)
-
-    aceleracion = tk.Entry(ventana)
-    aceleracion.grid(column=3, row=1, padx=10, pady=10)
-
-
     # Calculo para el Peso en (Y)
     def calcular_Pesoy():
 
@@ -161,21 +213,6 @@ def programa_plano_inclinado():
             label_resultado5.config(text=f"El peso en X es: {resultado5}(N)")
         except ValueError:
             label_resultado.config(text=f"Todos los valores deben \n ser unicamente numéricos")
-
-    # Crear las etiquetas y entradas de datos
-    etiqueta_Fuerza_ang = tk.Label(ventana, text="Ángulo de \n la Fuerza:",bg="black", fg="white")
-    etiqueta_Fuerza_ang.grid(column=0, row=4, padx=10, pady=10)
-
-    Fuerza_ang = (tk.Entry(ventana))
-    Fuerza_ang.grid(column=1, row=4, padx=10, pady=10)
-
-    etiqueta_Fuerza = tk.Label(ventana, text="La Fuerza (N):",bg="black", fg="white")
-    etiqueta_Fuerza.grid(column=0, row=3, padx=10, pady=10)
-
-    Fuerza = (tk.Entry(ventana))
-    Fuerza.grid(column=1, row=3, padx=10, pady=10)
-
-    
 
     # Calculo para la aceleración
     def calcular_Aceleracion():
@@ -226,90 +263,35 @@ def programa_plano_inclinado():
         label_resultado6.config(text=f" ")
 
     # Crear el botón de calcular
-    boton_calcular_P = tk.Button(ventana, text="Calcular P", command=calcular_Peso ,bg="white", fg="black")
+    boton_calcular_P = ctk.CTkButton(ventana, text="Calcular P", command=calcular_Peso)
     boton_calcular_P.grid(column=1, row=5, padx=10, pady=10)
 
-    boton_calcular_Fr = tk.Button(ventana, text="Calcular Fr", command=calcular_Friccion ,bg="white", fg="black")
+    boton_calcular_Fr = ctk.CTkButton(ventana, text="Calcular Fr", command=calcular_Friccion)
     boton_calcular_Fr.grid(column=0, row=6, padx=10, pady=10)
 
-    boton_calcular_F = tk.Button(ventana, text="Calcular F", command=calcular_Fuerza ,bg="white", fg="black")
+    boton_calcular_F = ctk.CTkButton(ventana, text="Calcular F", command=calcular_Fuerza)
     boton_calcular_F.grid(column=0, row=5, padx=10, pady=10)
 
-    boton_calcular_Py = tk.Button(ventana, text="Calcular Py", command=calcular_Pesoy ,bg="white", fg="black")
+    boton_calcular_Py = ctk.CTkButton(ventana, text="Calcular Py", command=calcular_Pesoy)
     boton_calcular_Py.grid(column=3, row=5, padx=10, pady=10)
 
-    boton_calcular_Px = tk.Button(ventana, text="Calcular Px", command=calcular_Pesox ,bg="white", fg="black")
+    boton_calcular_Px = ctk.CTkButton(ventana, text="Calcular Px", command=calcular_Pesox)
     boton_calcular_Px.grid(column=3, row=6, padx=10, pady=10)
 
-    boton_calcular_V = tk.Button(ventana, text="Calcular a", command=calcular_Aceleracion ,bg="white", fg="black")
+    boton_calcular_V = ctk.CTkButton(ventana, text="Calcular a", command=calcular_Aceleracion)
     boton_calcular_V.grid(column=2, row=5, padx=10, pady=10)    
 
-    boton_limpiar_datos = tk.Button(ventana, text="Borrar datos laterales", command=limpiar_barra_lateral ,bg="red", fg="gold")
+    boton_limpiar_datos = ctk.CTkButton(ventana, text="Borrar datos laterales", command=limpiar_barra_lateral)
     boton_limpiar_datos.grid(column=3, row=4, padx=10, pady=10)
 
-    boton_calcular_N = tk.Button(ventana, text="Calcular N", command=calcular_Normal ,bg="white", fg="black")
+    boton_calcular_N = ctk.CTkButton(ventana, text="Calcular N", command=calcular_Normal)
     boton_calcular_N.grid(column=1, row=6, padx=10, pady=10) 
-
-    # Crear la etiqueta para mostrar el resultado
-    label_resultado = tk.Label(ventana, text="" ,bg="lightblue", fg="black")
-    label_resultado.grid(column=2, row=6, columnspan=1, padx=10, pady=10)
-
-    # Crear la etiqueta para almacenar el resultado
-    label_resultado1 = tk.Label(ventana, text="" ,bg="black", fg="white")
-    label_resultado1.grid(column=4, row=1, columnspan=2, padx=10, pady=10)
-
-    label_resultado2 = tk.Label(ventana, text="" ,bg="black", fg="white")
-    label_resultado2.grid(column=4, row=3, columnspan=2, padx=10, pady=10)
-
-    label_resultado3 = tk.Label(ventana, text="" ,bg="black", fg="white")
-    label_resultado3.grid(column=4, row=4, columnspan=2, padx=10, pady=10)
-
-    label_resultado4 = tk.Label(ventana, text="" ,bg="black", fg="white")
-    label_resultado4.grid(column=4, row=5, columnspan=2, padx=10, pady=10)
-
-    label_resultado5 = tk.Label(ventana, text="" ,bg="black", fg="white")
-    label_resultado5.grid(column=4, row=6, columnspan=2, padx=10, pady=10)
-
-    label_resultado6 = tk.Label(ventana, text="" ,bg="black", fg="white")
-    label_resultado6.grid(column=4, row=7, columnspan=2, padx=10, pady=10)
-
-    label_resultado7 = tk.Label(ventana, text="" ,bg="black", fg="white")
-    label_resultado7.grid(column=4, row=2, columnspan=2, padx=10, pady=10)
-
-    etiqueta_masa = tk.Label(ventana, text="Cuadros de texto para la creacion del grafico",bg="black", fg="orange")
-    etiqueta_masa.grid(column=1, row=7, columnspan=2, padx=10, pady=10)
-
-    etiqueta_a1 = tk.Label(ventana, text="Inclinacion del plano:",bg="black", fg="white")
-    etiqueta_a1.grid(column=2, row=2, padx=10, pady=10)
-
-    a1 = (tk.Entry(ventana))
-    a1.grid(column=3, row=2, padx=10, pady=10)
 
     def cerrar_ventana():
         ventana.destroy()
 
-    btn_cerrar = tk.Button(ventana, text="                  Cerrar ventana                  ", font=("Helvetica", 9, "bold"), command=cerrar_ventana, bg="red", fg="black")
+    btn_cerrar = ctk.CTkButton(ventana, text="                  Cerrar ventana                  ", font=("Helvetica", 9, "bold"), command=cerrar_ventana)
     btn_cerrar.grid(column=1, row=9, columnspan=2, padx=10, pady=10)
-
-    # despliege de secciones
-    def seleccionar_opcion(event):
-        opcion_seleccionada = combobox.get()
-
-        if opcion_seleccionada == "1":
-            plup()
-        elif opcion_seleccionada == "2.1":
-            plup2_1()
-        elif opcion_seleccionada == "2.2":
-            plup2_2()
-        elif opcion_seleccionada == "3":
-            plup3()
-
-    opciones = ["1", "2.1", "2.2", "3"]
-    combobox = ttk.Combobox(ventana, values=opciones)
-    combobox.grid(row=8, column=2, padx=10, pady=10)
-    combobox.bind("<<ComboboxSelected>>", seleccionar_opcion)
-    etiqueta_seleccion = tk.Label(ventana, text="Ingresar situacion\n 1: Cuerpo en la parte superior\n 2.1: Cuerpo en la parte media\n 2.2: Cuerpo en la parte media invertido \n 3: Cuerpo en la parte inferior", bg="black", fg="white")
-    etiqueta_seleccion.grid(row=8, column=1, padx=10, pady=10)
 
     def plup():
 

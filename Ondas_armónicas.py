@@ -664,13 +664,14 @@ def ondas_armónicas():
             ax.plot(x, y, label='Ecuación Sinusoidal')
 
             # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0,10], [0,0], color='black')
             ax.plot([(2 * np.pi / longitud_de_onda2) / 4, (2 * np.pi / longitud_de_onda2) / 4], [0, amplitud2], 'r--', label='Amplitud')
-            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda')
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda', color='yellow')
 
             # Añadir etiquetas a los ejes
             ax.set_xlabel('x')
             ax.set_ylabel('y')
-            ax.legend()
+            ax.legend(loc='upper right')
 
             # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
             canvas = FigureCanvasTkAgg(fig, master=ventana9)
@@ -693,13 +694,14 @@ def ondas_armónicas():
             ax.plot(x, y, label='Ecuación Sinusoidal')
 
             # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0,10], [0,0], color='black')
             ax.plot([0, 0], [0, amplitud2], 'r--', label='Amplitud')
-            ax.plot([0, float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda')
+            ax.plot([0, float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda', color='yellow')
 
             # Añadir etiquetas a los ejes
             ax.set_xlabel('x')
             ax.set_ylabel('y')
-            ax.legend()
+            ax.legend(loc='upper right')
 
             # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
             canvas = FigureCanvasTkAgg(fig, master=ventana9)
@@ -722,13 +724,14 @@ def ondas_armónicas():
             ax.plot(x, y, label='Ecuación Sinusoidal')
 
             # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0,10], [0,0], color='black')
             ax.plot([(2 * np.pi / longitud_de_onda2) / 4, (2 * np.pi / longitud_de_onda2) / 4], [0, -amplitud2], 'r--', label='Amplitud')
-            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda')
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda', color='yellow')
 
             # Añadir etiquetas a los ejes
             ax.set_xlabel('x')
             ax.set_ylabel('y')
-            ax.legend()
+            ax.legend(loc='upper right')
 
             # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
             canvas = FigureCanvasTkAgg(fig, master=ventana9)
@@ -751,13 +754,14 @@ def ondas_armónicas():
             ax.plot(x, y, label='Ecuación Sinusoidal')
 
             # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0,10], [0,0], color='black')
             ax.plot([0, 0], [0, -amplitud2], 'r--', label='Amplitud')
-            ax.plot([0, float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda')
+            ax.plot([0, float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda', color='yellow')
 
             # Añadir etiquetas a los ejes
             ax.set_xlabel('x')
             ax.set_ylabel('y')
-            ax.legend()
+            ax.legend(loc='upper right')
 
             # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
             canvas = FigureCanvasTkAgg(fig, master=ventana9)
@@ -780,13 +784,14 @@ def ondas_armónicas():
             ax.plot(x, y, label='Ecuación Sinusoidal')
 
             # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0,10], [0,0], color='black')
             ax.plot([0, 0], [0, amplitud2], 'r--', label='Amplitud')
-            ax.plot([0, float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda')
+            ax.plot([0, float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda', color='yellow')
 
             # Añadir etiquetas a los ejes
             ax.set_xlabel('x')
             ax.set_ylabel('y')
-            ax.legend()
+            ax.legend(loc='upper right')
 
             # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
             canvas = FigureCanvasTkAgg(fig, master=ventana9)
@@ -809,13 +814,14 @@ def ondas_armónicas():
             ax.plot(x, y, label='Ecuación Sinusoidal')
 
             # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0,10], [0,0], color='black')
             ax.plot([(2 * np.pi / longitud_de_onda2) / 4, (2 * np.pi / longitud_de_onda2) / 4], [0, -amplitud2], 'r--', label='Amplitud')
-            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda')
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda', color='yellow')
 
             # Añadir etiquetas a los ejes
             ax.set_xlabel('x')
             ax.set_ylabel('y')
-            ax.legend()
+            ax.legend(loc='upper right')
 
             # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
             canvas = FigureCanvasTkAgg(fig, master=ventana9)
@@ -838,13 +844,14 @@ def ondas_armónicas():
             ax.plot(x, y, label='Ecuación Sinusoidal')
 
             # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0,10], [0,0], color='black')
             ax.plot([0, 0], [0, -amplitud2], 'r--', label='Amplitud')
-            ax.plot([0, float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda')
+            ax.plot([0, float(longitud_de_onda.get())], [-amplitud2, -amplitud2], label='Longitud de onda', color='yellow')
 
             # Añadir etiquetas a los ejes
             ax.set_xlabel('x')
             ax.set_ylabel('y')
-            ax.legend()
+            ax.legend(loc='upper right')
 
             # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
             canvas = FigureCanvasTkAgg(fig, master=ventana9)
@@ -867,13 +874,14 @@ def ondas_armónicas():
             ax.plot(x, y, label='Ecuación Sinusoidal')
 
             # Añadir las flechas para la amplitud y la longitud de onda
+            ax.plot([0,10], [0,0], color='black')
             ax.plot([(2 * np.pi / longitud_de_onda2) / 4, (2 * np.pi / longitud_de_onda2) / 4], [0, amplitud2], 'r--', label='Amplitud')
-            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda')
+            ax.plot([(2 * np.pi / longitud_de_onda2) / 4, ((2 * np.pi / longitud_de_onda2) / 4) + float(longitud_de_onda.get())], [amplitud2, amplitud2], label='Longitud de onda', color='yellow')
 
             # Añadir etiquetas a los ejes
             ax.set_xlabel('x')
             ax.set_ylabel('y')
-            ax.legend()
+            ax.legend(loc='upper right')
 
             # Crear el canvas de matplotlib y añadirlo a la ventana de tkinter
             canvas = FigureCanvasTkAgg(fig, master=ventana9)
