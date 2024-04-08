@@ -19,7 +19,7 @@ ventana1 = ctk.CTk()
 ventana1.title("Menu calculadora de Dinámica")
 ventana1.geometry('710x300+400+200')
 ventana1.configure(fg_color="black")
-ctk.set_default_color_theme("green")
+ctk.set_default_color_theme("dark-blue")
 
 def programa_plano_inclinado():
     Una_masa.programa_plano_inclinado()
