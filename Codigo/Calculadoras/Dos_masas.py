@@ -10210,7 +10210,6 @@ def programa_plano_inclinado_con_dos_cuerpos():
             t.pendown()
             t.forward(1)
             t.hideturtle()
-    pop1()
     
     # Mantiene la ventana simpre abierta hasta que el usuario la cierra
     ventana2.mainloop()

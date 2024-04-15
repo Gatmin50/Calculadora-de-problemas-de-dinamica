@@ -4984,8 +4984,6 @@ def programa_plano_inclinado():
             t.pendown()
             t.forward(1)
             t.hideturtle()
-                
-    plup3()
 
     # Mantiene la ventana simpre abierta hasta que el usuario la cierra
     ventana.mainloop()

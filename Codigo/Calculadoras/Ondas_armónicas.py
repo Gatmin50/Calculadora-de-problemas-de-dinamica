@@ -942,3 +942,6 @@ def ondas_armónicas():
 
     btn_cerrar = ctk.CTkButton(ventana9, text="Cerrar ventana", font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
     btn_cerrar.grid(column=5, row=5, padx=10, pady=10)
+
+    # Mantiene la ventana simpre abierta hasta que el usuario la cierra
+    ventana9.mainloop()

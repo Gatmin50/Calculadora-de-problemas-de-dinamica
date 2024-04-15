@@ -2,15 +2,15 @@ import customtkinter as ctk
 import tkinter as tk
 from tkinter import ttk
 import Intro
-import Una_masa
-import Dos_masas
-import Calculadora
-import Trabajo_vertical
-import Trabajo_plano
-import Trabajo_inclinado
-import Trabajo_circular
-import Ondas_armónicas
-import Nuclear
+import Calculadoras.Una_masa as Una_masa
+import Calculadoras.Dos_masas as Dos_masas
+import Calculadoras.Calculadora as Calculadora
+import Calculadoras.Trabajo_vertical as Trabajo_vertical
+import Calculadoras.Trabajo_plano as Trabajo_plano
+import Calculadoras.Trabajo_inclinado as Trabajo_inclinado
+import Calculadoras.Trabajo_circular as Trabajo_circular
+import Calculadoras.Ondas_armónicas as Ondas_armónicas
+import Calculadoras.Nuclear as Nuclear
 
 Intro.animacion_inicial()
 
