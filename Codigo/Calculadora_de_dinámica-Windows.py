@@ -22,16 +22,13 @@ os_name = os.name
 if os_name == 'nt':
     print("Windows OS detected")
     # URL del archivo de imagen en GitHub
-    url = 'https://raw.githubusercontent.com/Gatmin50/Calculadora-de-problemas-de-dinamica/main/Icono.ico'
-
+    url = 'https://github.com/Gatmin50/Calculadora-de-problemas-de-dinamica/blob/ef1aca1580ecba955e8b455db48530d75af771a4/Codigo/Imagenes/Plano_inclinado.ico'
     # Directorio donde deseas guardar el archivo descargado
     directorio = 'C:/calculadora_de_dinamica/'
-    ruta_local = os.path.join(directorio, 'Icono.ico')
-
+    ruta_local = os.path.join(directorio, 'Plano_inclinado.ico')
     # Verificar si el directorio existe y, si no, crearlo
     if not os.path.exists(directorio):
         os.makedirs(directorio)
-
     # Verificar si el archivo ya existe antes de descargarlo
     if not os.path.exists(ruta_local):
         try:
@@ -50,15 +47,10 @@ elif os_name == 'posix':
     print("Linux or macOS OS detected")
 else:
     print(f"Unknown OS: {os_name}")
-
 # Using platform module (optional)
 system = platform.system()
-release = platform.release()
-version = platform.version()
-
 print(f"System: {system}")
-print(f"Release: {release}")
-print(f"Version: {version}")
+
 
 #Intro.animacion_inicial()
 

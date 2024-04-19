@@ -3,12 +3,16 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import os
 
 def calculo_nuclear():
     ventana10 = ctk.CTk()
     ventana10.title("Calculadora ondas armonicas")
     ventana10.geometry('1400x650+400+200')
     ventana10.configure(fg_color="black")
+    directorio = 'C:/calculadora_de_dinamica/'
+    ruta_local = os.path.join(directorio, 'Plano_inclinado.ico')
+    ventana10.iconbitmap(ruta_local)
 
     # Constantes
     RADIO_ATOMO = 1e-15

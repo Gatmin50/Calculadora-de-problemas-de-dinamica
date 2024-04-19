@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 import math
 import turtle
+import os
 
 def programa_plano_inclinado():
 
@@ -11,6 +12,9 @@ def programa_plano_inclinado():
     ventana.title("Calculadora de Dinámica")
     ventana.geometry('1400x650+50+100')
     ventana.configure(fg_color='black')
+    directorio = 'C:/calculadora_de_dinamica/'
+    ruta_local = os.path.join(directorio, 'Plano_inclinado.ico')
+    ventana.iconbitmap(ruta_local)
 
     # Enunciado de la calculadora
     etiqueta_up = ctk.CTkLabel(ventana, text="Botones y cuadros de texto para la calculadora",text_color="white")

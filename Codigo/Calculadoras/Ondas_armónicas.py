@@ -7,6 +7,7 @@ from IPython.display import display
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import tkinter as tk
+import os
 
 def ondas_armónicas():
 
@@ -14,6 +15,9 @@ def ondas_armónicas():
     ventana9.title("Calculadora ondas armonicas")
     ventana9.geometry('1400x700+400+200')
     ventana9.configure(fg_color="black")
+    directorio = 'C:/calculadora_de_dinamica/'
+    ruta_local = os.path.join(directorio, 'Ondas_armonicas.ico')
+    ventana9.iconbitmap(ruta_local)
 
     # Etiquetas
     etiqueta_posición_x = ctk.CTkLabel(ventana9, text='Posicion en x (m)', text_color='white')

@@ -1,6 +1,7 @@
 from cgitb import text
 import tkinter as tk
 import customtkinter as ctk
+import os
 
 def electromagnetismo():
 
@@ -9,6 +10,9 @@ def electromagnetismo():
     ventana11.attributes("-fullscreen", True)
     ventana11.title("Ventana de pantalla completa con barra lateral")
     ventana11.configure(fg_color="black")
+    directorio = 'C:/calculadora_de_dinamica/'
+    ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
+    ventana11.iconbitmap(ruta_local)
 
     # Etiquetas
     etiqueta_masa_partícula = ctk.CTkLabel(ventana11, text='Masa de la partícula (?)', text_color='white')

@@ -26,7 +26,7 @@ if os_name == 'nt':
 
     # Directorio donde deseas guardar el archivo descargado
     directorio = 'C:/calculadora_de_dinamica/'
-    ruta_local = os.path.join(directorio, 'Icono.ico')
+    ruta_local = os.path.join(directorio, 'Plano_inclinado.ico')
 
     # Verificar si el directorio existe y, si no, crearlo
     if not os.path.exists(directorio):
