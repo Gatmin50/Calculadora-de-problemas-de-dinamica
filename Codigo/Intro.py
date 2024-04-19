@@ -2,8 +2,6 @@ import turtle as t
 import time
 import os
 
-
-
 def animacion_inicial():
     ventanag = t.Screen()
     ventanag.title("Intro")
