@@ -60,7 +60,7 @@ print(f"System: {system}")
 print(f"Release: {release}")
 print(f"Version: {version}")
 
-#Intro.animacion_inicial()
+Intro.animacion_inicial()
 
 # Crear la ventana del menu de la calculadora
 ventana1 = ctk.CTk()
