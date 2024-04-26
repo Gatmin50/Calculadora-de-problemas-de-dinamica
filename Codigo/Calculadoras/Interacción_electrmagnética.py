@@ -16,27 +16,32 @@ def electromagnetismo():
     screen_height = ventana11.winfo_screenheight()
     ventana11.geometry(f"{screen_width}x{screen_height}")
     ventana11.configure(fg_color="black")
-    directorio = 'C:/calculadora_de_dinamica/'
-    ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
-    ventana11.iconbitmap(ruta_local)
+    #directorio = 'C:/calculadora_de_dinamica/'
+    #ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
+    #ventana11.iconbitmap(ruta_local)
 
     # Etiquetas
-    etiqueta_masa_partícula = ctk.CTkLabel(ventana11, text='Masa de la partícula (?)', text_color='white')
-    etiqueta_masa_partícula.grid(row=0, column=0, padx=10, pady=10)
-    etiqueta_carga_partícula = ctk.CTkLabel(ventana11, text='Carga de la partícula (?)', text_color='white')
-    etiqueta_carga_partícula.grid(row=0, column=2, padx=10, pady=10)
     etiqueta_intensidad_campo_magnético = ctk.CTkLabel(ventana11, text='Intensidad del \n Campo magnético (T)', text_color='white')
-    etiqueta_intensidad_campo_magnético.grid(row=0, column=4, padx=10, pady=10)
+    etiqueta_intensidad_campo_magnético.grid(row=0, column=0, padx=10, pady=10)
+
+    etiqueta_masa_partícula = ctk.CTkLabel(ventana11, text='Masa de la partícula (Kg)', text_color='white')
+    etiqueta_masa_partícula.grid(row=0, column=4, padx=10, pady=10)
     etiqueta_posición_inicial_partícula = ctk.CTkLabel(ventana11, text='Posición inicial \n de la Partícula', text_color='white')
     etiqueta_posición_inicial_partícula.grid(row=1, column=0, padx=10, pady=10)
+
+    etiqueta_carga_partícula = ctk.CTkLabel(ventana11, text='Carga de la partícula (C)', text_color='white')
+    etiqueta_carga_partícula.grid(row=1, column=4, padx=10, pady=10)
     etiqueta_velocidad_inicial = ctk.CTkLabel(ventana11, text='Velocidad inicial (m/s)', text_color='white')
-    etiqueta_velocidad_inicial.grid(row=1, column=4, padx=10, pady=10)
+    etiqueta_velocidad_inicial.grid(row=2, column=0, padx=10, pady=10)
+
+    etiqueta_carga_Periodo = ctk.CTkLabel(ventana11, text='Periodo (s)', text_color='white')
+    etiqueta_carga_Periodo.grid(row=2, column=4, padx=10, pady=10)
     etiqueta_posición_campo_magnético = ctk.CTkLabel(ventana11, text='Posición del campo magnético', text_color='white')
-    etiqueta_posición_campo_magnético.grid(row=2, column=0, padx=10, pady=10)
+    etiqueta_posición_campo_magnético.grid(row=3, column=0, padx=10, pady=10)
 
         # Etiqueta de Resultado 
     etiqueta_resultado = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado.grid(row=6, column=4, columnspan=2, padx=10, pady=10)
+    etiqueta_resultado.grid(row=4, column=4, columnspan=2, padx=10, pady=10)
         # Etiquetas de almacenamiento de resultados
     etiqueta_resultado1 = ctk.CTkLabel(ventana11, text='', text_color='white')
     etiqueta_resultado1.grid(row=0, column=6, padx=10, pady=10)
@@ -58,12 +63,58 @@ def electromagnetismo():
     etiqueta_resultado9.grid(row=8, column=6, padx=10, pady=10)
 
     # Entadas de datos
-    masa_partícula = ctk.CTkEntry(ventana11)
-    masa_partícula.grid(row=0, column=1, padx=10, pady=10)
-    carga_partícula = ctk.CTkEntry(ventana11)
-    carga_partícula.grid(row=0, column=3, padx=10, pady=10)
-    intensidad_CM = ctk.CTkEntry(ventana11)
-    intensidad_CM.grid(row=0, column=5, padx=10, pady=10)
+        #Intensidad del campo magnético
+    intensidad_CM_X = ctk.CTkEntry(ventana11, placeholder_text='X')
+    intensidad_CM_X.grid(row=0, column=1, padx=10, pady=10)
+    intensidad_CM_Y = ctk.CTkEntry(ventana11, placeholder_text='Y')
+    intensidad_CM_Y.grid(row=0, column=2, padx=10, pady=10)
+    intensidad_CM_Z = ctk.CTkEntry(ventana11, placeholder_text='Z')
+    intensidad_CM_Z.grid(row=0, column=3, padx=10, pady=10)
+        # Masa de la partícula
+    masa_partícula = 0
+    def seleccionar_opcion(event):
+        opcion_seleccionada = combobox.get()
+        etiqueta_resultado.configure(text="Opción: " + opcion_seleccionada)
+        if opcion_seleccionada == "Protón":
+            masa_partícula = 1.6726 * 10^(-27)
+        elif opcion_seleccionada == "Electrón":
+            masa_partícula = 9.11 * 10^(-31)
+        elif opcion_seleccionada == "Positrón":
+            masa_partícula = 9.11 * 10^(-31)
+        elif opcion_seleccionada == "Pion⁻":
+            masa_partícula = 2.2809 * 10^(-28)
+        elif opcion_seleccionada == "Pion⁺":
+            masa_partícula = 2.2809 * 10^(-28)
+        elif opcion_seleccionada == "Muón":
+            masa_partícula = 1.867 * 10^(-28)
+        elif opcion_seleccionada == "Tauón":
+            masa_partícula = 3.167 * 10^(-27)
+        elif opcion_seleccionada == "Quark up":
+            masa_partícula = 2.3 * 10^(-24)
+        elif opcion_seleccionada == "Quark down":
+            masa_partícula = 4.8 * 10^(-24)
+        elif opcion_seleccionada == "Quark charm":
+            masa_partícula = 1.3 * 10^(-23)
+        elif opcion_seleccionada == "Quark strange":
+            masa_partícula = 1.5 * 10^(-23)
+        elif opcion_seleccionada == "Quark top":
+            masa_partícula = 173 * 10^(-25)
+        elif opcion_seleccionada == "Quark bottom":
+            masa_partícula = 4.2 * 10^(-24)
+        elif opcion_seleccionada == "Bosón W":
+            masa_partícula = 8.69 * 10^(-25)
+        elif opcion_seleccionada == "Bosón Z":
+            masa_partícula = 9.47 * 10^(-25)
+        elif opcion_seleccionada == "Bosón de Higgs / Partícula de dios":
+            masa_partícula = 1.25 * 10^(-22)
+
+    combobox = ctk.CTkComboBox(ventana11, values=["", 'Protón', 'Electrón', 'Positrón', 'Pion⁻',
+                                                'Pion⁺', 'Muón', 'Tauón', 'Quark up', 
+                                                'Quark down', 'Quark charm', 'Quark strange', 
+                                                'Quark top', 'Quark bottom', 'Bosón W',
+                                                'Bosón Z', 'Bosón de Higgs / Partícula de dios'], command=seleccionar_opcion)
+    combobox.grid(row=0, column=5, padx=10, pady=10)
+
         # Posición Inicial Particula
     posición_P_X = ctk.CTkEntry(ventana11, placeholder_text='X')
     posición_P_X.grid(row=1, column=1, padx=10, pady=10)
@@ -71,156 +122,232 @@ def electromagnetismo():
     posición_P_Y.grid(row=1, column=2, padx=10, pady=10)
     posición_P_Z = ctk.CTkEntry(ventana11, placeholder_text='Z')
     posición_P_Z.grid(row=1, column=3, padx=10, pady=10)
+        # Carga de la particula
+    carga_partícula = ctk.CTkEntry(ventana11)
+    carga_partícula.grid(row=1, column=5, padx=10, pady=10)
         # Entadas de datos
-    velocidad_IP = ctk.CTkEntry(ventana11)
-    velocidad_IP.grid(row=1, column=5, padx=10, pady=10)
+    velocidad_IX = ctk.CTkEntry(ventana11, placeholder_text='X')
+    velocidad_IX.grid(row=2, column=1, padx=10, pady=10)
+    velocidad_IY = ctk.CTkEntry(ventana11, placeholder_text='Y')
+    velocidad_IY.grid(row=2, column=2, padx=10, pady=10)
+    velocidad_IZ = ctk.CTkEntry(ventana11, placeholder_text='Z')
+    velocidad_IZ.grid(row=2, column=3, padx=10, pady=10)
         # Posición Campo Magnético
     posición_CM_X = ctk.CTkEntry(ventana11, placeholder_text='X')
-    posición_CM_X.grid(row=2, column=1, padx=10, pady=10)
+    posición_CM_X.grid(row=3, column=1, padx=10, pady=10)
     posición_CM_Y = ctk.CTkEntry(ventana11, placeholder_text='Y')
-    posición_CM_Y.grid(row=2, column=2, padx=10, pady=10)
+    posición_CM_Y.grid(row=3, column=2, padx=10, pady=10)
     posición_CM_Z = ctk.CTkEntry(ventana11, placeholder_text='Z')
-    posición_CM_Z.grid(row=2, column=3, padx=10, pady=10)
+    posición_CM_Z.grid(row=3, column=3, padx=10, pady=10)
+        # Periodo de la particula
+    periodo = ctk.CTkEntry(ventana11)
+    periodo.grid(row=2, column=5, padx=10, pady=10)
 
-    # Definir parámetros
-    masa = masa_partícula.get()
-    carga = carga_partícula.get()
-    posicion_campo_magnetico = np.array([posición_CM_X.get(), posición_CM_Y.get(), posición_CM_Z.get()])
-    campo_magnetico = np.array([0.0, intensidad_CM.get(), 0.0])
-    posicion_inicial = np.array([posición_P_X.get(), posición_P_Y.get(), posición_P_Z.get()])
-    velocidad_inicial = np.array([50.0, 80.0, 0.0])
-    tiempo_final = 10.0
-    paso_temporal = 0.001
-
-    # Definir funciones
-    def distancia(posicion1, posicion2):
-        return np.linalg.norm(posicion1 - posicion2)
-
-    def fuerza(posicion):
-        r_cm = posicion - posicion_campo_magnetico
-        fuerza_magnetica = np.cross(velocidad_inicial, campo_magnetico) * carga
-        # Calcular la fuerza magnÃ©tica en funciÃ³n de la distancia
-        fuerza_magnetica = fuerza_magnetica / np.linalg.norm(r_cm)**2
-        return fuerza_magnetica
-
-    def aceleracion(posicion):
-        r_cm = posicion - posicion_campo_magnetico
-        a = fuerza(posicion) / masa
-        return a
-
-    def gráfico():
-        
-        def simular_movimiento():
-            posiciones = []
-            velocidades = []
-
-            posicion = posicion_inicial
-            velocidad = velocidad_inicial
-            tiempo = 0.0
-
-            while tiempo < tiempo_final:
-                a = aceleracion(posicion)
-                v_nueva = velocidad + a * paso_temporal
-                p_nueva = posicion + v_nueva * paso_temporal
-
-                # Evitar divisiÃ³n por cero en el cÃ¡lculo de la fuerza magnÃ©tica
-                if np.linalg.norm(posicion - posicion_campo_magnetico) > 0:
-                    posiciones.ventana11end(p_nueva)
-                    velocidades.ventana11end(v_nueva)
-                else:
-                    print("Error: La partÃ­cula estÃ¡ demasiado cerca del campo magnÃ©tico.")
-                    break
-
-            tiempo += paso_temporal
-
-            posicion = p_nueva
-            velocidad = v_nueva
-
-            return np.array(posiciones), np.array(velocidades)
-
-        # Simular el movimiento de la partÃ­cula
+    def calcular_fuerza():
         try:
-            posiciones, velocidades = simular_movimiento()
-        except Exception as e:
-            print(f"Error durante la simulaciÃ³n: {e}")
-            posiciones = []
-            velocidades = []
+            # Extracción de valores de las entradas
+            carga_part = np.abs(float(carga_partícula.get()))
+            velocidad_inicial = np.array([
+                float(velocidad_IX.get()),
+                float(velocidad_IY.get()),
+                float(velocidad_IZ.get())
+            ])
+            campo_magnetico = np.array([
+                float(intensidad_CM_X.get()),
+                float(intensidad_CM_Y.get()),
+                float(intensidad_CM_Z.get())
+            ])
 
-        # Definir variables para colores
-        color_particula = "green" if carga > 0 else "purple"
-        color_campo_magnetico = "red" if campo_magnetico[0] > 0 else "blue"
+            # Cálculo de la fuerza de Lorentz
+            fuerza = np.cross(carga_part * velocidad_inicial, campo_magnetico)
+            magnitud_fuerza = np.linalg.norm(fuerza)
+            resultado = round(magnitud_fuerza, 3)
+            direccion_fuerza = np.arctan2(fuerza[1], fuerza[0]) * 180 / np.pi
+            resultado1 = round(direccion_fuerza, 3)
 
-        # Crear lienzo para la visualizaciÃ³n 3D
-        lienzo = ctk.CTkFrame(ventana11, width=400, height=300)
-        lienzo.grid(row=5, column=0, rowspan=2)
+            # Visualización de resultados
+            etiqueta_resultado.configure(text=f"Magnitud de la fuerza: {resultado} N")
+            etiqueta_resultado1.configure(text=f"Magnitud de la fuerza: {resultado} N")
+            etiqueta_resultado2.configure(text=f"Dirección de la fuerza: {resultado1}°")
 
-        # Crear marco para controles
-        marco_controles = ctk.CTkFrame(ventana11)
-        marco_controles.grid(row=5, column=3, padx=10, pady=10)
+        except ValueError:
+            etiqueta_resultado.configure(text="Error: Valores no válidos.")
+    
+    def calcular_radio():
+        try:
+            # Extracción de valores de las entradas
+            masa_part = masa_partícula
+            carga_part = np.abs(float(carga_partícula.get()))
+            velocidad_inicial = np.array([
+                float(velocidad_IX.get()),
+                float(velocidad_IY.get()),
+                float(velocidad_IZ.get())
+            ])
+            campo_magnetico = np.array([
+                float(intensidad_CM_X.get()),
+                float(intensidad_CM_Y.get()),
+                float(intensidad_CM_Z.get())
+            ])
 
-        # FunciÃ³n para iniciar la simulaciÃ³n
-        def iniciar_simulacion():
-            global simulando, tiempo_actualizado
-            simulando = True
-            boton_inicio.configure(state="disabled")
-            tiempo_actualizado = 0.0  # Tiempo inicial para la animaciÃ³n
-            actualizar_visualizacion_animada()
+            v = np.linalg.norm(velocidad_inicial)
+            B = np.linalg.norm(campo_magnetico)
+            r = (masa_part*v)/(carga_part*B)
+            resultado = round(r, 3)
 
-        iniciar_simulacion()
+            # Visualización de resultados
+            etiqueta_resultado.configure(text=f"Magnitud de la fuerza: {resultado} m")
+            etiqueta_resultado3.configure(text=f"Magnitud de la fuerza: {resultado} m")
 
-        # Función para actualizar la visualizaciÃ³n con animaciÃ³n
-        def actualizar_visualizacion_animada():
-            global simulando, fig, ax, line_particle, line_field, tiempo_actualizado
+        except ValueError:
+            etiqueta_resultado.configure(text="Error: Valores no válidos.")
+    
+    def calcular_velocidad_angular():
+        try:
+            # Extracción de valores de las entradas
+            masa_part = masa_partícula
+            carga_part = np.abs(float(carga_partícula.get()))
+            campo_magnetico = np.array([
+                float(intensidad_CM_X.get()),
+                float(intensidad_CM_Y.get()),
+                float(intensidad_CM_Z.get())
+            ])
 
-            if not simulando or not posiciones.any() or not velocidades.any():
-                return
+            B = np.linalg.norm(campo_magnetico)
+            w = (carga_part/masa_part)*B
+            resultado = round(w, 3)
 
-            # Actualizar tiempo simulado
-            tiempo_actualizado += paso_temporal
+            # Visualización de resultados
+            etiqueta_resultado.configure(text=f"Magnitud de la velocidad angular: {resultado} m/s")
+            etiqueta_resultado3.configure(text=f"Magnitud de la velocidad angular: {resultado} m/s")
 
-            # Calcular la posiciÃ³n de la partÃ­cula en el tiempo actual
-            if simulando:
-                a = aceleracion(posiciones[-1])
-                v_nueva = velocidades[-1] + a * paso_temporal
-                p_nueva = posiciones[-1] + v_nueva * paso_temporal
-                posiciones = np.ventana11end(posiciones, [p_nueva], axis=0)
-                velocidades = np.ventana11end(velocidades, [v_nueva], axis=0)
+        except ValueError:
+            etiqueta_resultado.configure(text="Error: Valores no válidos.")
+    
+    def calcular_Periodo():
+        try:
+            # Extracción de valores de las entradas
+            masa_part = masa_partícula
+            carga_part = np.abs(float(carga_partícula.get()))
+            pi = np.pi
+            campo_magnetico = np.array([
+                float(intensidad_CM_X.get()),
+                float(intensidad_CM_Y.get()),
+                float(intensidad_CM_Z.get())
+            ])
 
-            # Actualizar datos en el grÃ¡fico
-            line_particle.set_data_3d(posiciones[:, 0], posiciones[:, 1], posiciones[:, 2])
-            line_field.set_data_3d(puntos_campo[:, 0] + posicion_campo_magnetico[0], puntos_campo[:, 1] + posicion_campo_magnetico[1], puntos_campo[:, 2] + posicion_campo_magnetico[2],)
+            B = np.linalg.norm(campo_magnetico)
+            T = (2*pi*masa_part)/(carga_part*B)
+            resultado = round(T, 3)
 
-            # Simular siguiente paso si la simulaciÃ³n estÃ¡ activa
-            if simulando:
-                ventana11.after(int(paso_temporal * 1000), actualizar_visualizacion_animada)
+            # Visualización de resultados
+            etiqueta_resultado.configure(text=f"Magnitud del periodo es: {resultado} s")
+            etiqueta_resultado3.configure(text=f"Magnitud del periodo es: {resultado} s")
 
-        # Crear figura y ejes 3D
-        fig = plt.figure(figsize=(8, 6))
-        ax = fig.add_subplot(111, projection='3d')
+        except ValueError:
+            etiqueta_resultado.configure(text="Error: Valores no válidos.")
 
-        # Crear lÃ­neas para la trayectoria de la partÃ­cula y el campo magnÃ©tico
-        line_particle, = ax.plot(
-            [], [], [], marker="o", markersize=5, markerfacecolor=color_particula, linestyle="-"
-        )
-        line_field, = ax.plot(
-            [], [], [], marker="", linestyle="-", linewidth=2, color=color_campo_magnetico
-        )
+    def calcular_frecuencia():
+        try:
+            # Extracción de valores de las entradas
+            masa_part = masa_partícula
+            carga_part = np.abs(float(carga_partícula.get()))
+            T = float(periodo.get())
 
-        # Establecer las etiquetas y el tÃ­tulo
-        ax.set_xlabel('X')
-        ax.set_ylabel('Y')
-        ax.set_zlabel('Z')
-        ax.set_title('SimulaciÃ³n de interacciÃ³n magnÃ©tica')
-        ax.view_init(elev=15, azim=45)
-        # Agregar leyenda
-        ax.legend()
+            pi = np.pi
+            campo_magnetico = np.array([
+                float(intensidad_CM_X.get()),
+                float(intensidad_CM_Y.get()),
+                float(intensidad_CM_Z.get())
+            ])
+            if periodo.get() != ' ':
+                B = np.linalg.norm(campo_magnetico)
+                f = (carga_part*B)/(2*pi*masa_part)
+                resultado = round(f, 3)
+            else:
+                f = 1/T
+                resultado = round(f, 3)
 
-        # Mostrar el grÃ¡fico en el lienzo
-        canvas = FigureCanvasTkAgg(fig, master=ventana11)  
+            # Visualización de resultados
+            etiqueta_resultado.configure(text=f"Magnitud de la velocidad angular: {resultado} m/s")
+            etiqueta_resultado3.configure(text=f"Magnitud de la velocidad angular: {resultado} m/s")
+
+        except ValueError:
+            etiqueta_resultado.configure(text="Error: Valores no válidos.")
+
+    def grafico_pajaro():
+        # Extracción de valores de las entradas
+        #carga_part = np.abs(float(carga_partícula.get()))
+        #velocidad_inicial = np.array([
+        #    float(velocidad_IX.get()),
+        #    float(velocidad_IY.get()),
+        #])
+        #campo_magnetico = np.array([
+        #    float(intensidad_CM_X.get()),
+        #    float(intensidad_CM_Y.get()),
+        #])
+
+        centro1 = [2, -2]  # Coordenadas del centro
+        radio1 = 1  # Valor del radio
+        centro2 = [2, -7]
+        radio2 = 1
+        centro3 = [7, -7]
+        radio3 = 1
+        centro4 = [7, -2]
+        radio4 = 1
+
+        # Create the figure and axes
+        fig, ax = plt.subplots(figsize=(4, 3))
+
+        plt.title('Vista de pajaro')
+
+        plt.arrow(0, 0, 5, 0, head_width=0.2, head_length=0.5, color='blue')
+        plt.arrow(0, 0, 0, -5, head_width=0.2, head_length=0.5, color='red')
+
+        circulo1 = plt.Circle(xy=centro1, radius=radio1, color='black')
+        ax.add_patch(circulo1)
+        plt.plot(2, -2, marker='x', color='white', linewidth=0.5, alpha=0.7)
+
+        circulo2 = plt.Circle(xy=centro2, radius=radio2, color='black')
+        ax.add_patch(circulo2)
+        plt.plot(2, -7, marker='x', color='white', linewidth=0.5, alpha=0.7)
+
+        circulo3 = plt.Circle(xy=centro3, radius=radio3, color='black')
+        ax.add_patch(circulo3)
+        plt.plot(7, -7, marker='x', color='white', linewidth=0.5, alpha=0.7)
+
+        circulo4 = plt.Circle(xy=centro4, radius=radio4, color='black')
+        ax.add_patch(circulo4)
+        plt.plot(7, -2, marker='x', color='white', linewidth=0.5, alpha=0.7)
+
+        # Create the FigureCanvasTkAgg widget
+        canvas = FigureCanvasTkAgg(fig, master=ventana11)
         canvas.draw()
-        canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
 
-    boton_inicio = ctk.CTkButton(ventana11, text="Iniciar", command=gráfico)
-    boton_inicio.grid(row=3, column=0)
+        # Place the canvas in the window
+        canvas.get_tk_widget().grid(column=0, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
+
+        # Create a label for the plot
+        label_plot = ctk.CTkLabel(ventana11, text="Representación del Campo Magnético", text_font=("Helvetica", 12, "bold"))
+        label_plot.grid(column=2, row=6, padx=10, pady=10)
+
+    # Botones de calculo
+    boton_calcular_fuerza = ctk.CTkButton(ventana11, text="Calcular F", command=calcular_fuerza)
+    boton_calcular_fuerza.grid(row=4, column=0)
+    boton_calcular_radio = ctk.CTkButton(ventana11, text="Calcular r", command=calcular_radio)
+    boton_calcular_radio.grid(row=4, column=1)
+    boton_calcular_velocidad_angular = ctk.CTkButton(ventana11, text="Calcular w", command=calcular_velocidad_angular)
+    boton_calcular_velocidad_angular.grid(row=4, column=2)
+    boton_calcular_periodo = ctk.CTkButton(ventana11, text="Calcular T", command=calcular_Periodo)
+    boton_calcular_periodo.grid(row=4, column=3)
+    boton_calcular_frecuencia = ctk.CTkButton(ventana11, text="Calcular f", command=calcular_frecuencia)
+    boton_calcular_frecuencia.grid(row=4, column=3)
+    Crear_gráfico = ctk.CTkButton(ventana11, text="Graficar", command=grafico_pajaro)
+    Crear_gráfico.grid(row=5, column=1)
+
+    def cerrar_ventana():
+        ventana11.destroy()
+
+    btn_cerrar = ctk.CTkButton(ventana11, text="Cerrar ventana", fg_color='red', border_color='grey', font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
+    btn_cerrar.grid(column=2, row=5, padx=10, pady=10, sticky='s')
 
     ventana11.mainloop()
