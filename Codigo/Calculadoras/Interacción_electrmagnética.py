@@ -16,9 +16,9 @@ def electromagnetismo():
     screen_height = ventana11.winfo_screenheight()
     ventana11.geometry(f"{screen_width}x{screen_height}")
     ventana11.configure(fg_color="black")
-    #directorio = 'C:/calculadora_de_dinamica/'
-    #ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
-    #ventana11.iconbitmap(ruta_local)
+    directorio = 'C:/calculadora_de_dinamica/'
+    ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
+    ventana11.iconbitmap(ruta_local)
 
     # Etiquetas
     etiqueta_intensidad_campo_magnético = ctk.CTkLabel(ventana11, text='Intensidad del \n Campo magnético (T)', text_color='white')
@@ -286,6 +286,9 @@ def electromagnetismo():
         #    float(intensidad_CM_Y.get()),
         #])
 
+        #fuerza = np.cross(carga_part * velocidad_inicial, campo_magnetico)
+        #magnitud_fuerza = np.linalg.norm(fuerza)
+
         centro1 = [2, -2]  # Coordenadas del centro
         radio1 = 1  # Valor del radio
         centro2 = [2, -7]
@@ -299,25 +302,29 @@ def electromagnetismo():
         fig, ax = plt.subplots(figsize=(4, 3))
 
         plt.title('Vista de pajaro')
-
+        plt.axis('off')
+        
         plt.arrow(0, 0, 5, 0, head_width=0.2, head_length=0.5, color='blue')
         plt.arrow(0, 0, 0, -5, head_width=0.2, head_length=0.5, color='red')
 
-        circulo1 = plt.Circle(xy=centro1, radius=radio1, color='black')
+        # ax.quiver(0, 0, velocidad_inicial[0], velocidad_inicial[1], scale=magnitud_fuerza/3, headlength=5, headwidth=3, color='green', label='Velocidad inicial')
+        # ax.quiver(0, 0, fuerza[0], fuerza[1], scale=magnitud_fuerza, headlength=7, headwidth=3, color='orange', label='Fuerza electromagnética')
+
+        circulo1 = plt.Circle(xy=centro1, radius=radio1, color='black', fill='none', linewidth=0.5)
         ax.add_patch(circulo1)
-        plt.plot(2, -2, marker='x', color='white', linewidth=0.5, alpha=0.7)
+        plt.plot(2, -2, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
 
-        circulo2 = plt.Circle(xy=centro2, radius=radio2, color='black')
+        circulo2 = plt.Circle(xy=centro2, radius=radio2, color='black', fill='none', linewidth=0.5)
         ax.add_patch(circulo2)
-        plt.plot(2, -7, marker='x', color='white', linewidth=0.5, alpha=0.7)
+        plt.plot(2, -7, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
 
-        circulo3 = plt.Circle(xy=centro3, radius=radio3, color='black')
+        circulo3 = plt.Circle(xy=centro3, radius=radio3, color='black', fill='none', linewidth=0.5)
         ax.add_patch(circulo3)
-        plt.plot(7, -7, marker='x', color='white', linewidth=0.5, alpha=0.7)
+        plt.plot(7, -7, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
 
-        circulo4 = plt.Circle(xy=centro4, radius=radio4, color='black')
+        circulo4 = plt.Circle(xy=centro4, radius=radio4, color='black', fill='none', linewidth=0.5)
         ax.add_patch(circulo4)
-        plt.plot(7, -2, marker='x', color='white', linewidth=0.5, alpha=0.7)
+        plt.plot(7, -2, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
 
         # Create the FigureCanvasTkAgg widget
         canvas = FigureCanvasTkAgg(fig, master=ventana11)
@@ -327,7 +334,62 @@ def electromagnetismo():
         canvas.get_tk_widget().grid(column=0, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
 
         # Create a label for the plot
-        label_plot = ctk.CTkLabel(ventana11, text="Representación del Campo Magnético", text_font=("Helvetica", 12, "bold"))
+        label_plot = ctk.CTkLabel(ventana11, text="Representación del Campo Magnético")
+        label_plot.grid(column=2, row=6, padx=10, pady=10)
+
+    def grafico_3D():
+        # Extracción de valores de las entradas
+        carga_part = np.abs(float(carga_partícula.get()))
+        velocidad_inicial = np.array([
+            float(velocidad_IX.get()),
+            float(velocidad_IY.get()),
+            float(velocidad_IZ.get()),
+        ])
+        campo_magnetico = np.array([
+            float(intensidad_CM_X.get()),
+            float(intensidad_CM_Y.get()),
+            float(intensidad_CM_Z.get()),
+        ])
+
+        fuerza = np.cross(carga_part * velocidad_inicial, campo_magnetico)
+        modulo_fuerza = np.linalg.norm(fuerza)
+
+        # Create the figure and axes
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')  # Crea un sub-eje 3D
+
+        plt.title('Vista 3D')
+        plt.axis('off')
+
+        longitud_flecha = 3  # Ajusta este valor según sea necesario
+
+        # Calcula las coordenadas del punto final basadas en la longitud y dirección de la flecha
+        vi_x_final = velocidad_inicial[0] + longitud_flecha * velocidad_inicial[0] / np.linalg.norm(velocidad_inicial)
+        vi_y_final = velocidad_inicial[1] + longitud_flecha * velocidad_inicial[1] / np.linalg.norm(velocidad_inicial)
+        vi_z_final = velocidad_inicial[2] + longitud_flecha * velocidad_inicial[2] / np.linalg.norm(velocidad_inicial)
+
+        cm_x_final = campo_magnetico[0] + longitud_flecha * campo_magnetico[0] / np.linalg.norm(campo_magnetico)
+        cm_y_final = campo_magnetico[1] + longitud_flecha * campo_magnetico[1] / np.linalg.norm(campo_magnetico)
+        cm_z_final = campo_magnetico[2] + longitud_flecha * campo_magnetico[2] / np.linalg.norm(campo_magnetico)
+
+        fuerza_final_x = fuerza[0] + longitud_flecha * modulo_fuerza * fuerza[0] / np.linalg.norm(fuerza)
+        fuerza_final_y = fuerza[1] + longitud_flecha * modulo_fuerza * fuerza[1] / np.linalg.norm(fuerza)
+        fuerza_final_z = fuerza[2] + longitud_flecha * modulo_fuerza * fuerza[2] / np.linalg.norm(fuerza)
+
+        # Crea flechas con los puntos finales calculados
+        ax.quiver(0, 0, 0, vi_x_final, vi_y_final, vi_z_final, head_width=3, color='green', label='Velocidad inicial')
+        ax.quiver(0, 0, 0, cm_x_final, cm_y_final, cm_z_final, head_width=3, color='red', label='Campo magnético')
+        ax.quiver(0, 0, 0, fuerza_final_x, fuerza_final_y, fuerza_final_z, head_width=5, color='blue', label='Fuerza electromagnética')
+        
+        # Create the FigureCanvasTkAgg widget
+        canvas = FigureCanvasTkAgg(fig, master=ventana11)
+        canvas.draw()
+
+        # Place the canvas in the window
+        canvas.get_tk_widget().grid(column=3, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
+
+        # Create a label for the plot
+        label_plot = ctk.CTkLabel(ventana11, text="Representación del Campo Magnético")
         label_plot.grid(column=2, row=6, padx=10, pady=10)
 
     # Botones de calculo
@@ -341,7 +403,7 @@ def electromagnetismo():
     boton_calcular_periodo.grid(row=4, column=3)
     boton_calcular_frecuencia = ctk.CTkButton(ventana11, text="Calcular f", command=calcular_frecuencia)
     boton_calcular_frecuencia.grid(row=4, column=3)
-    Crear_gráfico = ctk.CTkButton(ventana11, text="Graficar", command=grafico_pajaro)
+    Crear_gráfico = ctk.CTkButton(ventana11, text="Graficar", command=lambda: (grafico_pajaro(), grafico_3D()))
     Crear_gráfico.grid(row=5, column=1)
 
     def cerrar_ventana():
