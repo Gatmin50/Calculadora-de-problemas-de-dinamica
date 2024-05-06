@@ -39,6 +39,9 @@ def electromagnetismo():
     etiqueta_posición_campo_magnético = ctk.CTkLabel(ventana11, text='Posición del campo magnético', text_color='white')
     etiqueta_posición_campo_magnético.grid(row=3, column=0, padx=10, pady=10)
 
+    etiqueta_carga_Periodo = ctk.CTkLabel(ventana11, text='Tipo de gráfico', text_color='white')
+    etiqueta_carga_Periodo.grid(row=3, column=4, padx=10, pady=10)
+
         # Etiqueta de Resultado 
     etiqueta_resultado = ctk.CTkLabel(ventana11, text='', text_color='white')
     etiqueta_resultado.grid(row=4, column=4, columnspan=2, padx=10, pady=10)
@@ -132,6 +135,9 @@ def electromagnetismo():
     velocidad_IY.grid(row=2, column=2, padx=10, pady=10)
     velocidad_IZ = ctk.CTkEntry(ventana11, placeholder_text='Z')
     velocidad_IZ.grid(row=2, column=3, padx=10, pady=10)
+        # Periodo de la particula
+    periodo = ctk.CTkEntry(ventana11)
+    periodo.grid(row=2, column=5, padx=10, pady=10)
         # Posición Campo Magnético
     posición_CM_X = ctk.CTkEntry(ventana11, placeholder_text='X')
     posición_CM_X.grid(row=3, column=1, padx=10, pady=10)
@@ -139,9 +145,18 @@ def electromagnetismo():
     posición_CM_Y.grid(row=3, column=2, padx=10, pady=10)
     posición_CM_Z = ctk.CTkEntry(ventana11, placeholder_text='Z')
     posición_CM_Z.grid(row=3, column=3, padx=10, pady=10)
-        # Periodo de la particula
-    periodo = ctk.CTkEntry(ventana11)
-    periodo.grid(row=2, column=5, padx=10, pady=10)
+        #Tipo de diagrama
+    def seleccionar_opcion():
+        opcion_seleccionada = combobox.get()
+        etiqueta_resultado.configure(text="Opción: " + opcion_seleccionada)
+        if opcion_seleccionada == "Diagrama en vista de pájaro":
+            grafico_pajaro()
+        elif opcion_seleccionada == "Diagrama 3D":
+            grafico_3D()
+    
+    combobox = ctk.CTkComboBox(ventana11, values=["", 'Diagrama en vista de pájaro', 'Diagrama 3D'])
+    combobox.grid(row=3, column=5, padx=10, pady=10)
+    
 
     def calcular_fuerza():
         try:
@@ -276,121 +291,169 @@ def electromagnetismo():
 
     def grafico_pajaro():
         # Extracción de valores de las entradas
-        #carga_part = np.abs(float(carga_partícula.get()))
-        #velocidad_inicial = np.array([
-        #    float(velocidad_IX.get()),
-        #    float(velocidad_IY.get()),
-        #])
-        #campo_magnetico = np.array([
-        #    float(intensidad_CM_X.get()),
-        #    float(intensidad_CM_Y.get()),
-        #])
+        posición_partícula = np.array([2, 5, 0])  # Initial position (x, y, z)
+        posicion_del_campo = np.array([2, 2, 0])
+        carga_part = float(carga_partícula.get())  # Charge of the particle
 
-        #fuerza = np.cross(carga_part * velocidad_inicial, campo_magnetico)
-        #magnitud_fuerza = np.linalg.norm(fuerza)
-
-        centro1 = [2, -2]  # Coordenadas del centro
-        radio1 = 1  # Valor del radio
-        centro2 = [2, -7]
-        radio2 = 1
-        centro3 = [7, -7]
-        radio3 = 1
-        centro4 = [7, -2]
-        radio4 = 1
-
-        # Create the figure and axes
-        fig, ax = plt.subplots(figsize=(4, 3))
-
-        plt.title('Vista de pajaro')
-        plt.axis('off')
-        
-        plt.arrow(0, 0, 5, 0, head_width=0.2, head_length=0.5, color='blue')
-        plt.arrow(0, 0, 0, -5, head_width=0.2, head_length=0.5, color='red')
-
-        # ax.quiver(0, 0, velocidad_inicial[0], velocidad_inicial[1], scale=magnitud_fuerza/3, headlength=5, headwidth=3, color='green', label='Velocidad inicial')
-        # ax.quiver(0, 0, fuerza[0], fuerza[1], scale=magnitud_fuerza, headlength=7, headwidth=3, color='orange', label='Fuerza electromagnética')
-
-        circulo1 = plt.Circle(xy=centro1, radius=radio1, color='black', fill='none', linewidth=0.5)
-        ax.add_patch(circulo1)
-        plt.plot(2, -2, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
-
-        circulo2 = plt.Circle(xy=centro2, radius=radio2, color='black', fill='none', linewidth=0.5)
-        ax.add_patch(circulo2)
-        plt.plot(2, -7, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
-
-        circulo3 = plt.Circle(xy=centro3, radius=radio3, color='black', fill='none', linewidth=0.5)
-        ax.add_patch(circulo3)
-        plt.plot(7, -7, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
-
-        circulo4 = plt.Circle(xy=centro4, radius=radio4, color='black', fill='none', linewidth=0.5)
-        ax.add_patch(circulo4)
-        plt.plot(7, -2, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
-
-        # Create the FigureCanvasTkAgg widget
-        canvas = FigureCanvasTkAgg(fig, master=ventana11)
-        canvas.draw()
-
-        # Place the canvas in the window
-        canvas.get_tk_widget().grid(column=0, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
-
-        # Create a label for the plot
-        label_plot = ctk.CTkLabel(ventana11, text="Representación del Campo Magnético")
-        label_plot.grid(column=2, row=6, padx=10, pady=10)
-
-    def grafico_3D():
-        # Extracción de valores de las entradas
-        carga_part = np.abs(float(carga_partícula.get()))
-        velocidad_inicial = np.array([
+        # Velocity vector (relative to particle position)
+        vector_velocidad = np.array([
             float(velocidad_IX.get()),
             float(velocidad_IY.get()),
             float(velocidad_IZ.get()),
         ])
-        campo_magnetico = np.array([
+
+        # Magnetic field (assumed constant)
+        intensidad_campoM = np.array([
             float(intensidad_CM_X.get()),
             float(intensidad_CM_Y.get()),
             float(intensidad_CM_Z.get()),
         ])
 
-        fuerza = np.cross(carga_part * velocidad_inicial, campo_magnetico)
-        modulo_fuerza = np.linalg.norm(fuerza)
+        # Calculate force using Lorentz equation
+        vector_fuerza2 = carga_part * np.cross(vector_velocidad, intensidad_campoM)
 
-        # Create the figure and axes
+        # Project force vector onto 2D plane for visualization
+        vector_fuerza = vector_fuerza2[:2]  # Extract x and y components
+
+        # Scaling factor for arrows
+        escala_flecha = 0.05
+
+        a = intensidad_campoM[2]
+
+        # Plot limits (adjust as needed)
+        fig, ax = plt.subplots()
+
+        # Set labels and title
+        ax.set_title('Vista de pájaro')
+        # Plot particle position
+        ax.plot(posición_partícula[0], posición_partícula[1], marker='o', color='green', markersize=10, label='Velocidad')
+        ax.plot(posición_partícula[0], posición_partícula[1], marker='o', color='red', markersize=10, label='Fuerza Mg')
+        ax.plot(posición_partícula[0], posición_partícula[1], marker='o', color='blue', markersize=10, label='Partícula')
+
+        # Establecer ancho de la cabeza de la flecha manualmente
+        head_width = 7  # Ajustar el valor como desees
+
+        posición_partícula_xy = posición_partícula[:2]  # Extract x and y components
+        force_tail = posición_partícula_xy
+        force_head = force_tail + vector_fuerza
+        start_coords = force_tail[0], force_tail[1]
+        end_coords = force_head[0], force_head[1]
+        ax.annotate("Fuerza", xy=end_coords, xytext=start_coords, size=escala_flecha, 
+            arrowprops=dict(facecolor='red', shrink=0.05, linewidth=0.5, headwidth=head_width))
+
+        # Plot velocity vector (modificado)
+        velocity_tail = posición_partícula
+        velocity_head = velocity_tail + vector_velocidad
+        start_coords = velocity_tail[0], velocity_tail[1]
+        end_coords = velocity_head[0], velocity_head[1]
+        ax.annotate("Velocidad", xy=end_coords, xytext=start_coords, size=escala_flecha, 
+            arrowprops=dict(facecolor='green', shrink=0.05, linewidth=0.5, headwidth=head_width))
+        # Define magnetic field marker
+        magnetic_field_marker = 'o' if a >= 1 else 'x'
+
+        ax.plot(posicion_del_campo[0], posicion_del_campo[1],  marker=magnetic_field_marker, color='purple', markersize=10, label='Campo magnético')
+        ax.plot(posicion_del_campo[0]*4, posicion_del_campo[1],  marker=magnetic_field_marker, color='purple', markersize=10)
+        ax.plot(posicion_del_campo[0], posicion_del_campo[1]*4,  marker=magnetic_field_marker, color='purple', markersize=10)
+        ax.plot(posicion_del_campo[0]*4, posicion_del_campo[1]*4,  marker=magnetic_field_marker, color='purple', markersize=10)
+
+        ax.plot(posicion_del_campo[0], posicion_del_campo[1]*7,  marker=magnetic_field_marker, color='purple', markersize=10)
+        ax.plot(posicion_del_campo[0]*7, posicion_del_campo[1],  marker=magnetic_field_marker, color='purple', markersize=10)
+        ax.plot(posicion_del_campo[0]*4, posicion_del_campo[1]*7,  marker=magnetic_field_marker, color='purple', markersize=10)
+        ax.plot(posicion_del_campo[0]*7, posicion_del_campo[1]*4,  marker=magnetic_field_marker, color='purple', markersize=10)
+        ax.plot(posicion_del_campo[0]*7, posicion_del_campo[1]*7,  marker=magnetic_field_marker, color='purple', markersize=10)
+
+        ax.legend(loc='upper right')
+
+        # Create the FigureCanvasTkAgg widget
+        canvas = FigureCanvasTkAgg(fig, master=ventana11)
+        canvas.draw()
+
+        # Place the canvas in the window
+        canvas.get_tk_widget().grid(column=1, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
+
+    def grafico_3D():
+        # Extracción de valores de las entradas
+        posición_partícula = np.array([2, 5, 10])  # Posición inicial (x, y, z)
+        carga_part = float(carga_partícula.get())  # Charge of the particle
+
+        # Velocity vector (relative to particle position)
+        vector_velocidad = np.array([
+            float(velocidad_IX.get()),
+            float(velocidad_IY.get()),
+            float(velocidad_IZ.get()),
+        ])
+
+        # Magnetic field (assumed constant)
+        intensidad_campoM = np.array([
+            float(intensidad_CM_X.get()),
+            float(intensidad_CM_Y.get()),
+            float(intensidad_CM_Z.get()),
+        ])
+
+        # Calculate force using Lorentz equation
+        vector_fuerza = carga_part * np.cross(vector_velocidad, intensidad_campoM)
+
+        # Scaling factor for arrows
+        escala_flecha = 0.5
+
+        # Plot limits (adjust as needed)
         fig = plt.figure()
-        ax = fig.add_subplot(111, projection='3d')  # Crea un sub-eje 3D
+        ax = fig.add_subplot(111, projection='3d')
 
-        plt.title('Vista 3D')
-        plt.axis('off')
+        # Set labels and title
+        ax.set_title('Vista tridimensional')
 
-        longitud_flecha = 3  # Ajusta este valor según sea necesario
+        ax.plot3D(posición_partícula[0], posición_partícula[1], posición_partícula[2], marker='o', color='green', markersize=10, label='Velocidad')
+        ax.plot3D(posición_partícula[0], posición_partícula[1], posición_partícula[2], marker='o', color='red', markersize=10, label='Fuerza Mg')
+        ax.plot3D(posición_partícula[0], posición_partícula[1], posición_partícula[2], marker='o', color='blue', markersize=10, label='Partícula')
 
-        # Calcula las coordenadas del punto final basadas en la longitud y dirección de la flecha
-        vi_x_final = velocidad_inicial[0] + longitud_flecha * velocidad_inicial[0] / np.linalg.norm(velocidad_inicial)
-        vi_y_final = velocidad_inicial[1] + longitud_flecha * velocidad_inicial[1] / np.linalg.norm(velocidad_inicial)
-        vi_z_final = velocidad_inicial[2] + longitud_flecha * velocidad_inicial[2] / np.linalg.norm(velocidad_inicial)
+        ax.quiver3D(posición_partícula[0], posición_partícula[1], posición_partícula[2],
+                    vector_fuerza[0], vector_fuerza[1], vector_fuerza[2],
+                    length=escala_flecha, color='red')
 
-        cm_x_final = campo_magnetico[0] + longitud_flecha * campo_magnetico[0] / np.linalg.norm(campo_magnetico)
-        cm_y_final = campo_magnetico[1] + longitud_flecha * campo_magnetico[1] / np.linalg.norm(campo_magnetico)
-        cm_z_final = campo_magnetico[2] + longitud_flecha * campo_magnetico[2] / np.linalg.norm(campo_magnetico)
+        # Plot velocity vector (modificado)s
+        ax.quiver3D(posición_partícula[0], posición_partícula[1], posición_partícula[2],
+                    vector_velocidad[0], vector_velocidad[1], vector_velocidad[2],
+                    length=escala_flecha, color='green')
 
-        fuerza_final_x = fuerza[0] + longitud_flecha * modulo_fuerza * fuerza[0] / np.linalg.norm(fuerza)
-        fuerza_final_y = fuerza[1] + longitud_flecha * modulo_fuerza * fuerza[1] / np.linalg.norm(fuerza)
-        fuerza_final_z = fuerza[2] + longitud_flecha * modulo_fuerza * fuerza[2] / np.linalg.norm(fuerza)
+        # Cálculo de posiciones de la línea
+        posicion_inicial = np.array([2, 2, 0])  # Posición actual del punto
+        longitud_linea = 20  # Ajusta este valor para la longitud de la línea
+        posicion_final = np.array([posicion_inicial[0], posicion_inicial[1], posicion_inicial[2] + longitud_linea])
 
-        # Crea flechas con los puntos finales calculados
-        ax.quiver(0, 0, 0, vi_x_final, vi_y_final, vi_z_final, head_width=3, color='green', label='Velocidad inicial')
-        ax.quiver(0, 0, 0, cm_x_final, cm_y_final, cm_z_final, head_width=3, color='red', label='Campo magnético')
-        ax.quiver(0, 0, 0, fuerza_final_x, fuerza_final_y, fuerza_final_z, head_width=5, color='blue', label='Fuerza electromagnética')
+        if intensidad_campoM[2] >= 1:
+            # Dibujo de la línea
+            ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
+                color='purple', label='Campo magnético \n dirección +Z')
+            ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
+                color='purple')
+            ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
+                color='purple')
+            ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
+                color='purple')
+        else:
+            # Dibujo de la línea
+            ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
+                color='blue', label='Campo magnético \n dirección -Z')
+            ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
+                color='blue')
+            ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
+                color='blue')
+            ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
+                color='blue')
+
+
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Z')
+        ax.legend(loc='upper right')
         
         # Create the FigureCanvasTkAgg widget
         canvas = FigureCanvasTkAgg(fig, master=ventana11)
         canvas.draw()
 
         # Place the canvas in the window
-        canvas.get_tk_widget().grid(column=3, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
-
-        # Create a label for the plot
-        label_plot = ctk.CTkLabel(ventana11, text="Representación del Campo Magnético")
-        label_plot.grid(column=2, row=6, padx=10, pady=10)
+        canvas.get_tk_widget().grid(column=1, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
 
     # Botones de calculo
     boton_calcular_fuerza = ctk.CTkButton(ventana11, text="Calcular F", command=calcular_fuerza)
@@ -403,7 +466,7 @@ def electromagnetismo():
     boton_calcular_periodo.grid(row=4, column=3)
     boton_calcular_frecuencia = ctk.CTkButton(ventana11, text="Calcular f", command=calcular_frecuencia)
     boton_calcular_frecuencia.grid(row=4, column=3)
-    Crear_gráfico = ctk.CTkButton(ventana11, text="Graficar", command=lambda: (grafico_pajaro(), grafico_3D()))
+    Crear_gráfico = ctk.CTkButton(ventana11, text="Graficar", command=seleccionar_opcion)
     Crear_gráfico.grid(row=5, column=1)
 
     def cerrar_ventana():
