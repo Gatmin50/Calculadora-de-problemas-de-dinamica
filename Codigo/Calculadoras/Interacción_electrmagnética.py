@@ -16,9 +16,9 @@ def electromagnetismo():
     screen_height = ventana11.winfo_screenheight()
     ventana11.geometry(f"{screen_width}x{screen_height}")
     ventana11.configure(fg_color="black")
-    directorio = 'C:/calculadora_de_dinamica/'
-    ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
-    ventana11.iconbitmap(ruta_local)
+    #directorio = 'C:/calculadora_de_dinamica/'
+    #ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
+    #ventana11.iconbitmap(ruta_local)
 
     # Etiquetas
     etiqueta_intensidad_campo_magnético = ctk.CTkLabel(ventana11, text='Intensidad del \n Campo magnético (T)', text_color='white')
@@ -316,11 +316,11 @@ def electromagnetismo():
 
         circulo2 = plt.Circle(xy=centro2, radius=radio2, color='black', fill='none', linewidth=0.5)
         ax.add_patch(circulo2)
-        plt.plot(2, -7, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
+        plt.plot(2, -7, marker='o', color='white', markersize=15, linewidth=2, alpha=0.7)
 
         circulo3 = plt.Circle(xy=centro3, radius=radio3, color='black', fill='none', linewidth=0.5)
         ax.add_patch(circulo3)
-        plt.plot(7, -7, marker='x', color='white', markersize=15, linewidth=2, alpha=0.7)
+        plt.plot(7, -7, marker='o', color='white', markersize=15, linewidth=2, alpha=0.7)
 
         circulo4 = plt.Circle(xy=centro4, radius=radio4, color='black', fill='none', linewidth=0.5)
         ax.add_patch(circulo4)
@@ -382,15 +382,15 @@ def electromagnetismo():
         ax.quiver(0, 0, 0, fuerza_final_x, fuerza_final_y, fuerza_final_z, head_width=5, color='blue', label='Fuerza electromagnética')
         
         # Create the FigureCanvasTkAgg widget
-        canvas = FigureCanvasTkAgg(fig, master=ventana11)
-        canvas.draw()
+        canvas2 = FigureCanvasTkAgg(fig, master=ventana11)
+        canvas2.draw()
 
         # Place the canvas in the window
-        canvas.get_tk_widget().grid(column=3, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
+        canvas2.get_tk_widget().grid(column=3, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
 
         # Create a label for the plot
-        label_plot = ctk.CTkLabel(ventana11, text="Representación del Campo Magnético")
-        label_plot.grid(column=2, row=6, padx=10, pady=10)
+        label_plot1 = ctk.CTkLabel(ventana11, text="Representación del Campo Magnético")
+        label_plot1.grid(column=2, row=6, padx=10, pady=10)
 
     # Botones de calculo
     boton_calcular_fuerza = ctk.CTkButton(ventana11, text="Calcular F", command=calcular_fuerza)
