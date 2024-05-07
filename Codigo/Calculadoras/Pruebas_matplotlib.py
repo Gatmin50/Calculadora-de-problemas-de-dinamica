@@ -1,76 +1,39 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-# Extracción de valores de las entradas
-posición_partícula = np.array([2, 5, 10])  # Posición inicial (x, y, z)
-posicion_del_campo = np.array([2, 2, 2])
-carga_part = 0.1  # Charge of the particle
 
-# Velocity vector (relative to particle position)
-vector_velocidad = np.array([7, 0, 0])
+# Define variables
+centro = [0, 0]  # Center of the circle (x, y coordinates)
+radio = 3
 
-# Magnetic field (assumed constant)
-intensidad_campoM = np.array([0, 0, 4])
-
-# Calculate force using Lorentz equation
-vector_fuerza = carga_part * np.cross(vector_velocidad, intensidad_campoM)
-
-# Scaling factor for arrows
-escala_flecha = 0.5
-
-# Plot limits (adjust as needed)
+# Create the figure and 3D axis
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 
-# Set labels and title
-ax.set_title('Vista de pájaro')
+# Generate angles for circle outline
+theta = np.linspace(0, 2*np.pi, 20)  # 20 points for smooth outline
 
-ax.plot3D(posición_partícula[0], posición_partícula[1], posición_partícula[2], marker='o', color='green', markersize=10, label='Velocidad')
-ax.plot3D(posición_partícula[0], posición_partícula[1], posición_partícula[2], marker='o', color='red', markersize=10, label='Fuerza Mg')
-ax.plot3D(posición_partícula[0], posición_partícula[1], posición_partícula[2], marker='o', color='blue', markersize=10, label='Partícula')
+# Calculate X, Y, and Z coordinates for outline points
+x = radio * np.cos(theta) + centro[0]
+y = radio * np.sin(theta) + centro[1]
+z = np.zeros_like(x)  # Set all Z values to 0 for a flat circle
 
-# Establecer ancho de la cabeza de la flecha manualmente
-head_width = 7  # Ajustar el valor como desees
+# Plot the circle outline in 3D
+ax.plot(x, y, z, color='purple', linewidth=2)
+marca1 = ax.plot3D(centro[0], centro[1] - radio, 0, marker='>', color='purple', markersize=10, label='Campo Mg')
+marca2 = ax.plot3D(centro[0], centro[1] + radio, 0, marker='<', color='purple', markersize=10)
 
-ax.quiver3D(posición_partícula[0], posición_partícula[1], posición_partícula[2],
-            vector_fuerza[0], vector_fuerza[1], vector_fuerza[2],
-            length=escala_flecha, color='red')
+ax.plot3D(centro[0], centro[0], 0, marker='^', color='blue', markersize=10)
+ax.plot3D([centro[0], centro[0]], [centro[0], centro[1]], [-20, 20],
+        color='blue', label='Hilo')
 
-# Plot velocity vector (modificado)s
-ax.quiver3D(posición_partícula[0], posición_partícula[1], posición_partícula[2],
-            vector_velocidad[0], vector_velocidad[1], vector_velocidad[2],
-            length=escala_flecha, color='green')
-
-# Cálculo de posiciones de la línea
-posicion_inicial = np.array([2, 2, 0])  # Posición actual del punto
-longitud_linea = 20  # Ajusta este valor para la longitud de la línea
-posicion_final = np.array([posicion_inicial[0], posicion_inicial[1], posicion_inicial[2] + longitud_linea])
-
-if intensidad_campoM[2] >= 1:
-    # Dibujo de la línea
-    ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
-        color='purple', label='Campo magnético \n dirección +Z')
-    ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
-        color='purple')
-    ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
-        color='purple')
-    ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
-        color='purple')
-else:
-    # Dibujo de la línea
-    ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
-        color='blue', label='Campo magnético \n dirección -Z')
-    ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
-        color='blue')
-    ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
-        color='blue')
-    ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
-        color='blue')
-
-
+# Set plot limits and labels
+ax.set_xlim(-radio-1, radio+1)
+ax.set_ylim(-radio-1, radio+1)
+ax.set_zlim(-20, 20)  # Set Z limits for a thin circle
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
-ax.legend(loc='upper right')
+ax.set_title('Círculo 3D')
 
 plt.show()

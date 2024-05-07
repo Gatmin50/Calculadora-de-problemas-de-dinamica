@@ -12,9 +12,12 @@ def mini_calculadora():
     ventana3.title("Calculadora")
     ventana3.geometry('810x280+400+200')
     ventana3.configure(bg_color='black')
-    directorio = 'C:/calculadora_de_dinamica/'
-    ruta_local = os.path.join(directorio, 'Calculadora.ico')
-    ventana3.iconbitmap(ruta_local)
+
+    os_name = os.name
+    if os_name == 'nt':
+        directorio = 'C:/calculadora_de_dinamica/'
+        ruta_local = os.path.join(directorio, 'Calculadora.ico')
+        ventana3.iconbitmap(ruta_local)
 
     def add_character(character):
         entry_text = entry.get()

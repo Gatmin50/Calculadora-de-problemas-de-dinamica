@@ -62,8 +62,10 @@ ctk.set_default_color_theme("dark-blue")
 # Obtener el tamaño de la pantalla
 screen_width = ventana1.winfo_screenwidth()
 screen_height = ventana1.winfo_screenheight()
+x_offset = 0
+y_offset = 0
 # Establecer el tamaño de la ventana para que ocupe toda la pantalla
-ventana1.geometry(f"{screen_width}x{screen_height}")
+ventana1.geometry(f"{screen_width}x{screen_height}+{x_offset}+{y_offset}")
 ventana1.iconbitmap(ruta_local)
 
 def programa_plano_inclinado():

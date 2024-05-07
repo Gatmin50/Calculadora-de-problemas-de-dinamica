@@ -5,6 +5,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import markers, patches
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import *
 
@@ -12,13 +13,22 @@ def electromagnetismo():
 
     ventana11 = ctk.CTk()
     ventana11.title("Menu calculadora de Electromagnetismo")
-    screen_width = ventana11.winfo_screenwidth()
-    screen_height = ventana11.winfo_screenheight()
-    ventana11.geometry(f"{screen_width}x{screen_height}")
     ventana11.configure(fg_color="black")
-    #directorio = 'C:/calculadora_de_dinamica/'
-    #ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
-    #ventana11.iconbitmap(ruta_local)
+
+    os_name = os.name
+    if os_name == 'nt':
+        screen_width = ventana11.winfo_screenwidth()
+        screen_height = ventana11.winfo_screenheight()
+        x_offset = 0
+        y_offset = 0
+        ventana11.geometry(f"{screen_width}x{screen_height}+{x_offset}+{y_offset}")
+        directorio = 'C:/calculadora_de_dinamica/'
+        ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
+        ventana11.iconbitmap(ruta_local)
+    elif os_name == 'posix':
+        screen_width = ventana11.winfo_screenwidth()
+        screen_height = ventana11.winfo_screenheight()
+        ventana11.geometry(f"{screen_width}x{screen_height}")
 
     # Etiquetas
     etiqueta_intensidad_campo_magnético = ctk.CTkLabel(ventana11, text='Intensidad del \n Campo magnético (T)', text_color='white')
@@ -149,12 +159,17 @@ def electromagnetismo():
     def seleccionar_opcion():
         opcion_seleccionada = combobox.get()
         etiqueta_resultado.configure(text="Opción: " + opcion_seleccionada)
-        if opcion_seleccionada == "Diagrama en vista de pájaro":
+        if opcion_seleccionada == "Diagrama de partícula \n en vista de pájaro":
             grafico_pajaro()
-        elif opcion_seleccionada == "Diagrama 3D":
+        elif opcion_seleccionada == "Diagrama partícula 3D":
             grafico_3D()
+        elif opcion_seleccionada == "Digrama de hilo":
+            diagrama_hilo()
+        elif opcion_seleccionada == "Digrama de hilo 3D":
+            diagrama_hilo_3D()
     
-    combobox = ctk.CTkComboBox(ventana11, values=["", 'Diagrama en vista de pájaro', 'Diagrama 3D'])
+    combobox = ctk.CTkComboBox(ventana11, values=["", 'Diagrama de partícula \n en vista de pájaro', 
+                                                'Diagrama partícula 3D', 'Digrama de hilo', 'Digrama de hilo 3D'])
     combobox.grid(row=3, column=5, padx=10, pady=10)
     
 
@@ -331,26 +346,26 @@ def electromagnetismo():
         head_width = 7  # Ajustar el valor como desees
 
         start_coords = posición_partícula[0], posición_partícula[1]
-        if vector_fuerza[0] >= 1:
+        if vector_fuerza[0] >= 1 and vector_fuerza[1] == 0:
             end_coords = 4, 5
-        elif vector_fuerza[0] <= -1:
+        elif vector_fuerza[0] <= -1 and vector_fuerza[1] == 0:
             end_coords = -4, 5
-        elif vector_fuerza[1] >= 1:
+        elif vector_fuerza[1] >= 1 and vector_fuerza[0] == 0:
             end_coords = 2, 6
-        elif vector_fuerza[1] <= -1:
+        elif vector_fuerza[1] <= -1 and vector_fuerza[0] == 0:
             end_coords = 2, 4
         ax.annotate("", xy=end_coords, xytext=start_coords, size=1, 
             arrowprops=dict(facecolor='red', shrink=0.05, linewidth=0.5, headwidth=head_width))
 
         # Plot velocity vector (modificado)
         start_coords = posición_partícula[0], posición_partícula[1]
-        if vector_velocidad[0] >= 1:
+        if vector_velocidad[0] >= 1 and vector_velocidad[1] == 0:
             end_coords = 4, 5
-        elif vector_velocidad[0] <= -1:
+        elif vector_velocidad[0] <= -1 and vector_velocidad[1] == 0:
             end_coords = -4, 5
-        elif vector_velocidad[1] >= 1:
+        elif vector_velocidad[1] >= 1 and vector_velocidad[0] == 0:
             end_coords = 2, 6
-        elif vector_velocidad[1] <= -1:
+        elif vector_velocidad[1] <= -1 and vector_velocidad[0] == 0:
             end_coords = 2, 4
         ax.annotate("", xy=end_coords, xytext=start_coords, size=1, 
             arrowprops=dict(facecolor='green', shrink=0.05, linewidth=0.5, headwidth=head_width))
@@ -407,7 +422,7 @@ def electromagnetismo():
         ax = fig.add_subplot(111, projection='3d')
 
         # Set labels and title
-        ax.set_title('Vista tridimensional')
+        ax.set_title('Vista partícula tridimensional')
 
         ax.plot3D(posición_partícula[0], posición_partícula[1], posición_partícula[2], marker='o', color='green', markersize=10, label='Velocidad')
         ax.plot3D(posición_partícula[0], posición_partícula[1], posición_partícula[2], marker='o', color='red', markersize=10, label='Fuerza Mg')
@@ -430,30 +445,127 @@ def electromagnetismo():
         if intensidad_campoM[2] >= 1:
             # Dibujo de la línea
             ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
-                color='purple', label='Campo magnético \n dirección +Z')
+                color='purple', marker='^', label='Campo magnético \n dirección +Z')
             ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
-                color='purple')
+                color='purple', marker='^')
             ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
-                color='purple')
+                color='purple', marker='^')
             ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
-                color='purple')
+                color='purple', marker='^')
         else:
             # Dibujo de la línea
             ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
-                color='blue', label='Campo magnético \n dirección -Z')
+                color='purple', marker='v', label='Campo magnético \n dirección +Z')
             ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
-                color='blue')
+                color='purple', marker='v')
             ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
-                color='blue')
+                color='purple', marker='v')
             ax.plot3D([posicion_inicial[0]*4, posicion_final[0]*4], [posicion_inicial[1]*4, posicion_final[1]*4], [posicion_inicial[2], posicion_final[2]],
-                color='blue')
-
+                color='purple', marker='v')
 
         ax.set_xlabel('X')
         ax.set_ylabel('Y')
         ax.set_zlabel('Z')
         ax.legend(loc='upper right')
         
+        # Create the FigureCanvasTkAgg widget
+        canvas = FigureCanvasTkAgg(fig, master=ventana11)
+        canvas.draw()
+
+        # Place the canvas in the window
+        canvas.get_tk_widget().grid(column=1, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
+    
+    def diagrama_hilo():
+        # Define variables
+        centro = [3, 3]   # Center of the circle (x, y coordinates)
+        radio = 3       # Radius of the circle
+
+        # Create the figure and axis
+        fig, ax = plt.subplots()
+
+        carga_part = float(carga_partícula.get())
+        magnetic_field_marker = 'o' if carga_part >= 1 else 'x'
+        ax.plot(centro[0], centro[1],  marker=magnetic_field_marker, color='blue', markersize=10, label='Campo magnético')
+        circulo1 = patches.Circle(xy=centro, radius=0.5, color='blue', linewidth=2, fill=False)  # Set fill=False for outline
+        ax.add_patch(circulo1)
+
+        # Create and add circle to the center
+        circulo = patches.Circle(xy=centro, radius=radio, color='purple', linewidth=2, fill=False)  # Set fill=False for outline
+        ax.add_patch(circulo)
+        if carga_part >= 1:
+            ax.annotate("", xy=(6,3.1), xytext=(6,3), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
+            ax.annotate("", xy=(2.9,6), xytext=(3,6), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
+            ax.annotate("", xy=(0,2.9), xytext=(0,3), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
+            ax.annotate("", xy=(3.1,0), xytext=(3,0), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
+        else:
+            ax.annotate("", xy=(6,2.9), xytext=(6,3), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
+            ax.annotate("", xy=(3.1,6), xytext=(3,6), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
+            ax.annotate("", xy=(0,3.1), xytext=(0,3), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
+            ax.annotate("", xy=(2.9,0), xytext=(3,0), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
+        
+        # Adjust plot limits
+        ax.set_xlim(-1, 7)
+        ax.set_ylim(-1, 7)
+
+        # Label axes and add title
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_title('Vista hilo tridimensional')
+        ax.legend(loc='upper right')
+
+        # Create the FigureCanvasTkAgg widget
+        canvas = FigureCanvasTkAgg(fig, master=ventana11)
+        canvas.draw()
+
+        # Place the canvas in the window
+        canvas.get_tk_widget().grid(column=1, row=6, columnspan=3, rowspan=3, padx=10, pady=10)
+
+    def diagrama_hilo_3D():
+        # Define variables
+        centro = [0, 0, -20]  # Center of the circle (x, y coordinates)
+        radio = 3
+        carga_part = float(carga_partícula.get())
+        # Create the figure and 3D axis
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+
+        # Generate angles for circle outline
+        theta = np.linspace(0, 2*np.pi, 20)  # 20 points for smooth outline
+
+        # Calculate X, Y, and Z coordinates for outline points
+        x = radio * np.cos(theta) + centro[0]
+        y = radio * np.sin(theta) + centro[1]
+        z = np.zeros_like(x)  # Set all Z values to 0 for a flat circle
+
+        if carga_part >= 1:
+            # Plot the circle outline in 3D
+            ax.plot(x, y, z, color='purple', linewidth=2)
+            ax.plot3D(centro[0], centro[1] - radio, 0, marker='>', color='purple', markersize=10, label='Campo Mg')
+            ax.plot3D(centro[0], centro[1] + radio, 0, marker='<', color='purple', markersize=10)
+
+            ax.plot3D(centro[0], centro[0], 0, marker='^', color='blue', markersize=10)
+            ax.plot3D([centro[0], centro[0]], [centro[0], centro[1]], [-20, 20],
+                color='blue', label='Hilo')
+        else:
+            # Plot the circle outline in 3D
+            ax.plot(x, y, z, color='purple', linewidth=2)
+            ax.plot3D(centro[0], centro[1] + radio, 0, marker='>', color='purple', markersize=10, label='Campo Mg')
+            ax.plot3D(centro[0], centro[1] - radio, 0, marker='<', color='purple', markersize=10)
+
+            ax.plot3D(centro[0], centro[0], 0, marker='v', color='blue', markersize=10)
+            ax.plot3D([centro[0], centro[0]], [centro[0], centro[1]], [-20, 20],
+                color='blue', label='Hilo')
+
+        # Set plot limits and labels
+        ax.set_xlim(-radio-1, radio+1)
+        ax.set_ylim(-radio-1, radio+1)
+        ax.set_zlim(-20, 20)  # Set Z limits for a thin circle
+        ax.set_xlabel('X')
+        ax.set_ylabel('Y')
+        ax.set_zlabel('Z')
+        ax.set_title('Diagrama hilo 3D')
+        ax.legend(loc='upper right')
+
         # Create the FigureCanvasTkAgg widget
         canvas = FigureCanvasTkAgg(fig, master=ventana11)
         canvas.draw()
