@@ -16,9 +16,9 @@ def electromagnetismo():
     screen_height = ventana11.winfo_screenheight()
     ventana11.geometry(f"{screen_width}x{screen_height}")
     ventana11.configure(fg_color="black")
-    directorio = 'C:/calculadora_de_dinamica/'
-    ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
-    ventana11.iconbitmap(ruta_local)
+    #directorio = 'C:/calculadora_de_dinamica/'
+    #ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
+    #ventana11.iconbitmap(ruta_local)
 
     # Etiquetas
     etiqueta_intensidad_campo_magnético = ctk.CTkLabel(ventana11, text='Intensidad del \n Campo magnético (T)', text_color='white')
@@ -315,9 +315,6 @@ def electromagnetismo():
         # Project force vector onto 2D plane for visualization
         vector_fuerza = vector_fuerza2[:2]  # Extract x and y components
 
-        # Scaling factor for arrows
-        escala_flecha = 0.05
-
         a = intensidad_campoM[2]
 
         # Plot limits (adjust as needed)
@@ -333,20 +330,29 @@ def electromagnetismo():
         # Establecer ancho de la cabeza de la flecha manualmente
         head_width = 7  # Ajustar el valor como desees
 
-        posición_partícula_xy = posición_partícula[:2]  # Extract x and y components
-        force_tail = posición_partícula_xy
-        force_head = force_tail + vector_fuerza
-        start_coords = force_tail[0], force_tail[1]
-        end_coords = force_head[0], force_head[1]
-        ax.annotate("Fuerza", xy=end_coords, xytext=start_coords, size=escala_flecha, 
+        start_coords = posición_partícula[0], posición_partícula[1]
+        if vector_fuerza[0] >= 1:
+            end_coords = 4, 5
+        elif vector_fuerza[0] <= -1:
+            end_coords = -4, 5
+        elif vector_fuerza[1] >= 1:
+            end_coords = 2, 6
+        elif vector_fuerza[1] <= -1:
+            end_coords = 2, 4
+        ax.annotate("", xy=end_coords, xytext=start_coords, size=1, 
             arrowprops=dict(facecolor='red', shrink=0.05, linewidth=0.5, headwidth=head_width))
 
         # Plot velocity vector (modificado)
-        velocity_tail = posición_partícula
-        velocity_head = velocity_tail + vector_velocidad
-        start_coords = velocity_tail[0], velocity_tail[1]
-        end_coords = velocity_head[0], velocity_head[1]
-        ax.annotate("Velocidad", xy=end_coords, xytext=start_coords, size=escala_flecha, 
+        start_coords = posición_partícula[0], posición_partícula[1]
+        if vector_velocidad[0] >= 1:
+            end_coords = 4, 5
+        elif vector_velocidad[0] <= -1:
+            end_coords = -4, 5
+        elif vector_velocidad[1] >= 1:
+            end_coords = 2, 6
+        elif vector_velocidad[1] <= -1:
+            end_coords = 2, 4
+        ax.annotate("", xy=end_coords, xytext=start_coords, size=1, 
             arrowprops=dict(facecolor='green', shrink=0.05, linewidth=0.5, headwidth=head_width))
         # Define magnetic field marker
         magnetic_field_marker = 'o' if a >= 1 else 'x'
