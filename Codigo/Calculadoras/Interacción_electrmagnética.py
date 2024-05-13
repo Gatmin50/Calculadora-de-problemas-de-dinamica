@@ -173,11 +173,11 @@ def electromagnetismo():
     combobox.grid(row=3, column=5, padx=10, pady=10)
     
     # Crear barras de desplazamiento
-    scrollbar_y = ctk.CTkScrollbar(ventana11, command=ventana11.yview ,orientation='vertical')
+    #scrollbar_y = ctk.CTkScrollbar(ventana11, command=ventana11.yview ,orientation='vertical')
     # Vincular barras de desplazamiento a la ventana
-    ventana11.configure(yscrollcommand=scrollbar_y.set)
+    #ventana11.configure(yscrollcommand=scrollbar_y.set)
     # Empaquetar barras de desplazamiento
-    scrollbar_y.grid(row=0, column=7, sticky='ns', fill=Y)
+    #scrollbar_y.grid(row=0, column=7, sticky='ns', fill=Y)
 
     def calcular_fuerza():
         try:
