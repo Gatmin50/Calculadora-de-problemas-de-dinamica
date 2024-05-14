@@ -6,25 +6,13 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import os
 
 def calculo_nuclear():
-
     ventana10 = ctk.CTk()
     ventana10.title("Calculadora ondas armonicas")
+    ventana10.geometry('1400x650+400+200')
     ventana10.configure(fg_color="black")
-
-    os_name = os.name
-    if os_name == 'nt':
-        screen_width = ventana10.winfo_screenwidth()
-        screen_height = ventana10.winfo_screenheight()
-        x_offset = 0
-        y_offset = 0
-        ventana10.geometry(f"{screen_width}x{screen_height}+{x_offset}+{y_offset}")
-        directorio = 'C:/calculadora_de_dinamica/'
-        ruta_local = os.path.join(directorio, 'Plano_inclinado.ico')
-        ventana10.iconbitmap(ruta_local)
-    elif os_name == 'posix':
-        screen_width = ventana10.winfo_screenwidth()
-        screen_height = ventana10.winfo_screenheight()
-        ventana10.geometry(f"{screen_width}x{screen_height}")
+    directorio = 'C:/calculadora_de_dinamica/'
+    ruta_local = os.path.join(directorio, 'Plano_inclinado.ico')
+    ventana10.iconbitmap(ruta_local)
 
     # Constantes
     RADIO_ATOMO = 1e-15

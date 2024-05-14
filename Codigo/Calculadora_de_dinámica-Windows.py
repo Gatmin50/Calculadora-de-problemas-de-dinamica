@@ -15,8 +15,6 @@ import Calculadoras.Trabajo_inclinado as Trabajo_inclinado
 import Calculadoras.Trabajo_circular as Trabajo_circular
 import Calculadoras.Ondas_armónicas as Ondas_armónicas
 import Calculadoras.Nuclear as Nuclear
-import Calculadoras.Interacción_gravitatoria as Interaccion_gravitatoria
-import Calculadoras.Interacción_electrica as Interaccion_electrica
 import Calculadoras.Interacción_electrmagnética as Interaccion_Electromagnetica
 
 # Using os.name
@@ -64,10 +62,8 @@ ctk.set_default_color_theme("dark-blue")
 # Obtener el tamaño de la pantalla
 screen_width = ventana1.winfo_screenwidth()
 screen_height = ventana1.winfo_screenheight()
-x_offset = 0
-y_offset = 0
 # Establecer el tamaño de la ventana para que ocupe toda la pantalla
-ventana1.geometry(f"{screen_width}x{screen_height}+{x_offset}+{y_offset}")
+ventana1.geometry(f"{screen_width}x{screen_height}")
 ventana1.iconbitmap(ruta_local)
 
 def programa_plano_inclinado():
@@ -96,12 +92,6 @@ def Ondas():
 
 def nuclear():
     Nuclear.calculo_nuclear()
-
-def Gravitación():
-    Interaccion_gravitatoria.gravitación()
-
-def Elctrico():
-    Interaccion_electrica.electrico()
 
 def Electromagnetismo():
     Interaccion_Electromagnetica.electromagnetismo()
@@ -133,17 +123,15 @@ def cerrar_ventana4():
     etiqueta_seleccion.grid_remove()
     btn_back.grid_remove()
     ventana1.title("Menu calculadora de Dinámica")
-    boton_calculadora_plano_inclinado.grid(column=0, row=0, padx=10, pady=10)
-    boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=2, row=0, padx=10, pady=10)
-    boton_calculadora.grid(column=0, row=1, padx=10, pady=10)
-    boton_calculadora_te.grid(column=2, row=1, padx=10, pady=10)
-    btn_cerrar.grid(column=2, row=5, padx=10, pady=10)
-    boton_calculadora_ondas_armonicas.grid(column=0, row=2, padx=10, pady=10)
-    boton_calculadora_nuclear.grid(column=2, row=2, padx=10, pady=10)
-    boton_calculadora_gravitacional.grid(column=3, row=0, padx=10, pady=10)
-    boton_calculadora_electrica.grid(column=3, row=1, padx=10, pady=10)
-    boton_calculadora_elctromagnética.grid(column=2, row=3, padx=10, pady=10)
-    ventana1.geometry(f"{screen_width}x{screen_height}+{x_offset}+{y_offset}")
+    boton_calculadora_plano_inclinado.grid(column=2, row=2, padx=10, pady=10)
+    boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=4, row=2, padx=10, pady=10)
+    boton_calculadora.grid(column=2, row=4, columnspan=2, padx=10, pady=10)
+    boton_calculadora_te.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
+    btn_cerrar.grid(column=2, row=5, columnspan=3, padx=10, pady=10)
+    boton_calculadora_ondas_armonicas.grid(column=2, row=3, padx=10, pady=10)
+    boton_calculadora_nuclear.grid(column=2, row=3, columnspan=2, padx=10, pady=10)
+    boton_calculadora_elctromagnética.grid(column=4, row=3, columnspan=2, padx=10, pady=10)
+    ventana1.geometry('710x300+400+200')
 
 btn_back = ctk.CTkButton(ventana1, text="Atras", font=("Helvetica", 10, "bold"), command=cerrar_ventana4)
 btn_back.grid_remove()
@@ -156,8 +144,6 @@ def traspaso1():
     btn_cerrar.grid_remove()
     boton_calculadora_ondas_armonicas.grid_remove()
     boton_calculadora_nuclear.grid_remove()
-    boton_calculadora_gravitacional.grid_remove()
-    boton_calculadora_electrica.grid_remove()
     boton_calculadora_elctromagnética.grid_remove()
     ventana1.title("Menu calculadora de Trabajo y Energía")
     combobox.grid(row=0, column=1, padx=10, pady=10)
@@ -170,26 +156,22 @@ def traspaso1():
 boton_calculadora_plano_inclinado = ctk.CTkButton(ventana1, text="Calculadora de plano inclinado", command=programa_plano_inclinado , font=("Helvetica", 15, "bold"), corner_radius=20)
 boton_calculadora_plano_inclinado.grid(column=0, row=0, padx=10, pady=10)
 boton_calculadora_plano_inclinado_con_dos_cuerpos = ctk.CTkButton(ventana1, text="Calculadora de plano inclinado \n con dos cuerpos unidos", command=programa_plano_inclinado_con_dos_cuerpos , font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=2, row=0, padx=10, pady=10)
+boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=3, row=0, padx=10, pady=10)
 boton_calculadora = ctk.CTkButton(ventana1, text="Calculadora", command=mini_calculadora , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora.grid(column=0, row=1, padx=10, pady=10)
 boton_calculadora_te = ctk.CTkButton(ventana1, text="Problemas de trabajo y energia", command=traspaso1 , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora_te.grid(column=2, row=1, padx=10, pady=10)
 boton_calculadora_ondas_armonicas = ctk.CTkButton(ventana1, text="Calculadora de \n ondas armonicas", command=Ondas, font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_ondas_armonicas.grid(column=0, row=2, padx=10, pady=10)
+boton_calculadora_ondas_armonicas.grid(column=0, row=3, padx=10, pady=10)
 boton_calculadora_nuclear = ctk.CTkButton(ventana1, text="Calculadora nuclear", command=nuclear, font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_nuclear.grid(column=2, row=2, padx=10, pady=10)
-boton_calculadora_gravitacional = ctk.CTkButton(ventana1, text="Calculadora de Garvitación", command=Gravitación, font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_gravitacional.grid(column=3, row=0, padx=10, pady=10)
-boton_calculadora_electrica = ctk.CTkButton(ventana1, text="Calculadora Electrica", command=Elctrico, font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_electrica.grid(column=3, row=1, padx=10, pady=10)
+boton_calculadora_nuclear.grid(column=2, row=3, padx=10, pady=10)
 boton_calculadora_elctromagnética = ctk.CTkButton(ventana1, text="Calculadora Electromagnética", command=Electromagnetismo, font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_elctromagnética.grid(column=3, row=2, padx=10, pady=10)
+boton_calculadora_elctromagnética.grid(column=4, row=3, padx=10, pady=10)
 
 def cerrar_ventana():
     ventana1.destroy()
 
-btn_cerrar = ctk.CTkButton(ventana1, text="Cerrar ventana", fg_color='red', border_color='grey', font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
+btn_cerrar = ctk.CTkButton(ventana1, text="Cerrar ventana", font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
 btn_cerrar.grid(column=2, row=5, columnspan=3, padx=10, pady=10, sticky='s')
 
 # Mantiene la ventana simpre abierta hasta que el usuario la cierra

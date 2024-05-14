@@ -1,4 +1,3 @@
-from turtle import color
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import ttk
@@ -73,6 +72,7 @@ screen_width = ventana1.winfo_screenwidth()
 screen_height = ventana1.winfo_screenheight()
 # Establecer el tamaño de la ventana para que ocupe toda la pantalla
 ventana1.geometry(f"{screen_width}x{screen_height}")
+ventana1.iconbitmap(ruta_local)
 
 def programa_plano_inclinado():
     Una_masa.programa_plano_inclinado()
@@ -131,14 +131,14 @@ def cerrar_ventana4():
     etiqueta_seleccion.grid_remove()
     btn_back.grid_remove()
     ventana1.title("Menu calculadora de Dinámica")
-    boton_calculadora_plano_inclinado.grid(column=0, row=0, padx=10, pady=10)
-    boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=2, row=0, padx=10, pady=10)
-    boton_calculadora.grid(column=0, row=1, padx=10, pady=10)
-    boton_calculadora_te.grid(column=2, row=1, padx=10, pady=10)
-    btn_cerrar.grid(column=2, row=5, padx=10, pady=10)
-    boton_calculadora_ondas_armonicas.grid(column=0, row=3, padx=10, pady=10)
-    boton_calculadora_nuclear.grid(column=2, row=3, padx=10, pady=10)
-    boton_calculadora_elctromagnética.grid(column=3, row=3, padx=10, pady=10)
+    boton_calculadora_plano_inclinado.grid(column=2, row=2, padx=10, pady=10)
+    boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=4, row=2, padx=10, pady=10)
+    boton_calculadora.grid(column=2, row=4, columnspan=2, padx=10, pady=10)
+    boton_calculadora_te.grid(column=3, row=3, columnspan=2, padx=10, pady=10)
+    btn_cerrar.grid(column=2, row=5, columnspan=3, padx=10, pady=10)
+    boton_calculadora_ondas_armonicas.grid(column=2, row=3, padx=10, pady=10)
+    boton_calculadora_nuclear.grid(column=2, row=3, columnspan=2, padx=10, pady=10)
+    boton_calculadora_elctromagnética.grid(column=4, row=3, columnspan=2, padx=10, pady=10)
     ventana1.geometry('710x300+400+200')
 
 btn_back = ctk.CTkButton(ventana1, text="Atras", font=("Helvetica", 10, "bold"), command=cerrar_ventana4)
@@ -164,7 +164,7 @@ def traspaso1():
 boton_calculadora_plano_inclinado = ctk.CTkButton(ventana1, text="Calculadora de plano inclinado", command=programa_plano_inclinado , font=("Helvetica", 15, "bold"), corner_radius=20)
 boton_calculadora_plano_inclinado.grid(column=0, row=0, padx=10, pady=10)
 boton_calculadora_plano_inclinado_con_dos_cuerpos = ctk.CTkButton(ventana1, text="Calculadora de plano inclinado \n con dos cuerpos unidos", command=programa_plano_inclinado_con_dos_cuerpos , font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=2, row=0, padx=10, pady=10)
+boton_calculadora_plano_inclinado_con_dos_cuerpos.grid(column=3, row=0, padx=10, pady=10)
 boton_calculadora = ctk.CTkButton(ventana1, text="Calculadora", command=mini_calculadora , font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora.grid(column=0, row=1, padx=10, pady=10)
 boton_calculadora_te = ctk.CTkButton(ventana1, text="Problemas de trabajo y energia", command=traspaso1 , font=("Helvetica", 15, "bold"),corner_radius=20)
@@ -174,12 +174,12 @@ boton_calculadora_ondas_armonicas.grid(column=0, row=3, padx=10, pady=10)
 boton_calculadora_nuclear = ctk.CTkButton(ventana1, text="Calculadora nuclear", command=nuclear, font=("Helvetica", 15, "bold"),corner_radius=20)
 boton_calculadora_nuclear.grid(column=2, row=3, padx=10, pady=10)
 boton_calculadora_elctromagnética = ctk.CTkButton(ventana1, text="Calculadora Electromagnética", command=Electromagnetismo, font=("Helvetica", 15, "bold"),corner_radius=20)
-boton_calculadora_elctromagnética.grid(column=3, row=3, padx=10, pady=10)
+boton_calculadora_elctromagnética.grid(column=4, row=3, padx=10, pady=10)
 
 def cerrar_ventana():
     ventana1.destroy()
 
-btn_cerrar = ctk.CTkButton(ventana1, text="Cerrar ventana", fg_color='red', border_color='grey', font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
+btn_cerrar = ctk.CTkButton(ventana1, text="Cerrar ventana", font=("Helvetica", 10, "bold"), command=cerrar_ventana, corner_radius=20)
 btn_cerrar.grid(column=2, row=5, columnspan=3, padx=10, pady=10, sticky='s')
 
 # Mantiene la ventana simpre abierta hasta que el usuario la cierra

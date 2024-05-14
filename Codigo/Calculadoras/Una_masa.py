@@ -10,22 +10,11 @@ def programa_plano_inclinado():
     # Crear la ventana de la calculadora
     ventana = ctk.CTk()
     ventana.title("Calculadora de Dinámica")
+    ventana.geometry('1400x650+50+100')
     ventana.configure(fg_color='black')
-
-    os_name = os.name
-    if os_name == 'nt':
-        screen_width = ventana.winfo_screenwidth()
-        screen_height = ventana.winfo_screenheight()
-        x_offset = 0
-        y_offset = 0
-        ventana.geometry(f"{screen_width}x{screen_height}+{x_offset}+{y_offset}")
-        directorio = 'C:/calculadora_de_dinamica/'
-        ruta_local = os.path.join(directorio, 'Plano_inclinado.ico')
-        ventana.iconbitmap(ruta_local)
-    elif os_name == 'posix':
-        screen_width = ventana.winfo_screenwidth()
-        screen_height = ventana.winfo_screenheight()
-        ventana.geometry(f"{screen_width}x{screen_height}")
+    directorio = 'C:/calculadora_de_dinamica/'
+    ruta_local = os.path.join(directorio, 'Plano_inclinado.ico')
+    ventana.iconbitmap(ruta_local)
 
     # Enunciado de la calculadora
     etiqueta_up = ctk.CTkLabel(ventana, text="Botones y cuadros de texto para la calculadora",text_color="white")

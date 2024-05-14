@@ -13,22 +13,11 @@ def ondas_armónicas():
 
     ventana9 = ctk.CTk()
     ventana9.title("Calculadora ondas armonicas")
+    ventana9.geometry('1400x700+400+200')
     ventana9.configure(fg_color="black")
-
-    os_name = os.name
-    if os_name == 'nt':
-        screen_width = ventana9.winfo_screenwidth()
-        screen_height = ventana9.winfo_screenheight()
-        x_offset = 0
-        y_offset = 0
-        ventana9.geometry(f"{screen_width}x{screen_height}+{x_offset}+{y_offset}")
-        directorio = 'C:/calculadora_de_dinamica/'
-        ruta_local = os.path.join(directorio, 'Ondas_armonicas.ico')
-        ventana9.iconbitmap(ruta_local)
-    elif os_name == 'posix':
-        screen_width = ventana9.winfo_screenwidth()
-        screen_height = ventana9.winfo_screenheight()
-        ventana9.geometry(f"{screen_width}x{screen_height}")
+    directorio = 'C:/calculadora_de_dinamica/'
+    ruta_local = os.path.join(directorio, 'Ondas_armonicas.ico')
+    ventana9.iconbitmap(ruta_local)
 
     # Etiquetas
     etiqueta_posición_x = ctk.CTkLabel(ventana9, text='Posicion en x (m)', text_color='white')
