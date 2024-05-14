@@ -54,26 +54,26 @@ def electromagnetismo():
 
         # Etiqueta de Resultado 
     etiqueta_resultado = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado.grid(row=4, column=4, columnspan=2, padx=10, pady=10)
+    etiqueta_resultado.grid(row=4, column=5, columnspan=2, padx=10, pady=10)
         # Etiquetas de almacenamiento de resultados
     etiqueta_resultado1 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado1.grid(row=0, column=6, padx=10, pady=10)
+    etiqueta_resultado1.grid(row=0, column=7, padx=10, pady=10)
     etiqueta_resultado2 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado2.grid(row=1, column=6, padx=10, pady=10)
+    etiqueta_resultado2.grid(row=1, column=7, padx=10, pady=10)
     etiqueta_resultado3 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado3.grid(row=2, column=6, padx=10, pady=10)
+    etiqueta_resultado3.grid(row=2, column=7, padx=10, pady=10)
     etiqueta_resultado4 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado4.grid(row=3, column=6, padx=10, pady=10)
+    etiqueta_resultado4.grid(row=3, column=7, padx=10, pady=10)
     etiqueta_resultado5 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado5.grid(row=4, column=6, padx=10, pady=10)
+    etiqueta_resultado5.grid(row=4, column=7, padx=10, pady=10)
     etiqueta_resultado6 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado6.grid(row=5, column=6, padx=10, pady=10)
+    etiqueta_resultado6.grid(row=5, column=7, padx=10, pady=10)
     etiqueta_resultado7 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado7.grid(row=6, column=6, padx=10, pady=10)
+    etiqueta_resultado7.grid(row=6, column=7, padx=10, pady=10)
     etiqueta_resultado8 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado8.grid(row=7, column=6, padx=10, pady=10)
+    etiqueta_resultado8.grid(row=7, column=7, padx=10, pady=10)
     etiqueta_resultado9 = ctk.CTkLabel(ventana11, text='', text_color='white')
-    etiqueta_resultado9.grid(row=8, column=6, padx=10, pady=10)
+    etiqueta_resultado9.grid(row=8, column=7, padx=10, pady=10)
 
     # Entadas de datos
         #Intensidad del campo magnético
@@ -83,50 +83,8 @@ def electromagnetismo():
     intensidad_CM_Y.grid(row=0, column=2, padx=10, pady=10)
     intensidad_CM_Z = ctk.CTkEntry(ventana11, placeholder_text='Z')
     intensidad_CM_Z.grid(row=0, column=3, padx=10, pady=10)
-        # Masa de la partícula
-    masa_partícula = 0
-    def seleccionar_opcion(event):
-        opcion_seleccionada = combobox.get()
-        etiqueta_resultado.configure(text="Opción: " + opcion_seleccionada)
-        if opcion_seleccionada == "Protón":
-            masa_partícula = 1.6726 * 10^(-27)
-        elif opcion_seleccionada == "Electrón":
-            masa_partícula = 9.11 * 10^(-31)
-        elif opcion_seleccionada == "Positrón":
-            masa_partícula = 9.11 * 10^(-31)
-        elif opcion_seleccionada == "Pion⁻":
-            masa_partícula = 2.2809 * 10^(-28)
-        elif opcion_seleccionada == "Pion⁺":
-            masa_partícula = 2.2809 * 10^(-28)
-        elif opcion_seleccionada == "Muón":
-            masa_partícula = 1.867 * 10^(-28)
-        elif opcion_seleccionada == "Tauón":
-            masa_partícula = 3.167 * 10^(-27)
-        elif opcion_seleccionada == "Quark up":
-            masa_partícula = 2.3 * 10^(-24)
-        elif opcion_seleccionada == "Quark down":
-            masa_partícula = 4.8 * 10^(-24)
-        elif opcion_seleccionada == "Quark charm":
-            masa_partícula = 1.3 * 10^(-23)
-        elif opcion_seleccionada == "Quark strange":
-            masa_partícula = 1.5 * 10^(-23)
-        elif opcion_seleccionada == "Quark top":
-            masa_partícula = 173 * 10^(-25)
-        elif opcion_seleccionada == "Quark bottom":
-            masa_partícula = 4.2 * 10^(-24)
-        elif opcion_seleccionada == "Bosón W":
-            masa_partícula = 8.69 * 10^(-25)
-        elif opcion_seleccionada == "Bosón Z":
-            masa_partícula = 9.47 * 10^(-25)
-        elif opcion_seleccionada == "Bosón de Higgs / Partícula de dios":
-            masa_partícula = 1.25 * 10^(-22)
-
-    combobox = ctk.CTkComboBox(ventana11, values=["", 'Protón', 'Electrón', 'Positrón', 'Pion⁻',
-                                                'Pion⁺', 'Muón', 'Tauón', 'Quark up', 
-                                                'Quark down', 'Quark charm', 'Quark strange', 
-                                                'Quark top', 'Quark bottom', 'Bosón W',
-                                                'Bosón Z', 'Bosón de Higgs / Partícula de dios'], command=seleccionar_opcion)
-    combobox.grid(row=0, column=5, padx=10, pady=10)
+    masa_partícula = ctk.CTkEntry(ventana11)
+    masa_partícula.grid(row=0, column=5, padx=10, pady=10)
 
         # Posición Inicial Particula
     posición_P_X = ctk.CTkEntry(ventana11, placeholder_text='X')
@@ -148,6 +106,35 @@ def electromagnetismo():
         # Periodo de la particula
     periodo = ctk.CTkEntry(ventana11)
     periodo.grid(row=2, column=5, padx=10, pady=10)
+
+    periodo1 = ctk.CTkEntry(ventana11)
+    periodo1.grid(row=4, column=5, padx=10, pady=10)
+    periodo2 = ctk.CTkEntry(ventana11)
+    periodo2.grid(row=5, column=5, padx=10, pady=10)
+    periodo3 = ctk.CTkEntry(ventana11)
+    periodo3.grid(row=6, column=5, padx=10, pady=10)
+    periodo4 = ctk.CTkEntry(ventana11)
+    periodo4.grid(row=7, column=5, padx=10, pady=10)
+    periodo5 = ctk.CTkEntry(ventana11)
+    periodo5.grid(row=8, column=5, padx=10, pady=10)
+    periodo6 = ctk.CTkEntry(ventana11)
+    periodo6.grid(row=9, column=5, padx=10, pady=10)
+    periodo7 = ctk.CTkEntry(ventana11)
+    periodo7.grid(row=10, column=5, padx=10, pady=10)
+    periodo8 = ctk.CTkEntry(ventana11)
+    periodo8.grid(row=11, column=5, padx=10, pady=10)
+    periodo9 = ctk.CTkEntry(ventana11)
+    periodo9.grid(row=12, column=5, padx=10, pady=10)
+    periodo10 = ctk.CTkEntry(ventana11)
+    periodo10.grid(row=13, column=5, padx=10, pady=10)
+    periodo11 = ctk.CTkEntry(ventana11)
+    periodo11.grid(row=14, column=5, padx=10, pady=10)
+    periodo12 = ctk.CTkEntry(ventana11)
+    periodo12.grid(row=15, column=5, padx=10, pady=10)
+    periodo13 = ctk.CTkEntry(ventana11)
+    periodo13.grid(row=16, column=5, padx=10, pady=10)
+    periodo14 = ctk.CTkEntry(ventana11)
+    periodo14.grid(row=17, column=5, padx=10, pady=10)
         # Posición Campo Magnético
     posición_CM_X = ctk.CTkEntry(ventana11, placeholder_text='X')
     posición_CM_X.grid(row=3, column=1, padx=10, pady=10)
@@ -171,13 +158,6 @@ def electromagnetismo():
     combobox = ctk.CTkComboBox(ventana11, values=["", 'Diagrama de partícula \n en vista de pájaro', 
                                                 'Diagrama partícula 3D', 'Digrama de hilo', 'Digrama de hilo 3D'])
     combobox.grid(row=3, column=5, padx=10, pady=10)
-    
-    # Crear barras de desplazamiento
-    #scrollbar_y = ctk.CTkScrollbar(ventana11, command=ventana11.yview ,orientation='vertical')
-    # Vincular barras de desplazamiento a la ventana
-    #ventana11.configure(yscrollcommand=scrollbar_y.set)
-    # Empaquetar barras de desplazamiento
-    #scrollbar_y.grid(row=0, column=7, sticky='ns', fill=Y)
 
     def calcular_fuerza():
         try:
@@ -212,7 +192,7 @@ def electromagnetismo():
     def calcular_radio():
         try:
             # Extracción de valores de las entradas
-            masa_part = masa_partícula
+            masa_part = float(masa_partícula.get())
             carga_part = np.abs(float(carga_partícula.get()))
             velocidad_inicial = np.array([
                 float(velocidad_IX.get()),
@@ -231,8 +211,8 @@ def electromagnetismo():
             resultado = round(r, 3)
 
             # Visualización de resultados
-            etiqueta_resultado.configure(text=f"Magnitud de la fuerza: {resultado} m")
-            etiqueta_resultado3.configure(text=f"Magnitud de la fuerza: {resultado} m")
+            etiqueta_resultado.configure(text=f"El radio es de: {resultado} m")
+            etiqueta_resultado3.configure(text=f"El radio es de: {resultado} m")
 
         except ValueError:
             etiqueta_resultado.configure(text="Error: Valores no válidos.")
@@ -240,7 +220,7 @@ def electromagnetismo():
     def calcular_velocidad_angular():
         try:
             # Extracción de valores de las entradas
-            masa_part = masa_partícula
+            masa_part = float(masa_partícula.get())
             carga_part = np.abs(float(carga_partícula.get()))
             campo_magnetico = np.array([
                 float(intensidad_CM_X.get()),
@@ -253,8 +233,8 @@ def electromagnetismo():
             resultado = round(w, 3)
 
             # Visualización de resultados
-            etiqueta_resultado.configure(text=f"Magnitud de la velocidad angular: {resultado} m/s")
-            etiqueta_resultado3.configure(text=f"Magnitud de la velocidad angular: {resultado} m/s")
+            etiqueta_resultado.configure(text=f"La velocidad angular: {resultado} m/s")
+            etiqueta_resultado4.configure(text=f"La velocidad angular: {resultado} m/s")
 
         except ValueError:
             etiqueta_resultado.configure(text="Error: Valores no válidos.")
@@ -262,7 +242,7 @@ def electromagnetismo():
     def calcular_Periodo():
         try:
             # Extracción de valores de las entradas
-            masa_part = masa_partícula
+            masa_part = float(masa_partícula.get())
             carga_part = np.abs(float(carga_partícula.get()))
             pi = np.pi
             campo_magnetico = np.array([
@@ -277,7 +257,7 @@ def electromagnetismo():
 
             # Visualización de resultados
             etiqueta_resultado.configure(text=f"Magnitud del periodo es: {resultado} s")
-            etiqueta_resultado3.configure(text=f"Magnitud del periodo es: {resultado} s")
+            etiqueta_resultado5.configure(text=f"Magnitud del periodo es: {resultado} s")
 
         except ValueError:
             etiqueta_resultado.configure(text="Error: Valores no válidos.")
@@ -285,9 +265,9 @@ def electromagnetismo():
     def calcular_frecuencia():
         try:
             # Extracción de valores de las entradas
-            masa_part = masa_partícula
+            masa_part = float(masa_partícula.get())
             carga_part = np.abs(float(carga_partícula.get()))
-            T = float(periodo.get())
+            
 
             pi = np.pi
             campo_magnetico = np.array([
@@ -295,20 +275,23 @@ def electromagnetismo():
                 float(intensidad_CM_Y.get()),
                 float(intensidad_CM_Z.get())
             ])
-            if periodo.get() != ' ':
+            if periodo.get() == ' ':
                 B = np.linalg.norm(campo_magnetico)
                 f = (carga_part*B)/(2*pi*masa_part)
                 resultado = round(f, 3)
             else:
+                T = float(periodo.get())
                 f = 1/T
                 resultado = round(f, 3)
 
             # Visualización de resultados
-            etiqueta_resultado.configure(text=f"Magnitud de la velocidad angular: {resultado} m/s")
-            etiqueta_resultado3.configure(text=f"Magnitud de la velocidad angular: {resultado} m/s")
+            etiqueta_resultado.configure(text=f"La frecuencia es: {resultado} m/s")
+            etiqueta_resultado6.configure(text=f"La frecuencia es: {resultado} m/s")
 
         except ValueError:
             etiqueta_resultado.configure(text="Error: Valores no válidos.")
+
+
 
     def grafico_pajaro():
         # Extracción de valores de las entradas
@@ -376,7 +359,7 @@ def electromagnetismo():
         ax.annotate("", xy=end_coords, xytext=start_coords, size=1, 
             arrowprops=dict(facecolor='green', shrink=0.05, linewidth=0.5, headwidth=head_width))
         # Define magnetic field marker
-        magnetic_field_marker = 'o' if a >= 1 else 'x'
+        magnetic_field_marker = 'o' if a >= 0 else 'x'
 
         ax.plot(posicion_del_campo[0], posicion_del_campo[1],  marker=magnetic_field_marker, color='purple', markersize=10, label='Campo magnético')
         ax.plot(posicion_del_campo[0]*4, posicion_del_campo[1],  marker=magnetic_field_marker, color='purple', markersize=10)
@@ -448,7 +431,7 @@ def electromagnetismo():
         longitud_linea = 20  # Ajusta este valor para la longitud de la línea
         posicion_final = np.array([posicion_inicial[0], posicion_inicial[1], posicion_inicial[2] + longitud_linea])
 
-        if intensidad_campoM[2] >= 1:
+        if intensidad_campoM[2] >= 0:
             # Dibujo de la línea
             ax.plot3D([posicion_inicial[0], posicion_final[0]], [posicion_inicial[1], posicion_final[1]], [posicion_inicial[2], posicion_final[2]],
                 color='purple', marker='^', label='Campo magnético \n dirección +Z')
@@ -498,7 +481,7 @@ def electromagnetismo():
         # Create and add circle to the center
         circulo = patches.Circle(xy=centro, radius=radio, color='purple', linewidth=2, fill=False)  # Set fill=False for outline
         ax.add_patch(circulo)
-        if carga_part >= 1:
+        if carga_part >= 0:
             ax.annotate("", xy=(6,3.1), xytext=(6,3), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
             ax.annotate("", xy=(2.9,6), xytext=(3,6), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
             ax.annotate("", xy=(0,2.9), xytext=(0,3), size=1, arrowprops=dict(facecolor='purple', shrink=0.5, linewidth=0.5, headwidth=14))
@@ -543,7 +526,7 @@ def electromagnetismo():
         y = radio * np.sin(theta) + centro[1]
         z = np.zeros_like(x)  # Set all Z values to 0 for a flat circle
 
-        if carga_part >= 1:
+        if carga_part >= 0:
             # Plot the circle outline in 3D
             ax.plot(x, y, z, color='purple', linewidth=2)
             ax.plot3D(centro[0], centro[1] - radio, 0, marker='>', color='purple', markersize=10, label='Campo Mg')
@@ -589,7 +572,7 @@ def electromagnetismo():
     boton_calcular_periodo = ctk.CTkButton(ventana11, text="Calcular T", command=calcular_Periodo)
     boton_calcular_periodo.grid(row=4, column=3)
     boton_calcular_frecuencia = ctk.CTkButton(ventana11, text="Calcular f", command=calcular_frecuencia)
-    boton_calcular_frecuencia.grid(row=4, column=3)
+    boton_calcular_frecuencia.grid(row=4, column=4)
     Crear_gráfico = ctk.CTkButton(ventana11, text="Graficar", command=seleccionar_opcion)
     Crear_gráfico.grid(row=5, column=1)
 

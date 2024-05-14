@@ -10,10 +10,10 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import *
 
 
-def electromagnetismo():
+def electrico():
 
     ventana12 = ctk.CTk()
-    ventana12.title("Menu calculadora de Electromagnetismo")
+    ventana12.title("Menu calculadora de campo eléctrico")
     ventana12.configure(fg_color="black")
 
     os_name = os.name
@@ -24,9 +24,13 @@ def electromagnetismo():
         y_offset = 0
         ventana12.geometry(f"{screen_width}x{screen_height}+{x_offset}+{y_offset}")
         directorio = 'C:/calculadora_de_dinamica/'
-        ruta_local = os.path.join(directorio, 'Interacción_electromagnética.ico')
+        ruta_local = os.path.join(directorio, 'Interacción_electrica.ico')
         ventana12.iconbitmap(ruta_local)
     elif os_name == 'posix':
         screen_width = ventana12.winfo_screenwidth()
         screen_height = ventana12.winfo_screenheight()
         ventana12.geometry(f"{screen_width}x{screen_height}")
+
+    
+
+    ventana12.mainloop()
