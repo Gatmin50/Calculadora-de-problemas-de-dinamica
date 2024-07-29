@@ -16,7 +16,7 @@ import Calculadoras.Trabajo_circular as Trabajo_circular
 import Calculadoras.Ondas_armónicas as Ondas_armónicas
 import Calculadoras.Nuclear as Nuclear
 import Calculadoras.Interacción_gravitatoria as Interaccion_gravitatoria
-import Calculadoras.Interacción_electrica as Interaccion_electrica
+import Calculadoras.interacción_electrica as Interaccion_electrica
 import Calculadoras.Interacción_electrmagnética as Interaccion_Electromagnetica
 
 # Using os.name
@@ -54,7 +54,7 @@ system = platform.system()
 print(f"System: {system}")
 
 
-#Intro.animacion_inicial()
+Intro.animacion_inicial()
 
 # Crear la ventana del menu de la calculadora
 ventana1 = ctk.CTk()
